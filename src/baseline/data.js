@@ -4,9 +4,6 @@ export const imagery = {
   identity: image('identity-cards', 1300, 731),
   campaign: image('campaign-shelter', 1040, 1300),
   device: image('digital-device', 1040, 1300),
-  environment: image('studio-environment', 1300, 731),
-  application: image('brand-application', 1200, 800),
-  web: image('digital-experience', 1300, 731),
 }
 
 export const navigation = [
@@ -32,18 +29,6 @@ export const projects = [
     summary: 'A fashion marketplace for authentic Make in India brands, and an identity drawn from the butterfly.',
     image: image('rucaa-arch', 1300, 731), imageAlt: 'The Rucaa wordmark framed by an arch, with the dome of the Taj Mahal beyond',
   },
-  {
-    number: '04', slug: 'connected-signals', title: 'Connected signals', category: 'INTERFACE DESIGN',
-    summary: 'An interface study for seeing every customer signal in one place.',
-    heroBody: 'An interface study for seeing every customer signal in one place: the enquiry, the follow-up and the outcome.',
-    briefTitle: "Most businesses already have the data. They just can't see it together.",
-    briefBody: 'Enquiries arrive through forms, calls and messages, then scatter across inboxes and spreadsheets. The question was what a single, calm view of all of it could look like.',
-    approachTitle: 'Hierarchy first, decoration last.',
-    approachBody: 'The interface treats information as a path toward a decision: what came in, what happened next and what needs attention now.',
-    covers: ['Interface study', 'Signal visualisation', 'Experience direction'],
-    image: imagery.device, imageAlt: 'Device screen showing a connected path of customer signals',
-    secondary: imagery.web, secondaryAlt: 'Device screen showing a connected path of customer signals',
-  },
 ]
 
 export const capabilities = [
@@ -62,7 +47,6 @@ export const capabilities = [
     ],
     services: ['Marketing strategy', 'Brand identity', 'Advertising design', 'Campaign development', 'Influencer and creator marketing', 'Content production'],
     visual: imagery.identity, visualAlt: 'Moreward identity explored across printed cards',
-    secondary: imagery.application, secondaryAlt: 'Moreward identity on apparel and tote',
     relatedSlug: 'betach',
   },
   {
@@ -80,7 +64,6 @@ export const capabilities = [
     ],
     services: ['Outdoor advertising', 'Billboard and banner campaigns', 'Metro and transit advertising', 'Television advertising', 'Radio advertising', 'Print advertising', 'Media planning'],
     visual: imagery.campaign, visualAlt: 'Moreward outdoor advertising study composition',
-    secondary: imagery.environment, secondaryAlt: "Outdoor campaign panel with Moreward's run-and-rise line graphic",
     relatedSlug: null,
   },
   {
@@ -98,8 +81,7 @@ export const capabilities = [
     ],
     services: ['AI automations', 'Custom CRM development', 'Workflow automation', 'Website design and development', 'Custom business tools'],
     visual: imagery.device, visualAlt: 'Interface study showing a connected signal path',
-    secondary: imagery.web, secondaryAlt: 'Device screen showing a connected path of customer signals',
-    relatedSlug: 'connected-signals',
+    relatedSlug: null,
   },
 ]
 

@@ -11,6 +11,11 @@
       "statusCode": 301
     },
     {
+      "source": "/work/connected-signals",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
       "source": "/engagements",
       "destination": "/studio#how-we-work",
       "statusCode": 301
@@ -42,7 +47,7 @@
     },
     {
       "source": "/work/connected-view",
-      "destination": "/work/connected-signals",
+      "destination": "/work",
       "statusCode": 301
     }
   ],
@@ -62,10 +67,6 @@
     {
       "source": "/work",
       "destination": "/work/index.html"
-    },
-    {
-      "source": "/work/connected-signals",
-      "destination": "/work/connected-signals/index.html"
     },
     {
       "source": "/capabilities",
