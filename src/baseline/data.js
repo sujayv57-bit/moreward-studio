@@ -27,7 +27,7 @@ export const projects = [
   {
     number: '03', slug: 'rucaa', title: 'Rucaa', client: true, href: '/work/rucaa',
     summary: 'A fashion marketplace for authentic Make in India brands, and an identity drawn from the butterfly.',
-    image: image('rucaa-arch', 1300, 731), imageAlt: 'The Rucaa wordmark framed by an arch, with the dome of the Taj Mahal beyond',
+    image: image('rucaa-pin', 1122, 902), imageAlt: 'A gold Rucaa R pin on the lapel of a dark tweed jacket',
   },
 ]
 
