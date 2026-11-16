@@ -64,7 +64,7 @@ section[id]{scroll-margin-top:6rem}
 .b-work__grid .b-project__image{height:100%}
 .b-work-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 1.5rem}
 .b-work-index .b-project__image{height:28rem;flex:none}
-.b-work-index .b-project:last-child{grid-column:1/-1;width:calc(50% - .75rem)}
+.b-work-index .b-project:last-child:nth-child(odd){grid-column:1/-1;width:calc(50% - .75rem)}
 .b-work-note{justify-content:center}
 .b-work-note p{max-width:53rem;text-align:center}
 .b-steps-compact{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem 1.5rem}
@@ -246,3 +246,4 @@ section[id]{scroll-margin-top:6rem}
 .b-contact-page__details a{display:inline-flex;align-items:center;min-height:44px}
 @media(max-width:640px){.b-section-head p,.b-cap-detail-showcase>div:last-child>p{font-size:1rem}}
 @media(max-width:768px){.b-footer__bottom>span{display:block}}
+@media (prefers-reduced-motion:reduce){[data-reveal]:not(.b-word-reveal){opacity:1!important;transform:none!important;transition:none!important}}

@@ -9,11 +9,11 @@ export const PUBLIC_PATHS = [
 ]
 
 // Standalone pages served from /public (not rendered by the app). Listed in the sitemap only.
-export const STATIC_PATHS = ['/work/betach', '/work/kriya-setu']
+export const STATIC_PATHS = ['/work/betach', '/work/kriya-setu', '/work/rucaa']
 
 export const seo = {
   '/': { title: 'Moreward | Direction, made visible.', description: 'Independent creative and technology studio. Brand, campaigns, outdoor and broadcast media, and the websites, CRMs and automations behind them.', image: '/social-card.png' },
-  '/work': { title: 'Work | Moreward', description: 'Brand identities for BETACH Consulting Services and Kriya Setu, and a self-initiated interface study, by Moreward.', image: '/images/identity-cards-1300.webp' },
+  '/work': { title: 'Work | Moreward', description: 'Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa, and a self-initiated interface study, by Moreward.', image: '/images/identity-cards-1300.webp' },
   '/work/connected-signals': { title: 'Connected signals | Moreward', description: 'Study 03: an interface study for seeing every customer enquiry, follow-up and outcome in one place.', image: '/images/digital-device-1040.webp' },
   '/capabilities': { title: 'Capabilities | Moreward', description: 'Creative & Marketing, Advertising & Media, and Technology & Automation, under one roof and working from the same brief.', image: '/images/brand-application-1200.webp' },
   '/capabilities/creative-marketing': { title: 'Creative & Marketing | Moreward', description: 'Positioning, brand identity, advertising design, campaigns, creator marketing and content from Moreward.', image: '/images/identity-cards-1300.webp' },

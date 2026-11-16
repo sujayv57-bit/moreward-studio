@@ -56,6 +56,10 @@
       "destination": "/work/kriya-setu/index.html"
     },
     {
+      "source": "/work/rucaa",
+      "destination": "/work/rucaa/index.html"
+    },
+    {
       "source": "/work",
       "destination": "/work/index.html"
     },

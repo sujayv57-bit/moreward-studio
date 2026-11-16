@@ -28,7 +28,12 @@ export const projects = [
     image: image('kriya-setu-mark', 1300, 743), imageAlt: 'The Kriya Setu mark: a student raising a hand beneath a spark, on blue',
   },
   {
-    number: '03', slug: 'connected-signals', title: 'Connected signals', category: 'INTERFACE DESIGN',
+    number: '03', slug: 'rucaa', title: 'Rucaa', client: true, href: '/work/rucaa',
+    summary: 'A fashion marketplace for authentic Make in India brands, and an identity drawn from the butterfly.',
+    image: image('rucaa-arch', 1300, 731), imageAlt: 'The Rucaa wordmark framed by an arch, with the dome of the Taj Mahal beyond',
+  },
+  {
+    number: '04', slug: 'connected-signals', title: 'Connected signals', category: 'INTERFACE DESIGN',
     summary: 'An interface study for seeing every customer signal in one place.',
     heroBody: 'An interface study for seeing every customer signal in one place: the enquiry, the follow-up and the outcome.',
     briefTitle: "Most businesses already have the data. They just can't see it together.",
