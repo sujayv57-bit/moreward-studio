@@ -28,7 +28,7 @@ function documentFor(path, markup) {
     '<meta name="twitter:image" content="' + escape(image) + '">',
     data.noindex ? '<meta name="robots" content="noindex,follow">' : '',
     '<script id="moreward-schema" type="application/ld+json">' + JSON.stringify(schemaFor(path === '404' ? '/404' : path, siteUrl)).replace(/</g, '\\u003c') + '</script>',
-    '<link rel="preload" href="/fonts/Blauer-Nue-Medium.otf" as="font" type="font/otf" crossorigin>',
+    '<link rel="preload" href="/fonts/Archivo-Variable.woff2" as="font" type="font/woff2" crossorigin>',
     path === '/' ? '<link rel="preload" href="/media/hero-poster.webp" as="image" fetchpriority="high">' : '',
   ].filter(Boolean).join('\n    ')
   const clean = template

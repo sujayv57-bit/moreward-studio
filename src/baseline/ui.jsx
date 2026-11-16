@@ -55,9 +55,9 @@ export function ImageFrame({ image, alt, className = '', sizes = '100vw', eager 
   return <div className={'b-image-frame ' + className} data-reveal><ResponsiveImage image={image} alt={alt} sizes={sizes} eager={eager}/></div>
 }
 
-export function StudyCard({ project, summary = false, className = '' }) {
-  return <Link className={'b-project ' + className} to={'/work/' + project.slug} data-reveal>
-    <div className="b-project__image"><ResponsiveImage image={project.image} alt={project.imageAlt} sizes="(max-width: 767px) 100vw, 50vw"/></div>
+export function StudyCard({ project, summary = false, className = '', eager = false }) {
+  return <Link className={'b-project ' + className} to={'/work/' + project.slug} data-reveal={eager ? undefined : ''}>
+    <div className="b-project__image"><ResponsiveImage image={project.image} alt={project.imageAlt} sizes="(max-width: 767px) 100vw, 50vw" eager={eager}/></div>
     <div className="b-project__meta"><div><span>STUDY {project.number}</span><h3>{project.title}</h3></div><span>{project.category}</span></div>
     {summary && <p className="b-project__summary">{project.summary}</p>}
   </Link>

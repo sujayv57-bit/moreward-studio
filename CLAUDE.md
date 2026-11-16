@@ -11,6 +11,9 @@ Vite + React site, deployed on Vercel (project `moreward-studio`, team `sujay-s-
 ## Project notes
 
 - Build: `npm ci && npm run build` (Vite build + SSR prerender into `dist/`).
-- Live stylesheets: `src/baseline.css`, `src/hero.css`, `src/overhaul.css` (imported in `src/main.jsx`). Other CSS files in `src/` are unused leftovers.
-- Fonts: Archivo (headings), DM Sans (body), Geist Mono (small labels). Google Fonts link is in `index.html`.
+- Source of truth: `src/App.jsx` (routes), `src/baseline/*` (pages, header/menu/footer, form, data/copy in `data.js`), `src/config/site.js` (STUDIO_EMAIL, per-page SEO, public paths), `src/config/schema.js` (JSON-LD).
+- Stylesheets: `src/baseline.css`, `src/hero.css`, `src/overhaul.css` (imported in `src/main.jsx`, in that order).
+- Fonts are self-hosted in `public/fonts`: Archivo (headings), DM Sans (body), Geist Mono (small labels). Blauer Nue Regular is kept only for the arrow glyphs. No third-party font requests (the privacy page states this).
+- `scripts/prerender.mjs` writes static HTML for every route plus `404.html`, `sitemap.xml`, `robots.txt` and `llms.txt`. Redirects live in `vercel.json`.
+- Tests: `node scripts/test-enquiry.mjs` (API). `npm run preview` serves `dist/` with the vercel.json redirects.
 - Contact form handler: `api/enquiry.js` (needs `RESEND_API_KEY` and `ENQUIRY_FROM` set in Vercel environment variables).

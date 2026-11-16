@@ -20,7 +20,7 @@ export function HomePage() {
 
 export function WorkPage() {
   return <><section className="b-internal-hero b-work-hero b-panel-dark"><Eyebrow light>STUDIO STUDIES</Eyebrow><RevealWords as="h1" text="Briefs we wrote for ourselves."/><p>Three self-initiated studies across identity, outdoor and interface design. Each starts from a real problem and is held to the standard of a commissioned project.</p></section>
-    <section className="b-work b-work--page b-panel-light"><h2 className="b-sr-only">Studio studies</h2><div className="b-work-index">{projects.map(project => <StudyCard key={project.slug} project={project} summary/>)}</div></section>
+    <section className="b-work b-work--page b-panel-light"><h2 className="b-sr-only">Studio studies</h2><div className="b-work-index">{projects.map((project, i) => <StudyCard key={project.slug} project={project} summary eager={i === 0}/>)}</div></section>
     <section className="b-work-note b-panel-light"><p>These are self-initiated studies, not client work, and no results are claimed. Client projects will appear here as they launch, with the client's permission and outcomes we can stand behind.</p></section><CtaBand/></>
 }
 

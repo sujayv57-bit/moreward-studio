@@ -1,3 +1,4 @@
+import { STUDIO_EMAIL } from '../src/config/site.js'
 import assert from 'node:assert/strict'
 import handler from '../api/enquiry.js'
 
@@ -29,7 +30,7 @@ try {
   assert.equal(success.body.ok, true)
   assert.equal(sent.url, 'https://api.resend.com/emails')
   const message = JSON.parse(sent.options.body)
-  assert.equal(message.to[0], 'sujay@nidhivriddhi.com')
+  assert.equal(message.to[0], STUDIO_EMAIL)
   assert.equal(message.reply_to, payload.email)
   assert.equal(message.subject, 'Project enquiry — North Studio')
   console.log('Enquiry validation, spam checks, missing configuration and Resend payload passed.')

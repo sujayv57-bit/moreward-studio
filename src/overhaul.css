@@ -235,3 +235,14 @@ section[id]{scroll-margin-top:6rem}
 @media (hover:none){.b-capability-row img{opacity:1;transform:none}}
 @media (hover:hover){.b-capability-row:hover img{opacity:1;transform:none}.b-project:focus-visible img,.b-image-frame:focus-within img{transform:scale(1.025)}}
 @media (prefers-reduced-motion:reduce){.b-header,.b-word-clip>span,.m-hero__video-control{transition:none!important;animation:none!important}.b-word-clip>span{opacity:1!important;transform:none!important}}
+
+/* Tap targets (min 44x44) and mobile body text size */
+.b-skip{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box}
+.b-header__logo{display:flex;align-items:center;min-height:44px}
+.m-hero__ghost:before{content:'';position:absolute;left:-.5rem;right:-.5rem;top:50%;height:44px;transform:translateY(-60%)}
+.b-breadcrumb a,.b-footer__bottom a{min-width:44px}
+.b-footer__bottom a{display:inline-flex;align-items:center;justify-content:center;min-height:44px}
+.b-not-found nav a{display:inline-flex;align-items:center;justify-content:center;min-width:44px}
+.b-contact-page__details a{display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:640px){.b-section-head p,.b-cap-detail-showcase>div:last-child>p{font-size:1rem}}
+@media(max-width:768px){.b-footer__bottom>span{display:block}}
