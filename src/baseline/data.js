@@ -22,7 +22,7 @@ export const projects = [
   {
     number: '02', slug: 'kriya-setu', title: 'Kriya Setu', client: true, href: '/work/kriya-setu',
     summary: 'Brand identity for an experiential learning platform. Bridging knowledge and real competence.',
-    image: image('kriya-setu-mark', 1300, 743), imageAlt: 'The Kriya Setu mark: a student raising a hand beneath a spark, on blue',
+    image: image('kriya-setu-chrome', 1300, 743), imageAlt: 'The Kriya Setu mark rendered in polished chrome with an orange spark, on black',
   },
   {
     number: '03', slug: 'rucaa', title: 'Rucaa', client: true, href: '/work/rucaa',
