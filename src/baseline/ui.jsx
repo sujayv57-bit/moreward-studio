@@ -42,6 +42,7 @@ export function RevealWords({ text, as: Tag = 'h2', className = '', delay = 0 })
 }
 
 export function ResponsiveImage({ image, alt, sizes = '100vw', eager = false, className = '' }) {
+  if (image.placeholder) return <picture className={'b-placeholder ' + className} data-placeholder={image.label}><img src={image.src} alt="" width={image.width} height={image.height} decoding="async"/></picture>
   const widths = [...new Set([Math.min(480, image.width), Math.min(960, image.width), image.width])]
   const srcSet = ext => widths.map(width => '/images/' + image.id + '-' + width + '.' + ext + ' ' + width + 'w').join(', ')
   return <picture className={className}>

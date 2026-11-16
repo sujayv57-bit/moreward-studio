@@ -263,3 +263,9 @@ section[id]{scroll-margin-top:6rem}
   .b-studio-principles--text article>div{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);column-gap:clamp(2.5rem,5vw,6rem);align-items:baseline}
   .b-studio-principles--text .b-studio-principles__layout article p{margin-top:0}
 }
+
+/* Image placeholders: labelled slots for images still to be supplied (see placeholder() in data.js) */
+.b-placeholder{position:relative;display:block}
+.b-placeholder::after{content:'IMAGE TO COME\A' attr(data-placeholder);white-space:pre-line;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font:500 .75rem/2 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#A8E5E2;pointer-events:none}
+.b-capability-row .b-placeholder::after{display:none}
+.b-cap-detail-hero__image .b-placeholder::after{inset:auto;top:6.5rem;right:clamp(1.2rem,3.5vw,5rem);display:block;text-align:right;z-index:1}

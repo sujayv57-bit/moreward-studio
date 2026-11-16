@@ -1,9 +1,17 @@
 const image = (id, width, height) => ({ src: `/images/${id}-${width}.webp`, id, width, height })
 
+// Labelled stand-in for an image that hasn't been supplied yet. Rendered by ResponsiveImage.
+// To fill a slot: add the files to public/images and replace placeholder(...) with image(...).
+const placeholder = (label, width, height) => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><defs><pattern id="h" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="28" stroke="#ffffff" stroke-opacity=".06" stroke-width="10"/></pattern></defs><rect width="100%" height="100%" fill="#13302f"/><rect width="100%" height="100%" fill="url(#h)"/></svg>`
+  return { placeholder: true, label, width, height, src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg) }
+}
+
 export const imagery = {
-  identity: image('identity-cards', 1300, 731),
-  campaign: image('campaign-shelter', 1040, 1300),
-  device: image('digital-device', 1040, 1300),
+  creative: placeholder('Creative & Marketing', 1300, 731),
+  advertising: placeholder('Advertising & Media', 1040, 1300),
+  technology: placeholder('Technology & Automation', 1040, 1300),
+  howWeWork: placeholder('Home · How we work', 1040, 1300),
 }
 
 export const navigation = [
@@ -46,7 +54,7 @@ export const capabilities = [
       ['Put it to work.', 'Campaigns, creator partnerships and content carry the idea to the people it was made for.'],
     ],
     services: ['Marketing strategy', 'Brand identity', 'Advertising design', 'Campaign development', 'Influencer and creator marketing', 'Content production'],
-    visual: imagery.identity, visualAlt: 'Moreward identity explored across printed cards',
+    visual: imagery.creative, visualAlt: '',
     relatedSlug: 'betach',
   },
   {
@@ -63,7 +71,7 @@ export const capabilities = [
       ['Planned with purpose.', 'Channel, audience, timing and budget, so every placement has a clear job to do.'],
     ],
     services: ['Outdoor advertising', 'Billboard and banner campaigns', 'Metro and transit advertising', 'Television advertising', 'Radio advertising', 'Print advertising', 'Media planning'],
-    visual: imagery.campaign, visualAlt: 'Moreward outdoor advertising study composition',
+    visual: imagery.advertising, visualAlt: '',
     relatedSlug: null,
   },
   {
@@ -80,7 +88,7 @@ export const capabilities = [
       ['Make AI practical.', 'Automation takes on the repetitive work, so people can focus on the decisions that need them.'],
     ],
     services: ['AI automations', 'Custom CRM development', 'Workflow automation', 'Website design and development', 'Custom business tools'],
-    visual: imagery.device, visualAlt: 'Interface study showing a connected signal path',
+    visual: imagery.technology, visualAlt: '',
     relatedSlug: null,
   },
 ]
