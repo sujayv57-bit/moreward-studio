@@ -17,7 +17,7 @@ export const projects = [
   {
     number: '01', slug: 'betach', title: 'BETACH', client: true, href: '/work/betach',
     summary: 'Protection, built on trust.',
-    image: image('betach-cards', 1300, 867), imageAlt: 'BETACH business cards, navy and white, stacked',
+    image: image('betach-plate', 1122, 900), imageAlt: 'A hand holding a clear acrylic plate etched with the BETACH symbol, against a teal gradient',
   },
   {
     number: '02', slug: 'kriya-setu', title: 'Kriya Setu', client: true, href: '/work/kriya-setu',
