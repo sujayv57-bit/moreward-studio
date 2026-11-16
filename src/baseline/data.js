@@ -23,15 +23,9 @@ export const projects = [
     image: image('betach-cards', 1300, 867), imageAlt: 'BETACH business cards, navy and white, stacked',
   },
   {
-    number: '02', slug: 'outdoor-direction', title: 'Read at speed', category: 'OUT-OF-HOME',
-    summary: 'An outdoor study built on one constraint: people passing a billboard give it a few seconds, if that.',
-    briefTitle: 'Say one thing, from a distance, in motion.',
-    briefBody: 'Outdoor work is seen from a car, a platform or across a street. Anything that needs a second look has already failed.',
-    approachTitle: 'One gesture, scaled for the street.',
-    approachBody: 'A single visual gesture, sized for distance, pace and instant recognition. Large type, one line and nothing to decode.',
-    covers: ['Outdoor campaign study', 'Spatial application', 'Campaign direction'],
-    image: imagery.campaign, imageAlt: "Outdoor campaign panel with Moreward's run-and-rise line graphic",
-    secondary: imagery.environment, secondaryAlt: "Outdoor campaign panel with Moreward's run-and-rise line graphic",
+    number: '02', slug: 'kriya-setu', title: 'Kriya Setu', client: true, href: '/work/kriya-setu',
+    summary: 'Brand identity for an experiential learning platform. Bridging knowledge and real competence.',
+    image: image('kriya-setu-mark', 1300, 743), imageAlt: 'The Kriya Setu mark: a student raising a hand beneath a spark, on blue',
   },
   {
     number: '03', slug: 'connected-signals', title: 'Connected signals', category: 'INTERFACE DESIGN',
@@ -82,7 +76,7 @@ export const capabilities = [
     services: ['Outdoor advertising', 'Billboard and banner campaigns', 'Metro and transit advertising', 'Television advertising', 'Radio advertising', 'Print advertising', 'Media planning'],
     visual: imagery.campaign, visualAlt: 'Moreward outdoor advertising study composition',
     secondary: imagery.environment, secondaryAlt: "Outdoor campaign panel with Moreward's run-and-rise line graphic",
-    relatedSlug: 'outdoor-direction',
+    relatedSlug: null,
   },
   {
     number: '03', slug: 'technology-automation', name: 'Technology & Automation', title: 'Build what the business runs on.',

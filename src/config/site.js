@@ -3,18 +3,17 @@ export const STUDIO_EMAIL = 'sujay@nidhivriddhi.com'
 export const SITE_DESCRIPTION = 'Moreward is an independent creative and technology studio working across brand, advertising, media and digital systems.'
 
 export const PUBLIC_PATHS = [
-  '/', '/work', '/work/outdoor-direction', '/work/connected-signals',
+  '/', '/work', '/work/connected-signals',
   '/capabilities', '/capabilities/creative-marketing', '/capabilities/advertising-media',
   '/capabilities/technology-automation', '/studio', '/contact', '/privacy', '/terms',
 ]
 
 // Standalone pages served from /public (not rendered by the app). Listed in the sitemap only.
-export const STATIC_PATHS = ['/work/betach']
+export const STATIC_PATHS = ['/work/betach', '/work/kriya-setu']
 
 export const seo = {
   '/': { title: 'Moreward | Direction, made visible.', description: 'Independent creative and technology studio. Brand, campaigns, outdoor and broadcast media, and the websites, CRMs and automations behind them.', image: '/social-card.png' },
-  '/work': { title: 'Work | Moreward', description: 'A brand identity for BETACH Consulting Services, and self-initiated studies in outdoor advertising and interface design, by Moreward.', image: '/images/identity-cards-1300.webp' },
-  '/work/outdoor-direction': { title: 'Read at speed | Moreward', description: 'Study 02: an outdoor advertising study on saying one thing from a distance, in motion.', image: '/images/campaign-shelter-1040.webp' },
+  '/work': { title: 'Work | Moreward', description: 'Brand identities for BETACH Consulting Services and Kriya Setu, and a self-initiated interface study, by Moreward.', image: '/images/identity-cards-1300.webp' },
   '/work/connected-signals': { title: 'Connected signals | Moreward', description: 'Study 03: an interface study for seeing every customer enquiry, follow-up and outcome in one place.', image: '/images/digital-device-1040.webp' },
   '/capabilities': { title: 'Capabilities | Moreward', description: 'Creative & Marketing, Advertising & Media, and Technology & Automation, under one roof and working from the same brief.', image: '/images/brand-application-1200.webp' },
   '/capabilities/creative-marketing': { title: 'Creative & Marketing | Moreward', description: 'Positioning, brand identity, advertising design, campaigns, creator marketing and content from Moreward.', image: '/images/identity-cards-1300.webp' },

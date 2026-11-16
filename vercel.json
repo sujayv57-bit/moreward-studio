@@ -6,6 +6,11 @@
       "statusCode": 301
     },
     {
+      "source": "/work/outdoor-direction",
+      "destination": "/work/kriya-setu",
+      "statusCode": 301
+    },
+    {
       "source": "/engagements",
       "destination": "/studio#how-we-work",
       "statusCode": 301
@@ -32,7 +37,7 @@
     },
     {
       "source": "/work/attention-to-action",
-      "destination": "/work/outdoor-direction",
+      "destination": "/work/kriya-setu",
       "statusCode": 301
     },
     {
@@ -47,12 +52,12 @@
       "destination": "/work/betach/index.html"
     },
     {
-      "source": "/work",
-      "destination": "/work/index.html"
+      "source": "/work/kriya-setu",
+      "destination": "/work/kriya-setu/index.html"
     },
     {
-      "source": "/work/outdoor-direction",
-      "destination": "/work/outdoor-direction/index.html"
+      "source": "/work",
+      "destination": "/work/index.html"
     },
     {
       "source": "/work/connected-signals",
