@@ -57,7 +57,7 @@
   position: absolute;
   top: calc(230.5 * var(--hero-u));
   left: calc(75.5 * var(--hero-u));
-  font: 400 calc(71.6 * var(--hero-h)) / calc(80.5 * var(--hero-h)) 'Blauer Nue', sans-serif;
+  font: 400 calc(71.6 * var(--hero-h)) / calc(80.5 * var(--hero-h)) 'Archivo', 'Helvetica Neue', Arial, sans-serif;
   letter-spacing: calc(-1.5 * var(--hero-h));
   white-space: nowrap;
   color: #fafafa;
@@ -68,7 +68,7 @@
   top: calc(230.5 * var(--hero-u) + 189 * var(--hero-h));
   left: calc(75.5 * var(--hero-u));
   max-width: 37rem;
-  font: 400 calc(20.7 * var(--hero-h)) / calc(26 * var(--hero-h)) 'Blauer Nue', sans-serif;
+  font: 400 calc(20.7 * var(--hero-h)) / calc(26 * var(--hero-h)) 'DM Sans', sans-serif;
   color: #aaa9a9;
 }
 .m-hero__actions { position: absolute; inset: 0; }
@@ -85,7 +85,7 @@
   border-radius: 999px;
   background: #fff;
   color: #050505;
-  font: 500 calc(16.5 * var(--hero-h)) 'Blauer Nue', sans-serif;
+  font: 500 calc(16.5 * var(--hero-h)) 'DM Sans', sans-serif;
   white-space: nowrap;
   transition: background .25s, transform .25s;
 }
@@ -95,7 +95,7 @@
   top: calc(230.5 * var(--hero-u) + 279.5 * var(--hero-h));
   left: calc(74.9 * var(--hero-u) + 302 * var(--hero-h));
   color: #fff;
-  font: 500 calc(16.5 * var(--hero-h)) 'Blauer Nue', sans-serif;
+  font: 500 calc(16.5 * var(--hero-h)) 'DM Sans', sans-serif;
   white-space: nowrap;
   transition: opacity .25s;
 }
@@ -136,7 +136,7 @@
   gap: calc(24.5 * var(--hero-u));
   white-space: nowrap;
 }
-.b-header--home .b-header__left a { font: 400 calc(19 * var(--hero-u)) 'Blauer Nue',sans-serif; letter-spacing: 0; text-transform: none; }
+.b-header--home .b-header__left a { font: 400 calc(19 * var(--hero-u)) 'DM Sans', sans-serif; letter-spacing: 0; text-transform: none; }
 .b-header--home .b-header__right { grid-column: 3; grid-row: 1; }
 .b-header--home .b-header__contact {
   width: calc(270 * var(--hero-u));
@@ -147,7 +147,7 @@
   border-radius: 999px;
   background: #fff;
   color: #050505;
-  font: 500 calc(16.5 * var(--hero-u)) 'Blauer Nue',sans-serif;
+  font: 500 calc(16.5 * var(--hero-u)) 'DM Sans', sans-serif;
   letter-spacing: 0;
   text-transform: none;
 }
