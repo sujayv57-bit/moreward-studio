@@ -1,25 +1,94 @@
 {
   "redirects": [
-    { "source": "/engagements", "destination": "/studio#how-we-work", "statusCode": 301 },
-    { "source": "/about", "destination": "/studio", "statusCode": 301 },
-    { "source": "/projects", "destination": "/work", "statusCode": 301 },
-    { "source": "/work/a-sharper-reason", "destination": "/work/moreward-identity", "statusCode": 301 },
-    { "source": "/work/brand-in-space", "destination": "/work/moreward-identity", "statusCode": 301 },
-    { "source": "/work/attention-to-action", "destination": "/work/outdoor-direction", "statusCode": 301 },
-    { "source": "/work/connected-view", "destination": "/work/connected-signals", "statusCode": 301 }
+    {
+      "source": "/work/moreward-identity",
+      "destination": "/work/betach",
+      "statusCode": 301
+    },
+    {
+      "source": "/engagements",
+      "destination": "/studio#how-we-work",
+      "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "destination": "/studio",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/work/a-sharper-reason",
+      "destination": "/work/betach",
+      "statusCode": 301
+    },
+    {
+      "source": "/work/brand-in-space",
+      "destination": "/work/betach",
+      "statusCode": 301
+    },
+    {
+      "source": "/work/attention-to-action",
+      "destination": "/work/outdoor-direction",
+      "statusCode": 301
+    },
+    {
+      "source": "/work/connected-view",
+      "destination": "/work/connected-signals",
+      "statusCode": 301
+    }
   ],
   "rewrites": [
-    { "source": "/work", "destination": "/work/index.html" },
-    { "source": "/work/moreward-identity", "destination": "/work/moreward-identity/index.html" },
-    { "source": "/work/outdoor-direction", "destination": "/work/outdoor-direction/index.html" },
-    { "source": "/work/connected-signals", "destination": "/work/connected-signals/index.html" },
-    { "source": "/capabilities", "destination": "/capabilities/index.html" },
-    { "source": "/capabilities/creative-marketing", "destination": "/capabilities/creative-marketing/index.html" },
-    { "source": "/capabilities/advertising-media", "destination": "/capabilities/advertising-media/index.html" },
-    { "source": "/capabilities/technology-automation", "destination": "/capabilities/technology-automation/index.html" },
-    { "source": "/studio", "destination": "/studio/index.html" },
-    { "source": "/contact", "destination": "/contact/index.html" },
-    { "source": "/privacy", "destination": "/privacy/index.html" },
-    { "source": "/terms", "destination": "/terms/index.html" }
+    {
+      "source": "/work/betach",
+      "destination": "/work/betach/index.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/work/index.html"
+    },
+    {
+      "source": "/work/outdoor-direction",
+      "destination": "/work/outdoor-direction/index.html"
+    },
+    {
+      "source": "/work/connected-signals",
+      "destination": "/work/connected-signals/index.html"
+    },
+    {
+      "source": "/capabilities",
+      "destination": "/capabilities/index.html"
+    },
+    {
+      "source": "/capabilities/creative-marketing",
+      "destination": "/capabilities/creative-marketing/index.html"
+    },
+    {
+      "source": "/capabilities/advertising-media",
+      "destination": "/capabilities/advertising-media/index.html"
+    },
+    {
+      "source": "/capabilities/technology-automation",
+      "destination": "/capabilities/technology-automation/index.html"
+    },
+    {
+      "source": "/studio",
+      "destination": "/studio/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms/index.html"
+    }
   ]
 }

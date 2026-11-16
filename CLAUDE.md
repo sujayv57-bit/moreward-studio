@@ -15,5 +15,6 @@ Vite + React site, deployed on Vercel (project `moreward-studio`, team `sujay-s-
 - Stylesheets: `src/baseline.css`, `src/hero.css`, `src/overhaul.css` (imported in `src/main.jsx`, in that order).
 - Fonts are self-hosted in `public/fonts`: Archivo (headings), DM Sans (body), Geist Mono (small labels). Blauer Nue Regular is kept only for the arrow glyphs. No third-party font requests (the privacy page states this).
 - `scripts/prerender.mjs` writes static HTML for every route plus `404.html`, `sitemap.xml`, `robots.txt` and `llms.txt`. Redirects live in `vercel.json`.
+- Client case studies can be standalone HTML pages in `public/work/<slug>/` (e.g. `public/work/betach/`). Their card in `src/baseline/data.js` has `client: true` and `href`, so it opens with a full page load. Add the path to `STATIC_PATHS` in `src/config/site.js` (sitemap) and a rewrite in `vercel.json`. Self-host any fonts they use.
 - Tests: `node scripts/test-enquiry.mjs` (API). `npm run preview` serves `dist/` with the vercel.json redirects.
 - Contact form handler: `api/enquiry.js` (needs `RESEND_API_KEY` and `ENQUIRY_FROM` set in Vercel environment variables).

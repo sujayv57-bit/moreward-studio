@@ -18,15 +18,9 @@ export const navigation = [
 
 export const projects = [
   {
-    number: '01', slug: 'moreward-identity', title: 'Moreward identity', category: 'BRAND IDENTITY',
-    summary: 'Our own identity, built around a single gesture: a line that runs, then rises.',
-    briefTitle: 'Make a young studio look certain without looking loud.',
-    briefBody: 'The identity had to hold together on a business card, a tote bag and a metro panel, and still read as one company.',
-    approachTitle: 'One line, many surfaces.',
-    approachBody: 'The run-and-rise line becomes a system rather than a logo alone. It sets the grid, crops the images and leads the eye. A restrained palette lets the typography do most of the work.',
-    covers: ['Identity system', 'Print applications', 'Merchandise and environmental applications'],
-    image: imagery.identity, imageAlt: 'Moreward visual identity on printed business cards',
-    secondary: imagery.application, secondaryAlt: 'Moreward identity on apparel and tote',
+    number: '01', slug: 'betach', title: 'BETACH', client: true, href: '/work/betach',
+    summary: 'Protection, built on trust.',
+    image: image('betach-cards', 1300, 867), imageAlt: 'BETACH business cards, navy and white, stacked',
   },
   {
     number: '02', slug: 'outdoor-direction', title: 'Read at speed', category: 'OUT-OF-HOME',
@@ -70,7 +64,7 @@ export const capabilities = [
     services: ['Marketing strategy', 'Brand identity', 'Advertising design', 'Campaign development', 'Influencer and creator marketing', 'Content production'],
     visual: imagery.identity, visualAlt: 'Moreward identity explored across printed cards',
     secondary: imagery.application, secondaryAlt: 'Moreward identity on apparel and tote',
-    relatedSlug: 'moreward-identity',
+    relatedSlug: 'betach',
   },
   {
     number: '02', slug: 'advertising-media', name: 'Advertising & Media', title: 'Take the message further.',

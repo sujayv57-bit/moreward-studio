@@ -56,19 +56,23 @@ export function ImageFrame({ image, alt, className = '', sizes = '100vw', eager 
 }
 
 export function StudyCard({ project, summary = false, className = '', eager = false }) {
-  return <Link className={'b-project ' + className} to={'/work/' + project.slug} data-reveal={eager ? undefined : ''}>
+  const inner = <>
     <div className="b-project__image"><ResponsiveImage image={project.image} alt={project.imageAlt} sizes="(max-width: 767px) 100vw, 50vw" eager={eager}/></div>
-    <div className="b-project__meta"><div><span>STUDY {project.number}</span><h3>{project.title}</h3></div><span>{project.category}</span></div>
+    <div className="b-project__meta"><div><span>{project.client ? project.number : 'STUDY ' + project.number}</span><h3>{project.title}</h3></div>{project.category && <span>{project.category}</span>}</div>
     {summary && <p className="b-project__summary">{project.summary}</p>}
-  </Link>
+  </>
+  const props = { className: 'b-project ' + className, 'data-reveal': eager ? undefined : '' }
+  // Standalone pages (e.g. client case studies in /public) need a full page load, not client-side routing.
+  return project.href ? <a href={project.href} {...props}>{inner}</a> : <Link to={'/work/' + project.slug} {...props}>{inner}</Link>
 }
 
 export function Breadcrumb({ parent, parentTo, current }) {
   return <nav className="b-breadcrumb" aria-label="Breadcrumb"><ol><li><Link to={parentTo}>{parent}</Link></li><li aria-hidden="true">/</li><li aria-current="page">{current}</li></ol></nav>
 }
 
-export function NextNavigation({ type, title, to, allLabel, allTo }) {
-  return <section className="b-next-project b-panel-light"><div><Eyebrow>{type}</Eyebrow><Link className="b-next-project__title" to={to}>{title}<Arrow diagonal/></Link></div><TextLink to={allTo}>{allLabel}</TextLink></section>
+export function NextNavigation({ type, title, to, href, allLabel, allTo }) {
+  const content = <>{title}<Arrow diagonal/></>
+  return <section className="b-next-project b-panel-light"><div><Eyebrow>{type}</Eyebrow>{href ? <a className="b-next-project__title" href={href}>{content}</a> : <Link className="b-next-project__title" to={to}>{content}</Link>}</div><TextLink to={allTo}>{allLabel}</TextLink></section>
 }
 
 export function CtaBand({ variant = 'default', capability }) {

@@ -1,7 +1,7 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { PUBLIC_PATHS, seo, STUDIO_EMAIL } from '../src/config/site.js'
+import { PUBLIC_PATHS, STATIC_PATHS, seo, STUDIO_EMAIL } from '../src/config/site.js'
 import { schemaFor } from '../src/config/schema.js'
 
 const siteUrl = (process.env.VITE_SITE_URL || process.env.SITE_URL || 'https://moreward.studio').replace(/\/$/, '')
@@ -48,7 +48,7 @@ for (const path of [...PUBLIC_PATHS, '/404']) {
   await writeFile(target, documentFor(path === '/404' ? '404' : path, markup))
 }
 
-const urls = PUBLIC_PATHS.map(path => '  <url><loc>' + escape(siteUrl + path) + '</loc></url>').join('\n')
+const urls = [...PUBLIC_PATHS, ...STATIC_PATHS].map(path => '  <url><loc>' + escape(siteUrl + path) + '</loc></url>').join('\n')
 await writeFile('dist/sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '\n</urlset>\n')
 await writeFile('dist/robots.txt', 'User-agent: *\nAllow: /\nSitemap: ' + siteUrl + '/sitemap.xml\n')
 await writeFile('dist/llms.txt', `# Moreward Studio
@@ -59,7 +59,7 @@ It works across three disciplines, often in one project:
 - Technology & Automation: websites, custom CRMs, workflow and AI automation.
 Pages
 - Home: overview, disciplines, studies and approach.
-- Work: three self-initiated studies (identity, outdoor, interface), clearly labelled. No client work or results are claimed.
+- Work: a brand identity for BETACH Consulting Services (client work), and two self-initiated studies (outdoor, interface), clearly labelled. No results are claimed for the studies.
 - Capabilities: the three disciplines and where they overlap.
 - Studio: principles, how we work and ways of working; no fixed packages.
 - Contact: enquiry form, or email ${STUDIO_EMAIL}.
