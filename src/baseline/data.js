@@ -3,7 +3,11 @@ const image = (id, width, height) => ({ src: `/images/${id}-${width}.webp`, id, 
 // Labelled stand-in for an image that hasn't been supplied yet. Rendered by ResponsiveImage.
 // To fill a slot: add the files to public/images and replace placeholder(...) with image(...).
 const placeholder = (label, width, height) => {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><defs><pattern id="h" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="28" stroke="#ffffff" stroke-opacity=".06" stroke-width="10"/></pattern></defs><rect width="100%" height="100%" fill="#13302f"/><rect width="100%" height="100%" fill="url(#h)"/></svg>`
+  // A quiet brand-colour field (deep teal with a soft aqua glow) so an empty slot still looks finished.
+  // The glow position varies with the label so neighbouring slots don't look identical.
+  const seed = [...label].reduce((sum, c) => sum + c.charCodeAt(0), 0)
+  const gx = 20 + (seed % 60), gy = 15 + ((seed >> 3) % 55)
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="g" cx="${gx}%" cy="${gy}%" r="85%"><stop offset="0" stop-color="#2f8f8c"/><stop offset=".38" stop-color="#0f4a50"/><stop offset="1" stop-color="#061c22"/></radialGradient><radialGradient id="s" cx="${100 - gx}%" cy="${100 - gy / 2}%" r="60%"><stop offset="0" stop-color="#5AC9C7" stop-opacity=".22"/><stop offset="1" stop-color="#5AC9C7" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><rect width="100%" height="100%" fill="url(#s)"/><circle cx="${width * (gx / 100)}" cy="${height * (gy / 100)}" r="${Math.min(width, height) * .42}" fill="none" stroke="#A8E5E2" stroke-opacity=".14" stroke-width="1.5"/><circle cx="${width * (gx / 100)}" cy="${height * (gy / 100)}" r="${Math.min(width, height) * .62}" fill="none" stroke="#A8E5E2" stroke-opacity=".07" stroke-width="1.5"/></svg>`
   return { placeholder: true, label, width, height, src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg) }
 }
 

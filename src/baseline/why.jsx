@@ -38,7 +38,7 @@ function ProcessToast() {
 export function WhySection({ index }) {
   const [betach, kriya, rucaa] = projects
   return <section id="why-moreward" className="b-why b-panel-light">
-    <Eyebrow index={index}>WHY MOREWARD</Eyebrow>
+    <Eyebrow index={index}>Why Moreward</Eyebrow>
     <h2 className="b-why__title">Why Moreward, and not <span>another studio?</span></h2>
     <div className="b-why__grid">
       <figure className="b-why__tile b-why__tile--image b-why__a" data-reveal>
@@ -74,7 +74,7 @@ export function WhySection({ index }) {
       <Link to="/work" className="b-why__tile b-why__f" data-reveal>
         <span className="b-why__faces" aria-hidden="true">{[betach, kriya, rucaa].map(project => <ResponsiveImage key={project.slug} image={project.image} alt="" sizes="48px"/>)}</span>
         <span className="b-why__f-text"><strong>Brand identities</strong> for BETACH, Kriya Setu and Rucaa</span>
-        <span className="b-why__f-cta">SEE THE WORK ↗</span>
+        <span className="b-why__f-cta">See the work ↗</span>
       </Link>
     </div>
   </section>

@@ -6,6 +6,7 @@ import './baseline.css'
 import './hero.css'
 import './overhaul.css'
 import './why.css'
+import './premium.css'
 
 const root = document.getElementById('root')
 const router = createAppRouter()

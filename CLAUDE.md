@@ -12,7 +12,9 @@ Vite + React site, deployed on Vercel (project `moreward-studio`, team `sujay-s-
 
 - Build: `npm ci && npm run build` (Vite build + SSR prerender into `dist/`).
 - Source of truth: `src/App.jsx` (routes), `src/baseline/*` (pages, header/menu/footer, form, data/copy in `data.js`), `src/config/site.js` (STUDIO_EMAIL, per-page SEO, public paths), `src/config/schema.js` (JSON-LD).
-- Stylesheets: `src/baseline.css`, `src/hero.css`, `src/overhaul.css`, `src/why.css` (imported in `src/main.jsx`, in that order). `why.css` styles the Home "Why Moreward" bento section (`src/baseline/why.jsx`).
+- Stylesheets: `src/baseline.css`, `src/hero.css`, `src/overhaul.css`, `src/why.css`, `src/premium.css` (imported in `src/main.jsx`, in that order). `why.css` styles the Home "Why Moreward" bento section (`src/baseline/why.jsx`). `premium.css` is the last word on type, labels, buttons and the header: sentence-case DM Sans labels (no all-caps monospace), calmer display tracking, contrast-checked accent colours.
+- Copy style: labels, buttons and eyebrows are written in sentence case in the source ("Start a project", not "START A PROJECT"). Section eyebrows don't show "02 / 05" counters.
+- Design reviews: the `apple-design` skill (`.claude/skills/apple-design`, from dickwu/apple-design-skill) holds Apple's HIG pages; use it for UI reviews and redesign passes.
 - Image placeholders: `placeholder(label, w, h)` in `src/baseline/data.js` marks slots awaiting images; swap for `image(id, w, h)` once files are in `public/images` (480/960/full widths, AVIF + WebP).
 - Fonts are self-hosted in `public/fonts`: Archivo (headings), DM Sans (body), Geist Mono (small labels). Blauer Nue Regular is kept only for the arrow glyphs. No third-party font requests (the privacy page states this).
 - `scripts/prerender.mjs` writes static HTML for every route plus `404.html`, `sitemap.xml`, `robots.txt` and `llms.txt`. Redirects live in `vercel.json`.

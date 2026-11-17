@@ -14,8 +14,9 @@ export function Arrow({ diagonal = false }) {
   return <span ref={ref} className="b-arrow" aria-hidden="true">{diagonal ? '↗' : '→'}</span>
 }
 
-export function Eyebrow({ children, index, light = false }) {
-  return <p className={'b-eyebrow' + (light ? ' b-eyebrow--light' : '')}><span className="b-eyebrow__dot" aria-hidden="true"/>{index && <span>{index}</span>}<span>{children}</span></p>
+// `index` (e.g. "02 / 05") is accepted but no longer shown: section counters read as decoration, not information.
+export function Eyebrow({ children, light = false }) {
+  return <p className={'b-eyebrow' + (light ? ' b-eyebrow--light' : '')}><span className="b-eyebrow__dot" aria-hidden="true"/><span>{children}</span></p>
 }
 
 export function TextLink({ to, href, children, className = '' }) {
@@ -23,7 +24,7 @@ export function TextLink({ to, href, children, className = '' }) {
   return href ? <a className={classes} href={href}>{children}</a> : <Link className={classes} to={to}>{children}</Link>
 }
 
-export function ConversionLink({ to = '/contact', children = 'START A PROJECT', location = 'band', service, light = false, active = false, className = '' }) {
+export function ConversionLink({ to = '/contact', children = 'Start a project', location = 'band', service, light = false, active = false, className = '' }) {
   const clicked = () => {
     trackEvent('cta_start_project', { location })
     if (service) trackEvent('discipline_cta', { service })
@@ -59,7 +60,7 @@ export function ImageFrame({ image, alt, className = '', sizes = '100vw', eager 
 export function StudyCard({ project, summary = false, className = '', eager = false }) {
   const inner = <>
     <div className="b-project__image"><ResponsiveImage image={project.image} alt={project.imageAlt} sizes="(max-width: 767px) 100vw, 50vw" eager={eager}/></div>
-    <div className="b-project__meta"><div><span>{project.client ? project.number : 'STUDY ' + project.number}</span><h3>{project.title}</h3></div>{project.category && <span>{project.category}</span>}</div>
+    <div className="b-project__meta"><div><span>{project.client ? project.number : 'Study ' + project.number}</span><h3>{project.title}</h3></div>{project.category && <span>{project.category}</span>}</div>
     {summary && <p className="b-project__summary">{project.summary}</p>}
   </>
   const props = { className: 'b-project ' + className, 'data-reveal': eager ? undefined : '' }
@@ -79,13 +80,13 @@ export function NextNavigation({ type, title, to, href, allLabel, allTo }) {
 export function CtaBand({ variant = 'default', capability }) {
   const studio = variant === 'studio'
   const service = capability?.slug
-  const label = capability ? 'START A ' + capability.name.toUpperCase() + ' PROJECT' : 'START A PROJECT'
+  const label = capability ? 'Start a ' + capability.name + ' project' : 'Start a project'
   const to = service ? '/contact?service=' + service : '/contact'
   return <section className={'b-cta-band b-panel-dark' + (studio ? ' b-cta-band--studio' : '')} data-reveal>
-    <Eyebrow light>{studio ? 'MOREWARD' : 'HAVE SOMETHING IN MIND?'}</Eyebrow>
+    <Eyebrow light>{studio ? 'Moreward' : 'Have something in mind?'}</Eyebrow>
     <RevealWords text={studio ? 'Not more work. More of what matters.' : "Let's give it direction."}/>
     <div>{!studio && <p>Bring us the problem. We'll help shape what happens next.</p>}
-      <ConversionLink to={to} service={service} location={service ? 'discipline-band' : 'band'} light>{studio ? 'START A PROJECT' : label}</ConversionLink>
+      <ConversionLink to={to} service={service} location={service ? 'discipline-band' : 'band'} light>{studio ? 'Start a project' : label}</ConversionLink>
     </div>
   </section>
 }

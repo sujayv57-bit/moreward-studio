@@ -17,7 +17,7 @@ const nextSteps = [
 ]
 
 export function NextSteps() {
-  return <div className="b-contact-next"><p className="b-contact-next__label">WHAT HAPPENS NEXT</p><ol>{nextSteps.map((step, i) => <li key={step}><span>0{i + 1}</span>{step}</li>)}</ol></div>
+  return <div className="b-contact-next"><p className="b-contact-next__label">What happens next</p><ol>{nextSteps.map((step, i) => <li key={step}><span>0{i + 1}</span>{step}</li>)}</ol></div>
 }
 
 const initial = { name: '', email: '', company: '', service: '', message: '', website: '' }
@@ -118,6 +118,6 @@ export function ContactForm() {
     <label htmlFor="enquiry-message">Tell us about it <span>*</span><textarea id="enquiry-message" name="message" required rows="5" minLength={20} placeholder="What are you trying to achieve, and by when?" value={values.message} onChange={change} onInput={event => { event.currentTarget.style.height = 'auto'; event.currentTarget.style.height = event.currentTarget.scrollHeight + 'px' }} aria-invalid={invalid('message')} aria-describedby={described('message')}/>{fieldError('message')}</label>
     <div className="b-honeypot" aria-hidden="true"><label htmlFor="enquiry-website">Leave this field empty</label><input id="enquiry-website" name="website" tabIndex="-1" autoComplete="off" value={values.website} onChange={change}/></div>
     {serverError && <p className="b-form-server-error" role="alert">Something went wrong on our side. Email us directly at <EmailLink subject={mail.subject} body={mail.body}>{STUDIO_EMAIL}</EmailLink>.</p>}
-    <button className="b-pill b-pill--submit" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'SENDING…' : 'SEND ENQUIRY'}</button>
+    <button className="b-pill b-pill--submit" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send enquiry'}</button>
   </form>
 }

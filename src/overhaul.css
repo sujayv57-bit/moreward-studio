@@ -284,7 +284,7 @@ section[id]{scroll-margin-top:6rem}
   .b-capability-row:hover .b-capability-row__services li{opacity:1;transform:none;transition-delay:calc(var(--i) * 45ms + .15s)}
 }
 @media (max-width:900px){
-  .b-capability-row{grid-template-columns:1.7rem minmax(0,1fr) 1.2rem;gap:.9rem}
+  .b-capability-row{grid-template-columns:minmax(0,1fr) 1.2rem;gap:.9rem}
   .b-capability-row picture{display:none}
   .b-capability-row>.b-arrow{align-self:start;margin-top:.5rem}
   .b-capability-row__services ul{padding-top:1.1rem;gap:.4rem}
