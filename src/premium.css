@@ -162,3 +162,5 @@ html body .b-home-contact__title{font-size:clamp(2.25rem,3.6vw,3.75rem);line-hei
   .b-home-contact__hand{width:46vw}
 }
 @media (prefers-reduced-motion:reduce){.b-home-contact__hand,.b-home-contact__reach,.b-home-contact__spark{transition:none}}
+/* Field errors in the body font (overhaul.css forces monospace with !important, so this must too). */
+html body .b-contact-form .b-field-error{font:400 .8125rem/1.4 'DM Sans','Helvetica Neue',Arial,sans-serif!important;letter-spacing:0;margin-top:.4rem}

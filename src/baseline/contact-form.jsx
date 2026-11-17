@@ -20,12 +20,16 @@ export function NextSteps() {
   return <div className="b-contact-next"><p className="b-contact-next__label">What happens next</p><ol>{nextSteps.map((step, i) => <li key={step}><span>0{i + 1}</span>{step}</li>)}</ol></div>
 }
 
-const initial = { name: '', email: '', company: '', service: '', message: '', website: '' }
+const initial = { name: '', email: '', phone: '', company: '', service: '', message: '', website: '' }
+
+// A callable number: digits with optional +, spaces, brackets or dashes; 8 to 15 digits (with country code if outside India).
+export const validPhone = value => /^[+\d\s()-]+$/.test(value.trim()) && (value.replace(/\D/g, '').length >= 8 && value.replace(/\D/g, '').length <= 15)
 
 function validate(values) {
   const errors = {}
   if (!values.name.trim()) errors.name = 'Please enter your name.'
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) errors.email = 'Please enter a valid email address.'
+  if (!validPhone(values.phone)) errors.phone = 'Please enter a phone number we can call (add the country code if outside India).'
   if (values.message.trim().length < 20) errors.message = 'Please tell us a little more (at least 20 characters).'
   return errors
 }
@@ -33,7 +37,7 @@ function validate(values) {
 function emailContent(values) {
   const subject = 'Project enquiry — ' + (values.company.trim() || values.name.trim())
   const selected = choices.find(([value]) => value === values.service)?.[1] || '—'
-  const body = ['Name: ' + values.name, 'Work email: ' + values.email, 'Company: ' + (values.company || '—'), 'Looking for: ' + selected, 'Details: ' + values.message].join('\n')
+  const body = ['Name: ' + values.name, 'Work email: ' + values.email, 'Phone: ' + values.phone, 'Company: ' + (values.company || '—'), 'Looking for: ' + selected, 'Details: ' + values.message].join('\n')
   return { subject, body }
 }
 
@@ -98,7 +102,7 @@ export function ContactForm() {
 
   if (status === 'success') {
     const firstName = values.name.trim().split(/\s+/)[0]
-    return <div className="b-contact-success" role="status"><h2 ref={successRef} tabIndex="-1">Thanks, {firstName}. Your message is with us.</h2><p>We'll reply to {values.email}.</p><NextSteps/></div>
+    return <div className="b-contact-success" role="status"><h2 ref={successRef} tabIndex="-1">Thanks, {firstName}. Your message is with us.</h2><p>We'll call you on {values.phone.trim()} or reply to {values.email}.</p><NextSteps/></div>
   }
 
   const count = Object.values(errors).filter(Boolean).length
@@ -113,7 +117,10 @@ export function ContactForm() {
       <label htmlFor="enquiry-name">Name <span>*</span><input id="enquiry-name" name="name" autoComplete="name" placeholder="Your name" value={values.name} onChange={change} aria-invalid={invalid('name')} aria-describedby={described('name')} required/>{fieldError('name')}</label>
       <label htmlFor="enquiry-email">Work email <span>*</span><input id="enquiry-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" value={values.email} onChange={change} onBlur={blurEmail} aria-invalid={invalid('email')} aria-describedby={described('email')} required/>{fieldError('email')}</label>
     </div>
-    <label htmlFor="enquiry-company">Company<input id="enquiry-company" name="company" autoComplete="organization" placeholder="Company or brand" value={values.company} onChange={change}/></label>
+    <div className="b-contact-form__pair">
+      <label htmlFor="enquiry-phone">Phone <span>*</span><input id="enquiry-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" value={values.phone} onChange={change} aria-invalid={invalid('phone')} aria-describedby={described('phone')} required/>{fieldError('phone')}</label>
+      <label htmlFor="enquiry-company">Company<input id="enquiry-company" name="company" autoComplete="organization" placeholder="Company or brand" value={values.company} onChange={change}/></label>
+    </div>
     <label htmlFor="enquiry-service">What do you need?<select id="enquiry-service" name="service" value={values.service} onChange={change}><option value="">Choose one</option>{choices.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label>
     <label htmlFor="enquiry-message">Tell us about it <span>*</span><textarea id="enquiry-message" name="message" required rows="5" minLength={20} placeholder="What are you trying to achieve, and by when?" value={values.message} onChange={change} onInput={event => { event.currentTarget.style.height = 'auto'; event.currentTarget.style.height = event.currentTarget.scrollHeight + 'px' }} aria-invalid={invalid('message')} aria-describedby={described('message')}/>{fieldError('message')}</label>
     <div className="b-honeypot" aria-hidden="true"><label htmlFor="enquiry-website">Leave this field empty</label><input id="enquiry-website" name="website" tabIndex="-1" autoComplete="off" value={values.website} onChange={change}/></div>
