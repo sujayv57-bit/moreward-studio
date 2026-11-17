@@ -269,3 +269,27 @@ section[id]{scroll-margin-top:6rem}
 .b-placeholder::after{content:'IMAGE TO COME\A' attr(data-placeholder);white-space:pre-line;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;font:500 .75rem/2 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#A8E5E2;pointer-events:none}
 .b-capability-row .b-placeholder::after{display:none}
 .b-cap-detail-hero__image .b-placeholder::after{inset:auto;top:6.5rem;right:clamp(1.2rem,3.5vw,5rem);display:block;text-align:right;z-index:1}
+
+/* Home capability rows: the services in each discipline drop down on hover or keyboard focus.
+   Touch screens get .is-open from JS once the row scrolls into view (see CapabilityRow in pages.jsx). */
+.b-capability-row__services{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.16,1,.3,1)}
+.b-capability-row__services>div{min-height:0;overflow:hidden}
+.b-capability-row__services ul{list-style:none;margin:0;padding:1.4rem 0 .3rem;display:flex;flex-wrap:wrap;gap:.5rem;max-width:44rem}
+.b-capability-row__services li{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem .9rem;border:1px solid rgba(247,246,242,.22);border-radius:999px;font:500 .7rem/1.2 'Geist Mono',ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;color:#e4ebe8;opacity:0;transform:translateY(-.5rem);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),border-color .25s,background-color .25s}
+.b-capability-row__services li::before{content:'';width:.32rem;height:.32rem;border-radius:50%;background:var(--brand);flex:none}
+.b-capability-row.is-open .b-capability-row__services,.b-capability-row:focus-visible .b-capability-row__services{grid-template-rows:1fr}
+.b-capability-row.is-open .b-capability-row__services li,.b-capability-row:focus-visible .b-capability-row__services li{opacity:1;transform:none;transition-delay:calc(var(--i) * 45ms + .1s)}
+@media (hover:hover){
+  .b-capability-row:hover .b-capability-row__services{grid-template-rows:1fr;transition-delay:.08s}
+  .b-capability-row:hover .b-capability-row__services li{opacity:1;transform:none;transition-delay:calc(var(--i) * 45ms + .15s)}
+}
+@media (max-width:900px){
+  .b-capability-row{grid-template-columns:1.7rem minmax(0,1fr) 1.2rem;gap:.9rem}
+  .b-capability-row picture{display:none}
+  .b-capability-row>.b-arrow{align-self:start;margin-top:.5rem}
+  .b-capability-row__services ul{padding-top:1.1rem;gap:.4rem}
+  .b-capability-row__services li{padding:.5rem .75rem;font-size:.62rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .b-capability-row__services,.b-capability-row__services li{transition:none!important}
+}

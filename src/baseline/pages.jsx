@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from '@tanstack/react-router'
 import { capabilities, engagementTypes, homeSteps, imagery, projects, studioPrinciples, studioSteps } from './data.js'
 import { STUDIO_EMAIL } from '../config/site.js'
@@ -12,10 +13,29 @@ const capPath = capability => '/capabilities/' + capability.slug
 // The Home grid is laid out for three cards: it features client work; the Work page lists everything.
 const homeProjects = projects.filter(project => project.client).slice(0, 3)
 
+// Home capability row. On hover (or keyboard focus) the services in the discipline drop down.
+// Touch screens have no hover, so each row opens once it scrolls into the middle of the screen
+// and stays open, which keeps the page from jumping as people scroll back up.
+function CapabilityRow({ item }) {
+  const ref = useRef(null)
+  const [revealed, setRevealed] = useState(false)
+  useEffect(() => {
+    const row = ref.current
+    if (!row || typeof window === 'undefined' || !window.matchMedia('(hover:none)').matches || !('IntersectionObserver' in window)) return
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) { setRevealed(true); observer.disconnect() }
+    }, { rootMargin: '0px 0px -35% 0px' })
+    observer.observe(row)
+    return () => observer.disconnect()
+  }, [])
+  const services = item.homeServices || item.services
+  return <Link ref={ref} className={'b-capability-row' + (revealed ? ' is-open' : '')} to={capPath(item)}><span className="b-capability-row__number">{item.number}</span><div><h3>{item.name}</h3><p>{item.homeDescription}</p><div className="b-capability-row__services"><div><ul aria-label={item.name + ' services'}>{services.map((service, i) => <li key={service} style={{ '--i': i }}>{service}</li>)}</ul></div></div></div><ResponsiveImage image={item.visual} alt="" sizes="150px"/><Arrow diagonal/></Link>
+}
+
 export function HomePage() {
   return <><HomeHero/>
     <section id="introduction" className="b-intro b-intro--text b-panel-light"><Eyebrow index="01 / 05">POINT OF VIEW</Eyebrow><div className="b-intro__grid"><div><RevealWords text="An idea is only as good as where it ends up." className="b-intro__title"/></div><div className="b-intro__aside"><p>Most work loses its shape somewhere between the brief, the media plan and the systems behind them. We keep strategy, creative, media and technology in one room, so the idea arrives the way it was meant to.</p><TextLink to="/studio">MEET THE STUDIO</TextLink></div></div></section>
-    <section id="capabilities" className="b-capabilities b-panel-dark"><div className="b-section-head"><Eyebrow light index="02 / 05">WHAT WE DO</Eyebrow><div><RevealWords text="Three disciplines, one team."/><p>Most businesses hire separate people for the brand, the media and the technology, then spend months getting them to agree. We do all three, so the thinking carries through.</p></div></div><div className="b-capabilities__list">{capabilities.map(item => <Link key={item.slug} className="b-capability-row" to={capPath(item)}><span className="b-capability-row__number">{item.number}</span><div><h3>{item.name}</h3><p>{item.homeDescription}</p></div><ResponsiveImage image={item.visual} alt="" sizes="150px"/><Arrow diagonal/></Link>)}</div><TextLink to="/capabilities" className="b-section-tail">ALL CAPABILITIES</TextLink></section>
+    <section id="capabilities" className="b-capabilities b-panel-dark"><div className="b-section-head"><Eyebrow light index="02 / 05">WHAT WE DO</Eyebrow><div><RevealWords text="Three disciplines, one team."/><p>Most businesses hire separate people for the brand, the media and the technology, then spend months getting them to agree. We do all three, so the thinking carries through.</p></div></div><div className="b-capabilities__list">{capabilities.map(item => <CapabilityRow key={item.slug} item={item}/>)}</div><TextLink to="/capabilities" className="b-section-tail">ALL CAPABILITIES</TextLink></section>
     <WhySection index="03 / 05"/>
     <section id="work" className="b-work b-panel-light"><div className="b-section-head"><Eyebrow index="04 / 05">SELECTED WORK</Eyebrow><div><RevealWords text="Selected work."/><p>Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa.</p></div></div><div className="b-work__grid">{homeProjects.map((project, i) => <StudyCard key={project.slug} project={project} className={'b-project--' + (i + 1)}/>)}</div><div className="b-work__tail"><TextLink to="/work">SEE ALL WORK</TextLink></div></section>
     <section className="b-engagement-preview b-panel-light"><div><Eyebrow index="05 / 05">HOW WE WORK</Eyebrow><RevealWords text="A good start saves the rest of the project."/><p>We begin with the problem, not the deliverable.</p><ol className="b-steps-compact">{homeSteps.map((step, i) => <li key={step}><span>{two(i + 1)}</span>{step}</li>)}</ol><TextLink to="/studio#how-we-work">HOW WE WORK</TextLink></div><ImageFrame image={imagery.howWeWork} alt="" sizes="(max-width: 767px) 100vw, 50vw"/></section>

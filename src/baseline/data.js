@@ -43,6 +43,7 @@ export const capabilities = [
   {
     number: '01', slug: 'creative-marketing', name: 'Creative & Marketing', title: 'Make the idea matter.',
     homeDescription: 'Strategy, identity, campaigns and content that give a brand something clear to say.',
+    homeServices: ['Marketing Strategy', 'Brand Identity', 'Advertising Design', 'Campaign Development', 'Influencer Marketing', 'Content Creation'],
     hubBody: 'Positioning, identity, advertising design, campaigns, creator partnerships and content. The thinking that decides what a brand says and how it looks saying it.',
     samples: ['Marketing strategy', 'Brand identity', 'Campaign development', 'Content production'],
     heroBody: 'Positioning, identity, campaigns and content, shaped around what the business actually needs to change.',
@@ -60,6 +61,7 @@ export const capabilities = [
   {
     number: '02', slug: 'advertising-media', name: 'Advertising & Media', title: 'Take the message further.',
     homeDescription: 'Outdoor, metro, television, radio and print, planned so the work is seen where it counts.',
+    homeServices: ['Outdoor Advertising', 'Billboard & Banner Advertising', 'Metro Advertising', 'Television Advertising', 'Radio Advertising', 'Print Advertising', 'Media Planning'],
     hubBody: 'Outdoor, billboard, metro, television, radio and print, with the media planning that decides where each piece runs and why.',
     samples: ['Outdoor and billboard', 'Metro and transit', 'Television and radio', 'Media planning'],
     heroBody: 'Outdoor, metro, television, radio and print. We plan where the work appears and make sure it earns its place there.',
@@ -77,6 +79,7 @@ export const capabilities = [
   {
     number: '03', slug: 'technology-automation', name: 'Technology & Automation', title: 'Build what the business runs on.',
     homeDescription: 'Websites, custom CRMs and AI automations that turn interest into enquiries, and enquiries into customers.',
+    homeServices: ['AI Automations', 'Custom CRM Solutions', 'Workflow Automation', 'Website Design & Development', 'Technology-led Business Solutions'],
     hubBody: 'Websites, custom CRMs, workflow and AI automation. The systems that catch the attention a campaign creates and turn it into business.',
     samples: ['Website design and development', 'Custom CRM development', 'Workflow automation', 'AI automations'],
     heroBody: 'Websites, custom CRMs and AI automations that turn attention into enquiries, and enquiries into business.',
