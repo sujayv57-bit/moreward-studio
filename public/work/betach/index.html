@@ -224,6 +224,19 @@ nav a.skip{display:inline-flex;align-items:center;min-height:44px;gap:8px}
   .hero-in{padding-bottom:190px}
   .hero-meta{bottom:72px;flex-direction:column;align-items:center;text-align:center;gap:8px}
 }
+/* Mockups: one uncaptioned gallery; rows share a height so edges line up. */
+.f-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.f-item::after{content:none}
+.f-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.f-a,.f-d{grid-column:span 8;aspect-ratio:3/2}
+.f-b,.f-c{grid-column:span 4;aspect-ratio:auto;min-height:0}
+.f-e,.f-f{grid-column:span 6;aspect-ratio:16/10}
+.f-b img{object-position:50% 55%}
+@media(max-width:820px){
+  .f-grid{gap:10px}
+  .f-a,.f-d,.f-e,.f-f{grid-column:span 12;aspect-ratio:3/2}
+  .f-b,.f-c{grid-column:span 6;aspect-ratio:4/5}
+}
 </style>
 </head>
 <body class="anim">
@@ -382,12 +395,12 @@ nav a.skip{display:inline-flex;align-items:center;min-height:44px;gap:8px}
   <div class="inner">
     <div class="head rv"><span class="tag">07 — In the field</span><span class="tag">From boardroom to site</span></div>
     <div class="f-grid">
-      <figure class="f-item f-a rv" style="margin:0"><img src="/work/betach/assets/cards.jpg" alt="BETACH business cards, navy and white, stacked"><figcaption class="cap tag">Business cards</figcaption></figure>
-      <figure class="f-item f-b rv d1" style="margin:0"><img src="/work/betach/assets/helmet-product.jpg" alt="Navy safety helmet with the BETACH lockup"><figcaption class="cap tag">Site helmet</figcaption></figure>
-      <figure class="f-item f-c rv" style="margin:0"><img src="/work/betach/assets/cap.jpg" alt="White cap with the BETACH lockup held against the sky"><figcaption class="cap tag">Field cap</figcaption></figure>
-      <figure class="f-item f-d rv d1" style="margin:0"><img src="/work/betach/assets/hardhat.jpg" alt="Engineer wearing a navy BETACH hard hat"><figcaption class="cap tag">Hard hat</figcaption></figure>
-      <figure class="f-item f-e rv" style="margin:0"><img src="/work/betach/assets/firefighter.jpg" alt="The BETACH lockup over a firefighter checking a helmet"><figcaption class="cap tag">Emergency response</figcaption></figure>
-      <figure class="f-item f-f rv d1" style="margin:0"><img src="/work/betach/assets/extinguisher.jpg" alt="The BETACH lockup over a fire extinguisher cabinet"><figcaption class="cap tag">Safety equipment</figcaption></figure>
+      <figure class="f-item f-a rv" style="margin:0"><img src="/work/betach/assets/cards.jpg" alt="BETACH business cards, navy and white, stacked"></figure>
+      <figure class="f-item f-b rv d1" style="margin:0"><img src="/work/betach/assets/helmet-product.jpg" alt="Navy safety helmet with the BETACH lockup"></figure>
+      <figure class="f-item f-c rv" style="margin:0"><img src="/work/betach/assets/cap.jpg" alt="White cap with the BETACH lockup held against the sky"></figure>
+      <figure class="f-item f-d rv d1" style="margin:0"><img src="/work/betach/assets/hardhat.jpg" alt="Engineer wearing a navy BETACH hard hat"></figure>
+      <figure class="f-item f-e rv" style="margin:0"><img src="/work/betach/assets/firefighter.jpg" alt="The BETACH lockup over a firefighter checking a helmet"></figure>
+      <figure class="f-item f-f rv d1" style="margin:0"><img src="/work/betach/assets/extinguisher.jpg" alt="The BETACH lockup over a fire extinguisher cabinet"></figure>
     </div>
   </div>
 </section>
