@@ -11,6 +11,10 @@ const placeholder = (label, width, height) => {
   return { placeholder: true, label, width, height, src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg) }
 }
 
+// Hands for the home contact section (see home-contact.jsx). Set to { left: '/images/hand-left.webp', right: '/images/hand-right.webp' }
+// once the two images are in public/images. null shows the fine-line stand-in.
+export const contactHands = null
+
 export const imagery = {
   creative: placeholder('Creative & Marketing', 1300, 731),
   advertising: placeholder('Advertising & Media', 1040, 1300),

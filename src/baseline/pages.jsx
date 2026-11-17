@@ -5,6 +5,7 @@ import { STUDIO_EMAIL } from '../config/site.js'
 import { HomeHero } from './home-hero.jsx'
 import { ContactForm, NextSteps } from './contact-form.jsx'
 import { WhySection } from './why.jsx'
+import { HomeContact } from './home-contact.jsx'
 import { Arrow, Breadcrumb, ConversionLink, CtaBand, EmailLink, Eyebrow, ImageFrame, NextNavigation, ResponsiveImage, RevealWords, StudyCard, TextLink } from './ui.jsx'
 
 const two = number => String(number).padStart(2, '0')
@@ -39,7 +40,7 @@ export function HomePage() {
     <WhySection index="03 / 05"/>
     <section id="work" className="b-work b-panel-light"><div className="b-section-head"><Eyebrow index="04 / 05">Selected work</Eyebrow><div><RevealWords text="Selected work."/><p>Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa.</p></div></div><div className="b-work__grid">{homeProjects.map((project, i) => <StudyCard key={project.slug} project={project} className={'b-project--' + (i + 1)}/>)}</div><div className="b-work__tail"><TextLink to="/work">See all work</TextLink></div></section>
     <section className="b-engagement-preview b-panel-light"><div><Eyebrow index="05 / 05">How we work</Eyebrow><RevealWords text="A good start saves the rest of the project."/><p>We begin with the problem, not the deliverable.</p><ol className="b-steps-compact">{homeSteps.map((step, i) => <li key={step}><span>{two(i + 1)}</span>{step}</li>)}</ol><TextLink to="/studio#how-we-work">How we work</TextLink></div><ImageFrame image={imagery.howWeWork} alt="" sizes="(max-width: 767px) 100vw, 50vw"/></section>
-    <CtaBand/></>
+    <HomeContact/></>
 }
 
 export function WorkPage() {
