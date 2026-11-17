@@ -13,7 +13,8 @@ const placeholder = (label, width, height) => {
 
 // Hands for the home contact section (see home-contact.jsx). Set to { left: '/images/hand-left.webp', right: '/images/hand-right.webp' }
 // once the two images are in public/images. null shows the fine-line stand-in.
-export const contactHands = null
+// Hands cut from Michelangelo's Creation of Adam (public domain), toned to monochrome.
+export const contactHands = { left: '/images/hand-left.webp', right: '/images/hand-right.webp' }
 
 export const imagery = {
   creative: placeholder('Creative & Marketing', 1300, 731),
