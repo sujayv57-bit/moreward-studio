@@ -35,6 +35,58 @@ function ProcessToast() {
   </div>
 }
 
+// Stage points in the SVG's 600×220 box. The curve is a Catmull-Rom spline through exactly these points,
+// and the SVG stretches without keeping its aspect, so x/600 and y/220 as percentages land on the line.
+const W = 600, H = 220
+const linePoints = [[18, 196], [214, 184], [404, 118], [582, 26]]
+const linePath = (() => {
+  const p = [linePoints[0], ...linePoints, linePoints[linePoints.length - 1]]
+  let d = `M${p[1][0]} ${p[1][1]}`
+  for (let i = 1; i < p.length - 2; i++) {
+    const c1 = [p[i][0] + (p[i + 1][0] - p[i - 1][0]) / 6, p[i][1] + (p[i + 1][1] - p[i - 1][1]) / 6]
+    const c2 = [p[i + 1][0] - (p[i + 2][0] - p[i][0]) / 6, p[i + 1][1] - (p[i + 2][1] - p[i][1]) / 6]
+    d += ` C${c1.map(n => n.toFixed(1)).join(' ')} ${c2.map(n => n.toFixed(1)).join(' ')} ${p[i + 1][0]} ${p[i + 1][1]}`
+  }
+  return d
+})()
+
+// A pulse runs along the line on a loop while it is on screen; each stage lights up as the pulse reaches it.
+function DirectionLine() {
+  const ref = useRef(null)
+  const pathRef = useRef(null)
+  const pulseRef = useRef(null)
+  const inView = useInView(ref)
+  useEffect(() => {
+    const root = ref.current, path = pathRef.current, pulse = pulseRef.current
+    if (!inView || !root || !path || !pulse || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const nodes = [...root.querySelectorAll('.b-why__node')]
+    const length = path.getTotalLength()
+    const RUN = 4200, HOLD = 1400, START = 1800
+    let frame = 0, start = 0
+    const tick = now => {
+      if (!start) start = now
+      const elapsed = now - start - START
+      const t = Math.min(1, Math.max(0, elapsed % (RUN + HOLD) / RUN))
+      const eased = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
+      const point = path.getPointAtLength(eased * length)
+      pulse.style.left = point.x / W * 100 + '%'
+      pulse.style.top = point.y / H * 100 + '%'
+      pulse.style.opacity = elapsed < 0 ? 0 : t >= 1 ? Math.max(0, 1 - (elapsed % (RUN + HOLD) - RUN) / 600) : 1
+      root.style.setProperty('--done', (elapsed < 0 ? 0 : point.x / W * 100) + '%')
+      nodes.forEach((node, i) => node.classList.toggle('is-lit', elapsed >= 0 && point.x >= linePoints[i][0] - 1))
+      frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => { cancelAnimationFrame(frame); root.style.removeProperty('--done'); nodes.forEach(node => node.classList.remove('is-lit')) }
+  }, [inView])
+  return <div ref={ref} className="b-why__line" aria-hidden="true">
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none"><path ref={pathRef} className="b-why__line-track" d={linePath}/></svg>
+    <svg className="b-why__line-done" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none"><path d={linePath}/></svg>
+    {studioSteps.map(([title], i) => <span key={title} className={'b-why__node b-why__node--' + (i + 1)} style={{ '--x': linePoints[i][0] / W * 100 + '%', '--y': linePoints[i][1] / H * 100 + '%' }}><i/><em>{String(i + 1).padStart(2, '0')} {title}</em></span>)}
+    <b ref={pulseRef} className="b-why__pulse"/>
+  </div>
+}
+
 export function WhySection({ index }) {
   const [betach, kriya, rucaa] = projects
   return <section id="why-moreward" className="b-why b-panel-light">
@@ -59,10 +111,7 @@ export function WhySection({ index }) {
 
       <div className="b-why__tile b-why__d" data-reveal>
         <div className="b-why__line-head"><p>Direction,</p><p>made visible.</p></div>
-        <div className="b-why__line" aria-hidden="true">
-          <svg viewBox="0 0 600 220" preserveAspectRatio="none"><path d="M8 196 L250 190 C318 186 350 170 392 136 C452 88 500 52 592 22"/></svg>
-          {studioSteps.map(([title], i) => <span key={title} className="b-why__node" style={{ '--x': [8, 37, 65, 96][i] + '%', '--y': [88, 86, 58, 12][i] + '%' }}><i/><em>{String(i + 1).padStart(2, '0')} {title}</em></span>)}
-        </div>
+        <DirectionLine/>
         <p className="b-why__caption"><strong>One line from brief to result.</strong> Strategy, creative, media and technology carry the same idea all the way through.</p>
       </div>
 
