@@ -51,7 +51,7 @@ export function Loader() {
   }, [])
   useEffect(() => { if (!leaving) return; const timer = setTimeout(() => setVisible(false), 700); return () => clearTimeout(timer) }, [leaving])
   if (!visible) return null
-  return <div className={'b-loader' + (leaving ? ' b-loader--leaving' : '')} role="status" aria-label="Loading Moreward"><div><img src={logoWhite} alt="Moreward Studio"/><div className="b-loader__track"><span/></div><p>Direction, made visible.</p></div></div>
+  return <div className={'b-loader' + (leaving ? ' b-loader--leaving' : '')} role="status" aria-label="Loading Moreward"><div><img className="b-loader__mark" src="/images/logomark-white.svg" alt="Moreward" width="96" height="96"/><div className="b-loader__track"><span/></div><p>Direction, made visible.</p></div></div>
 }
 
 export function Header({ pathname }) {
