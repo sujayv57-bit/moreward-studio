@@ -4,8 +4,8 @@ import { capabilities, navigation } from './data.js'
 import { seo, SOCIAL, STUDIO_EMAIL } from '../config/site.js'
 import { schemaFor } from '../config/schema.js'
 import { ConversionLink, EmailLink, SocialIcon } from './ui.jsx'
-const logoInk = '/images/wordmark-ink.webp'
-const logoWhite = '/images/wordmark-white.webp'
+const logoInk = '/images/logo-ink.svg'
+const logoWhite = '/images/logo-white.svg'
 
 const origin = import.meta.env.VITE_SITE_URL || 'https://moreward.studio'
 const absolute = path => origin + path
@@ -51,7 +51,7 @@ export function Loader() {
   }, [])
   useEffect(() => { if (!leaving) return; const timer = setTimeout(() => setVisible(false), 700); return () => clearTimeout(timer) }, [leaving])
   if (!visible) return null
-  return <div className={'b-loader' + (leaving ? ' b-loader--leaving' : '')} role="status" aria-label="Loading Moreward"><div><img src={logoWhite} alt="Moreward"/><div className="b-loader__track"><span/></div><p>Direction, made visible.</p></div></div>
+  return <div className={'b-loader' + (leaving ? ' b-loader--leaving' : '')} role="status" aria-label="Loading Moreward"><div><img src={logoWhite} alt="Moreward Studio"/><div className="b-loader__track"><span/></div><p>Direction, made visible.</p></div></div>
 }
 
 export function Header({ pathname }) {
@@ -96,8 +96,8 @@ export function Header({ pathname }) {
   const dark = overDark && !open
   const current = path => pathname === path || pathname.startsWith(path + '/')
   const close = () => { setOpen(false); toggleRef.current?.focus() }
-  return <><header ref={headerRef} className={'b-header' + (dark ? ' b-header--over' : ' b-header--light') + (scrolled ? ' b-header--scrolled' : '') + (dark && scrolled ? ' b-header--dark-surface' : '') + (hidden ? ' b-header--hidden' : '')} onFocusCapture={() => setHidden(false)}><Link className="b-header__logo" to="/" aria-label="Moreward home"><img src={dark ? logoWhite : logoInk} alt="Moreward"/></Link><nav className="b-header__left" aria-label="Primary">{navigation.slice(0, 3).map(item => <Link key={item.to} to={item.to} aria-current={current(item.to) ? 'page' : undefined} className={current(item.to) ? 'is-current' : ''}>{item.label}</Link>)}</nav><div className="b-header__right"><ConversionLink location="header" active={pathname === '/contact'} className="b-header__cta"/><button ref={toggleRef} className="b-menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="b-menu" onClick={() => setOpen(!open)}><span/><span/></button></div></header>
-    <div ref={menuRef} id="b-menu" className={'b-menu' + (open ? ' b-menu--open' : '')} aria-hidden={!open}><div className="b-menu__top"><Link to="/" tabIndex={open ? 0 : -1} onClick={close}><img src={logoWhite} alt="Moreward"/></Link><button aria-label="Close menu" tabIndex={open ? 0 : -1} onClick={close}>×</button></div><nav aria-label="Full navigation">{navigation.map((item, i) => <Link key={item.to} to={item.to} tabIndex={open ? 0 : -1} onClick={close}><span>{two(i + 1)}</span>{item.label}</Link>)}</nav><div className="b-menu__secondary">{capabilities.map(item => <Link key={item.slug} to={'/capabilities/' + item.slug} tabIndex={open ? 0 : -1} onClick={close}>{item.name}</Link>)}</div><div className="b-menu__bottom"><EmailLink>{STUDIO_EMAIL}</EmailLink><div className="b-menu__social">{SOCIAL.map(item => <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1}>{item.name}</a>)}</div></div></div></>
+  return <><header ref={headerRef} className={'b-header' + (dark ? ' b-header--over' : ' b-header--light') + (scrolled ? ' b-header--scrolled' : '') + (dark && scrolled ? ' b-header--dark-surface' : '') + (hidden ? ' b-header--hidden' : '')} onFocusCapture={() => setHidden(false)}><Link className="b-header__logo" to="/" aria-label="Moreward home"><img src={dark ? logoWhite : logoInk} alt="Moreward Studio"/></Link><nav className="b-header__left" aria-label="Primary">{navigation.slice(0, 3).map(item => <Link key={item.to} to={item.to} aria-current={current(item.to) ? 'page' : undefined} className={current(item.to) ? 'is-current' : ''}>{item.label}</Link>)}</nav><div className="b-header__right"><ConversionLink location="header" active={pathname === '/contact'} className="b-header__cta"/><button ref={toggleRef} className="b-menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="b-menu" onClick={() => setOpen(!open)}><span/><span/></button></div></header>
+    <div ref={menuRef} id="b-menu" className={'b-menu' + (open ? ' b-menu--open' : '')} aria-hidden={!open}><div className="b-menu__top"><Link to="/" tabIndex={open ? 0 : -1} onClick={close}><img src={logoWhite} alt="Moreward Studio"/></Link><button aria-label="Close menu" tabIndex={open ? 0 : -1} onClick={close}>×</button></div><nav aria-label="Full navigation">{navigation.map((item, i) => <Link key={item.to} to={item.to} tabIndex={open ? 0 : -1} onClick={close}><span>{two(i + 1)}</span>{item.label}</Link>)}</nav><div className="b-menu__secondary">{capabilities.map(item => <Link key={item.slug} to={'/capabilities/' + item.slug} tabIndex={open ? 0 : -1} onClick={close}>{item.name}</Link>)}</div><div className="b-menu__bottom"><EmailLink>{STUDIO_EMAIL}</EmailLink><div className="b-menu__social">{SOCIAL.map(item => <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1}>{item.name}</a>)}</div></div></div></>
 }
 
 const two = number => String(number).padStart(2, '0')
@@ -119,7 +119,7 @@ export function Footer() {
       </div>
     </nav>
     <div className="b-foot__card b-foot__brand">
-      <Link to="/" className="b-foot__mark" aria-label="Moreward home"><img src={logoInk} alt="Moreward"/></Link>
+      <Link to="/" className="b-foot__mark" aria-label="Moreward home"><img src={logoInk} alt="Moreward Studio"/></Link>
       <p className="b-foot__line"><span aria-hidden="true"/>Direction, made visible.</p>
       <p className="b-foot__about">Moreward is an independent studio for creative, advertising and technology work: brand, campaigns, media and the systems behind them.</p>
       <div className="b-foot__legal"><span>© {new Date().getFullYear()} Moreward Studio. All rights reserved.</span><span>Independent creative &amp; technology studio</span></div>
