@@ -1,0 +1,72 @@
+/* Home "Tools we work in": one orbit per capability, logos circling the discipline name. */
+.b-orbits{padding:7rem clamp(1.2rem,3.5vw,5rem) 7.5rem}
+.b-orbits__head{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:1.5rem 4rem;align-items:end}
+.b-orbits__head .b-eyebrow{grid-column:1/-1}
+.b-orbits__head p{font-size:1.125rem;line-height:1.45;color:var(--ink-soft);max-width:26rem}
+.b-orbits__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,3vw,3.5rem);margin-top:clamp(3.5rem,6vw,6rem)}
+
+.b-orbit{position:relative;padding:clamp(1.25rem,2.4vw,2.25rem)}
+.b-orbit__stage{position:relative;aspect-ratio:1;width:100%;max-width:30rem;margin:auto;container-type:inline-size}
+.b-orbit__stage::before{content:'';position:absolute;inset:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(90,201,199,.22),rgba(90,201,199,0));opacity:0;transform:scale(.8);transition:opacity .6s,transform .9s cubic-bezier(.16,1,.3,1)}
+.b-orbit:hover .b-orbit__stage::before,.b-orbit:focus-within .b-orbit__stage::before{opacity:1;transform:none}
+
+/* rings: drawn in once the circle comes into view */
+.b-orbit__rings{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transform:rotate(-90deg)}
+.b-orbit__ring{fill:none;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1)}
+.b-orbit__ring--inner{stroke-width:.35}
+.b-orbit__ring--outer{stroke:#bfe9e6;stroke-width:.3;transition-delay:.25s;transition-property:stroke-dashoffset,stroke}
+.b-orbit.is-in .b-orbit__ring{stroke-dashoffset:0}
+.b-orbit:hover .b-orbit__ring--outer{stroke:var(--brand)}
+
+/* orbits: each track turns; each logo turns back the same amount so it stays upright */
+.b-orbit__track,.b-orbit__comet{position:absolute;inset:0;animation:b-orbit-turn var(--turn) linear infinite}
+.b-orbit__track{--turn:90s}
+.b-orbit--2 .b-orbit__track{animation-direction:reverse}
+.b-orbit__logo{animation:b-orbit-turn var(--turn) linear infinite reverse}
+.b-orbit--2 .b-orbit__logo{animation-direction:normal}
+.b-orbit.is-in .b-orbit__chip{animation:b-orbit-float 3s ease-in-out var(--float) infinite alternate}
+.b-orbit:hover :is(.b-orbit__track,.b-orbit__logo,.b-orbit__comet,.b-orbit__chip){animation-play-state:paused}
+@keyframes b-orbit-turn{to{transform:rotate(360deg)}}
+@keyframes b-orbit-float{from{translate:0 -3px}to{translate:0 3px}}
+
+.b-orbit__chip{position:absolute;width:clamp(2.5rem,14cqi,3.75rem);aspect-ratio:1;margin:calc(clamp(2.5rem,14cqi,3.75rem) / -2) 0 0 calc(clamp(2.5rem,14cqi,3.75rem) / -2);opacity:0;transform:scale(.4);transition:opacity .5s var(--delay),transform .8s cubic-bezier(.2,1.5,.4,1) var(--delay)}
+.b-orbit.is-in .b-orbit__chip{opacity:1;transform:none}
+.b-orbit__logo{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;width:100%;height:100%;border-radius:50%;background:#fff;box-shadow:0 1px 0 rgba(17,17,17,.04),0 12px 28px -14px rgba(7,39,47,.35),0 0 0 6px rgba(255,255,255,.35)}
+.b-orbit__logo img{width:46%;height:46%;object-fit:contain;transition:transform .45s cubic-bezier(.2,1.4,.4,1)}
+.b-orbit__chip--label{display:flex;justify-content:center}
+.b-orbit__chip--label .b-orbit__logo{flex:none;width:max-content;flex-direction:row;gap:.4rem;padding:0 .9rem 0 .75rem;border-radius:var(--radius-pill)}
+.b-orbit__chip--label .b-orbit__logo img{width:1.35rem;height:auto}
+.b-orbit__logo small{font:600 .75rem/1 'DM Sans','Helvetica Neue',Arial,sans-serif;color:#0467DF;white-space:nowrap;letter-spacing:-.01em}
+.b-orbit__logo::after{content:attr(data-name);position:absolute;top:calc(100% + .45rem);left:50%;transform:translate(-50%,-4px);padding:.3rem .6rem;border-radius:var(--radius-pill);background:var(--brand-deep);color:var(--on-brand);font:500 .75rem/1.2 'DM Sans','Helvetica Neue',Arial,sans-serif;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1);z-index:3}
+.b-orbit__chip:hover{z-index:4}
+.b-orbit__chip:hover .b-orbit__logo img{transform:scale(1.12)}
+.b-orbit__chip:hover .b-orbit__logo::after{opacity:1;transform:translate(-50%,0)}
+
+/* a small light that travels the outer ring */
+.b-orbit__comet{--turn:14s;pointer-events:none;opacity:0;transition:opacity 1s 1.6s}
+.b-orbit.is-in .b-orbit__comet{opacity:1}
+.b-orbit--2 .b-orbit__comet{--turn:17s;animation-delay:-6s}.b-orbit--3 .b-orbit__comet{--turn:15s;animation-delay:-11s}
+.b-orbit__comet i{position:absolute;left:50%;top:3%;width:.45rem;height:.45rem;margin:-.225rem 0 0 -.225rem;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px rgba(90,201,199,.25),0 0 16px 4px rgba(90,201,199,.55)}
+
+/* centre: the discipline, linking to its capability page */
+.b-orbit__core{position:absolute;inset:22%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;text-align:center;border-radius:50%;z-index:2}
+.b-orbit__index{font:600 .8125rem/1 'DM Sans','Helvetica Neue',Arial,sans-serif;color:var(--accent-ink,#0B6764);font-variant-numeric:tabular-nums}
+.b-orbit__core strong{font:500 clamp(1.25rem,7.4cqi,2rem)/1.05 'Archivo','Helvetica Neue',Arial,sans-serif;letter-spacing:-.035em;color:var(--ink);max-width:9em}
+.b-orbit__line{font-size:clamp(.8rem,3.6cqi,.9375rem);line-height:1.4;color:var(--ink-soft);max-width:15em}
+.b-orbit__more{margin-top:.35rem;font:500 .8125rem/1 'DM Sans','Helvetica Neue',Arial,sans-serif;color:var(--ink);padding-bottom:.2rem;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s cubic-bezier(.16,1,.3,1)}
+.b-orbit__core:hover .b-orbit__more,.b-orbit__core:focus-visible .b-orbit__more{background-size:100% 1px}
+.b-orbit__core:focus-visible{outline:2px solid var(--brand-deep);outline-offset:4px}
+
+@media(max-width:1100px){.b-orbits__grid{gap:0}.b-orbit{padding:1rem}}
+@media(max-width:900px){
+  .b-orbits__head{grid-template-columns:1fr}
+  .b-orbits__grid{grid-template-columns:1fr;max-width:27rem;margin-inline:auto;gap:1.5rem}
+  .b-orbit{padding:1.75rem}
+}
+@media(max-width:640px){.b-orbits{padding:4.8rem 1.2rem 5rem}.b-orbit{padding:1.4rem}}
+@media(prefers-reduced-motion:reduce){
+  .b-orbit__track,.b-orbit__logo,.b-orbit__comet,.b-orbit.is-in .b-orbit__chip{animation:none}
+  .b-orbit__comet{display:none}
+  .b-orbit__ring{stroke-dashoffset:0;transition:none}
+  .b-orbit__chip{opacity:1;transform:none;transition:none}
+}

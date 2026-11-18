@@ -129,3 +129,22 @@ export const engagementTypes = [
   ['Technology builds', 'CRMs, automations, websites and digital tools.'],
   ['Integrated work', 'Several disciplines, one team and one plan.'],
 ]
+
+// Home "Tools" orbits: one circle per capability, each with the tools that discipline works in.
+// No tool appears in more than one circle. Logos live in public/images/tools (official marks, from the
+// CC0 gilbarbara/logos and simple-icons sets and MIT devicon). Logos alternate between the inner and
+// outer orbit in list order, spaced evenly around the circle.
+export const toolOrbits = [
+  { slug: 'creative-marketing', name: 'Creative & Marketing', line: 'Identity, campaigns and content.', tools: [
+    { name: 'Adobe Illustrator', logo: 'illustrator' }, { name: 'Figma', logo: 'figma' },
+    { name: 'Adobe After Effects', logo: 'after-effects' }, { name: 'Framer', logo: 'framer' }, { name: 'Canva', logo: 'canva' },
+  ] },
+  { slug: 'advertising-media', name: 'Advertising & Media', line: 'Planning, buying and measurement.', tools: [
+    { name: 'Meta', logo: 'meta' }, { name: 'Google Ads', logo: 'google-ads' }, { name: 'Google Analytics', logo: 'google-analytics' },
+    { name: 'Meta Ads Manager', logo: 'meta', label: 'Ads Manager' }, { name: 'LinkedIn Ads', logo: 'linkedin' }, { name: 'Display & Video 360', logo: 'dv360' },
+  ] },
+  { slug: 'technology-automation', name: 'Technology & Automation', line: 'AI, automation and the systems behind it.', tools: [
+    { name: 'OpenAI', logo: 'openai' }, { name: 'Claude', logo: 'claude' }, { name: 'n8n', logo: 'n8n' }, { name: 'Make', logo: 'make' },
+    { name: 'Zapier', logo: 'zapier' }, { name: 'Supabase', logo: 'supabase' }, { name: 'Vercel', logo: 'vercel' }, { name: 'HubSpot', logo: 'hubspot' },
+  ] },
+]
