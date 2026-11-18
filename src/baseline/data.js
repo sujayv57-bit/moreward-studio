@@ -20,7 +20,7 @@ export const imagery = {
   creative: image('creative-tree', 1254, 1254),
   advertising: image('advertising-screen', 1254, 1254),
   technology: image('technology-robot', 1254, 1254),
-  howWeWork: placeholder('Home · How we work', 1040, 1300),
+  howWeWork: image('how-we-work-stairs', 1254, 1254),
 }
 
 export const navigation = [
