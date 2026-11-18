@@ -34,16 +34,22 @@ export const projects = [
   {
     number: '01', slug: 'betach', title: 'BETACH', client: true, href: '/work/betach',
     summary: 'Protection, built on trust.',
+    intro: 'An identity for a Gulf consultancy in safety leadership and specialist talent, where trust and protection share one form.',
+    facts: [['Client', 'BETACH Consulting Services'], ['Sector', 'Safety leadership & talent'], ['Region', 'Gulf (GCC)'], ['Discipline', 'Brand identity']],
     image: image('betach-plate', 1254, 1254), imageAlt: 'A hand holding a clear acrylic plate etched with the BETACH symbol, against a teal gradient',
   },
   {
     number: '02', slug: 'kriya-setu', title: 'Kriya Setu', client: true, href: '/work/kriya-setu',
     summary: 'Brand identity for an experiential learning platform. Bridging knowledge and real competence.',
+    intro: 'Brand identity for an experiential learning platform that moves classrooms from memorising to understanding.',
+    facts: [['Client', 'Kriya Setu'], ['Sector', 'Ed-tech, experiential learning'], ['Audience', 'Institutions, teachers, students'], ['Discipline', 'Brand identity']],
     image: image('kriya-setu-chrome', 1300, 743), imageAlt: 'The Kriya Setu mark rendered in polished chrome with an orange spark, on black',
   },
   {
     number: '03', slug: 'rucaa', title: 'Rucaa', client: true, href: '/work/rucaa',
     summary: 'A fashion marketplace for authentic Make in India brands, and an identity drawn from the butterfly.',
+    intro: 'A fashion marketplace for authentic Make in India brands, and an identity drawn from the butterfly.',
+    facts: [['Client', 'Rucaa'], ['Sector', 'Fashion & apparel e-commerce'], ['Market', 'India'], ['Discipline', 'Brand identity']],
     image: image('rucaa-pin', 1122, 902), imageAlt: 'A gold Rucaa R pin on the lapel of a dark tweed jacket',
   },
 ]
