@@ -86,8 +86,8 @@ export function CapabilityPage() {
 
 export function StudioPage() {
   return <><section className="b-studio-hero b-studio-hero--text b-panel-light"><div><Eyebrow>The studio</Eyebrow><RevealWords as="h1" text="Independent by nature. Intentional by design."/><p>Moreward is an independent studio for creative, advertising and technology work. We keep strategy, design, media and systems in the same conversation, because that is where good work comes from.</p></div></section>
-    <section className="b-studio-principles b-studio-principles--text b-panel-dark"><Eyebrow light index="01 / 03">What we hold to</Eyebrow><h2 className="b-sr-only">What we hold to</h2><div className="b-studio-principles__layout"><div>{studioPrinciples.map(([title, body], i) => <article key={title} data-reveal><span>{two(i + 1)}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>
     <StudioProcess/>
+    <section className="b-studio-principles b-studio-principles--text b-panel-dark"><Eyebrow light index="01 / 03">What we hold to</Eyebrow><h2 className="b-sr-only">What we hold to</h2><div className="b-studio-principles__layout"><div>{studioPrinciples.map(([title, body], i) => <article key={title} data-reveal><span>{two(i + 1)}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>
     <section className="b-studio-ways b-panel-light"><Eyebrow index="03 / 03">Ways of working</Eyebrow><RevealWords text="The shape of the engagement follows the problem."/><div>{engagementTypes.map(([title, body], i) => <article key={title}><span>{two(i + 1)}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p>We don't publish fixed packages. Every engagement is scoped after the first conversation.</p></section><CtaBand variant="studio"/></>
 }
 
