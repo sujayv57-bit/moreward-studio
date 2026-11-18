@@ -61,7 +61,7 @@ function ProjectFeature({ project, eager }) {
       <span className="b-feature__cta" aria-hidden="true">View case study <b>↗</b></span>
     </div>
   </>
-  const props = { className: 'b-feature', 'data-reveal': eager ? undefined : '' }
+  const props = { className: 'b-feature b-feature--' + project.slug, 'data-reveal': eager ? undefined : '' }
   return project.href ? <a href={project.href} {...props}>{inner}</a> : <Link to={'/work/' + project.slug} {...props}>{inner}</Link>
 }
 
