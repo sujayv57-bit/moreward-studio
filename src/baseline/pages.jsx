@@ -8,6 +8,7 @@ import { WhySection } from './why.jsx'
 import { HomeContact } from './home-contact.jsx'
 import { ToolOrbits } from './tool-orbits.jsx'
 import { StudioProcess } from './studio-process.jsx'
+import { Disciplines } from './disciplines.jsx'
 import { Arrow, Breadcrumb, ConversionLink, CtaBand, EmailLink, Eyebrow, SocialIcon, ImageFrame, NextNavigation, ResponsiveImage, RevealWords, StudyCard, TextLink } from './ui.jsx'
 
 const two = number => String(number).padStart(2, '0')
@@ -84,8 +85,8 @@ export function ProjectPage() {
 
 export function CapabilitiesPage() {
   return <><section className="b-internal-hero b-capabilities-hero b-panel-light"><Eyebrow>Capabilities</Eyebrow><RevealWords as="h1" text="Different strengths. One direction."/><p>Creative, media and technology under one roof, working from the same brief.</p><div className="b-capabilities-hero__graphic" aria-hidden="true"><span>01</span><i/><span>02</span><i/><span>03</span></div></section>
-    <section className="b-discipline-hub b-panel-light"><Eyebrow index="01 / 02">The disciplines</Eyebrow><h2 className="b-sr-only">The disciplines</h2>{capabilities.map(item => <article className="b-discipline-block" key={item.slug}><div className="b-discipline-block__number">{item.number}</div><div><h3>{item.name}</h3><p>{item.hubBody}</p><ul>{item.samples.map(sample => <li key={sample}>{sample}</li>)}</ul><TextLink to={capPath(item)}>Explore {item.name}</TextLink></div><ResponsiveImage image={item.visual} alt={item.visualAlt} sizes="(max-width: 767px) 100vw, 32vw"/></article>)}</section>
-    <section className="b-overlap b-overlap--text b-panel-light"><div><Eyebrow index="02 / 02">Where they meet</Eyebrow><RevealWords text="The best work happens in the overlap."/><p>A metro campaign that sends people to a landing page, which feeds a CRM that shows which channels are bringing in enquiries. Elsewhere that is three vendors. Here it is one project.</p></div></section><CtaBand/></>
+    <Disciplines/>
+    <section className="b-overlap b-overlap--text b-panel-light"><div><Eyebrow>Where they meet</Eyebrow><RevealWords text="The best work happens in the overlap."/><p>A metro campaign that sends people to a landing page, which feeds a CRM that shows which channels are bringing in enquiries. Elsewhere that is three vendors. Here it is one project.</p></div></section><CtaBand/></>
 }
 
 export function CapabilityPage() {
