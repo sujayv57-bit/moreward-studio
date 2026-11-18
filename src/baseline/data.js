@@ -156,6 +156,10 @@ export const toolOrbits = [
 // Creative & Marketing page (/capabilities/creative-marketing). Copy approved by the studio; scope items
 // are examples of what a project can include, not fixed packages.
 export const creativeMarketing = {
+  slug: 'creative-marketing', name: 'Creative & Marketing',
+  chain: ['Strategy', 'Identity', 'Advertising', 'Campaigns', 'Creators', 'Content'],
+  servicesTitle: 'Six services, one direction.',
+  servicesIntro: 'Each can stand on its own or work with the others. The scope lists show what a project can include, not fixed packages; every project is scoped around what it needs.',
   hero: {
     eyebrow: 'Creative & Marketing', title: 'Make the idea matter.',
     body: 'Clear direction gives creative work a purpose. We help businesses decide what they need to say, build a distinctive way to say it, and carry that thinking through campaigns and content.',
@@ -173,6 +177,7 @@ export const creativeMarketing = {
     { id: 'influencer-marketing', name: 'Influencer Marketing', body: 'The right creator brings a relevant perspective and an audience that fits the objective. We approach creator collaborations through fit, a clear brief and content that makes sense for both the brand and the creator.', scope: ['Creator research and selection', 'Collaboration briefs', 'Outreach', 'Content coordination', 'Approval stages', 'Review of agreed activity'] },
     { id: 'content-creation', name: 'Content Creation', body: 'Content should have a job to do. We plan and create material that explains an offer, supports a campaign or helps a brand communicate consistently over time.', scope: ['Content planning', 'Copywriting', 'Design', 'Social content', 'Agreed visual or video formats'], note: 'Format and volume are defined in the project scope.' },
   ],
+  stepsTitle: 'From brief to usable work.',
   steps: [
     ['Understand the objective', 'Learn about the business, audience, existing material and what needs to change.'],
     ['Set the direction', 'Recommend the relevant services and agree on the approach, deliverables, timing and review points.'],
@@ -188,5 +193,50 @@ export const creativeMarketing = {
     eyebrow: 'Have something in mind?', title: 'Let’s give it direction.',
     body: 'Tell us what you are trying to achieve, what you have in place today and when you need to move. You do not need a finished brief to start the conversation.',
     button: 'Start a Creative & Marketing project',
+  },
+}
+
+// Advertising & Media page (/capabilities/advertising-media). Same layout as Creative & Marketing.
+// Moreward does not own media inventory; availability, rates and approvals sit with media providers.
+export const advertisingMedia = {
+  slug: 'advertising-media', name: 'Advertising & Media',
+  chain: ['Outdoor', 'Billboard', 'Metro', 'Television', 'Radio', 'Print'],
+  servicesTitle: 'Seven services, each with its own setting.',
+  servicesIntro: 'Each format can run on its own or as part of a wider plan. The scope lists show what a project can include, not fixed packages; every project is scoped around its objective.',
+  hero: {
+    eyebrow: 'Advertising & Media', title: 'Take the message further.',
+    body: 'Where an advertisement appears changes how it is seen, heard and remembered. We plan advertising around the audience, the message and the setting, then develop work suited to each selected format.',
+    support: 'Across outdoor, metro, television, radio and print, with media planning that gives every placement a clear purpose.',
+  },
+  view: {
+    lead: 'The right message deserves', follow: 'the right place to be seen.',
+    body: 'A billboard, a metro station, a television break and a printed page ask different things of an idea. Effective advertising considers where people will encounter it, how much attention they can give it and what they should take away.',
+  },
+  services: [
+    { id: 'outdoor-advertising', name: 'Outdoor Advertising', body: 'Public spaces create opportunities to reach people as they move through a city. We consider the audience, geography, viewing conditions and available formats before developing work for an outdoor setting.', scope: ['Location and format planning', 'Outdoor creative direction', 'Message and artwork adaptation', 'Production specifications', 'Placement coordination where agreed'] },
+    { id: 'billboard-banner-advertising', name: 'Billboard & Banner Advertising', body: 'Large-format advertising has only a moment to communicate. We focus on a clear message, strong visual hierarchy and design that remains legible at the distance and speed of its intended placement.', scope: ['Billboard and banner concepts', 'Headlines and artwork', 'Size adaptations', 'Production-ready files', 'Coordination around selected sites and specifications'] },
+    { id: 'metro-advertising', name: 'Metro Advertising', body: 'Metro environments offer different points of attention, from entrances and platforms to trains and station interiors. We plan for the route, the audience and the time people have to see the message.', scope: ['Station or route considerations', 'Format selection', 'Campaign creative', 'Artwork adaptations', 'Production requirements', 'Coordination with relevant media providers where agreed'] },
+    { id: 'television-advertising', name: 'Television Advertising', body: 'Television brings together story, image, sound and timing. We shape the message for the viewing context and plan the creative and placement around the audience the campaign needs to reach.', scope: ['Commercial concept', 'Script and storyboard', 'Production coordination', 'Format versions', 'Channel and scheduling considerations'] },
+    { id: 'radio-advertising', name: 'Radio Advertising', body: 'Radio depends on a message people can understand and remember without seeing it. We develop audio-led ideas with clear writing, purposeful sound and a format suited to the intended audience and station.', scope: ['Radio concept', 'Scriptwriting', 'Voice and audio direction', 'Production coordination', 'Duration versions', 'Station and scheduling considerations'] },
+    { id: 'print-advertising', name: 'Print Advertising', body: 'Print gives an advertisement a physical context and a defined space. We design for the publication, the reader and the size of the placement, making the message work as both copy and composition.', scope: ['Publication and format considerations', 'Advertising copy', 'Layout and artwork', 'Size adaptations', 'Print-ready files', 'Publication coordination where agreed'] },
+    { id: 'media-planning', name: 'Media Planning', body: 'Media planning determines where a campaign should appear, when it should run and how the available budget should be used. We assess channels and placements against the audience and the objective so the plan has a reason behind every choice.', scope: ['Audience and market considerations', 'Channel selection', 'Geographic priorities', 'Timing and frequency', 'Proposed budget allocation', 'Placement plan', 'Agreed approach to reviewing performance'] },
+  ],
+  stepsTitle: 'From brief to placement.',
+  steps: [
+    ['Understand the objective', 'Clarify the audience, market, message, timing and available budget.'],
+    ['Plan the media', 'Recommend relevant channels and formats, then confirm placement requirements, availability and costs.'],
+    ['Develop and prepare', 'Create or adapt the advertising work for the agreed formats and complete the required production checks.'],
+    ['Launch and review', 'Coordinate the agreed release or placement, then review the activity against the objectives set at the start.'],
+  ],
+  engage: {
+    title: 'A plan shaped around the audience.',
+    body: 'Come to Moreward with one advertising format in mind, a campaign spanning several channels, or a need to work out where your message should appear. We define the scope after understanding the objective. The proposal should make the creative work, production requirements, media costs, approvals and responsibilities clear before anything is placed.',
+    options: [['One format', 'One advertising format in mind.'], ['Multi-channel campaign', 'A campaign spanning several channels.'], ['Media planning', 'Working out where your message should appear.']],
+    note: 'Media availability, rates, specifications and approvals depend on the market and the relevant media providers. We confirm these during planning.',
+  },
+  close: {
+    eyebrow: 'Have something in mind?', title: 'Let’s give it direction.',
+    body: 'Tell us who you need to reach, where you want to reach them and what you want the advertising to achieve. If you are unsure which format is right, start with the objective.',
+    button: 'Start an Advertising & Media project',
   },
 }

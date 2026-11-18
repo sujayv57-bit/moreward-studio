@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from '@tanstack/react-router'
-import { capabilities, engagementTypes, homeSteps, imagery, projects, studioPrinciples } from './data.js'
+import { advertisingMedia, capabilities, creativeMarketing, engagementTypes, homeSteps, imagery, projects, studioPrinciples } from './data.js'
 import { SOCIAL, STUDIO_EMAIL } from '../config/site.js'
 import { HomeHero } from './home-hero.jsx'
 import { ContactForm, NextSteps } from './contact-form.jsx'
@@ -9,7 +9,7 @@ import { HomeContact } from './home-contact.jsx'
 import { ToolOrbits } from './tool-orbits.jsx'
 import { StudioProcess } from './studio-process.jsx'
 import { Disciplines } from './disciplines.jsx'
-import { CreativeMarketingPage } from './creative-marketing.jsx'
+import { CategoryPage } from './category-page.jsx'
 import { Arrow, Breadcrumb, ConversionLink, CtaBand, EmailLink, Eyebrow, SocialIcon, ImageFrame, NextNavigation, ResponsiveImage, RevealWords, StudyCard, TextLink } from './ui.jsx'
 
 const two = number => String(number).padStart(2, '0')
@@ -95,11 +95,13 @@ export function CapabilitiesPage() {
     <CtaBand variant="studio"/></>
 }
 
+const categoryPages = { 'creative-marketing': creativeMarketing, 'advertising-media': advertisingMedia }
+
 export function CapabilityPage() {
   const { slug } = useParams({ from: '/capabilities/$slug' })
   const index = capabilities.findIndex(item => item.slug === slug)
   if (index < 0) return <NotFoundPage/>
-  if (slug === 'creative-marketing') return <CreativeMarketingPage/>
+  if (categoryPages[slug]) return <CategoryPage key={slug} copy={categoryPages[slug]}/>
   const item = capabilities[index], next = capabilities[(index + 1) % capabilities.length], related = projects.find(project => project.slug === item.relatedSlug)
   return <><section className={'b-cap-detail-hero b-cap-detail-hero--' + item.slug + ' b-panel-dark'}><div className="b-cap-detail-hero__image"><ResponsiveImage image={item.visual} alt={item.visualAlt} eager/></div><div className="b-cap-detail-hero__shade"/><div className="b-cap-detail-hero__content"><Breadcrumb parent="Capabilities" parentTo="/capabilities" current={item.name}/><Eyebrow light>{item.number} / {item.name}</Eyebrow><RevealWords as="h1" text={item.title}/><p>{item.heroBody}</p></div></section>
     <section className="b-cap-detail-intro b-panel-light"><Eyebrow>The thinking</Eyebrow><RevealWords text={item.thinkingTitle}/><p>{item.thinkingBody}</p></section>

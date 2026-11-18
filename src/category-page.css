@@ -1,4 +1,4 @@
-/* Creative & Marketing page (/capabilities/creative-marketing). Built from the site's existing surfaces,
+/* Category pages (Creative & Marketing, Advertising & Media; category-page.jsx). Built from the site's existing surfaces,
    type scale, pills and tags; no new motifs. */
 .b-cm>section{margin:.5rem}
 .b-cm>section+section{margin-top:.5rem}
@@ -96,6 +96,8 @@ html body .b-cm-engage__head h2{font-size:clamp(2.25rem,3.6vw,3.75rem);line-heig
 .b-cm-engage__options span{font-size:.8125rem;font-weight:600;color:var(--accent-ink,#0B6764)}
 .b-cm-engage__options h3{margin-top:auto;padding-top:2.5rem;font:500 clamp(1.5rem,2vw,2rem)/1.1 'Archivo','Helvetica Neue',Arial,sans-serif;letter-spacing:-.03em;color:var(--ink)}
 .b-cm-engage__options p{margin-top:.6rem;font-size:.9375rem;line-height:1.5;color:var(--ink-soft)}
+.b-cm-engage__note{display:flex;gap:.75rem;align-items:flex-start;max-width:44rem;margin-top:1.5rem;font-size:.875rem;line-height:1.55;color:var(--ink-soft)}
+.b-cm-engage__note span{flex:none;display:grid;place-items:center;width:1.25rem;height:1.25rem;margin-top:.05rem;border-radius:50%;box-shadow:inset 0 0 0 1px var(--hairline);font:600 .6875rem/1 'DM Sans','Helvetica Neue',Arial,sans-serif;font-style:normal;color:var(--ink-soft)}
 @media(hover:hover){.b-cm-engage__options li:hover{background:#e6e5df;transform:translateY(-3px)}}
 
 /* 6. close */

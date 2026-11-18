@@ -11,7 +11,7 @@ import './process.css'
 import './footer.css'
 import './work.css'
 import './disciplines.css'
-import './creative-marketing.css'
+import './category-page.css'
 import './premium.css'
 
 const root = document.getElementById('root')
