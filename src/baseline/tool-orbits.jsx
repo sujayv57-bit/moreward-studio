@@ -3,55 +3,56 @@ import { Link } from '@tanstack/react-router'
 import { toolOrbits } from './data.js'
 import { Eyebrow, RevealWords } from './ui.jsx'
 
-// Inner and outer orbit radius, as a share of the stage (the SVG uses the same numbers in a 100×100 box).
-const RADII = [34, 47]
-// Angle of the first logo; the rest follow evenly around the circle.
-const START = -105
+// Orbit radius for each capability, innermost first, as a share of the stage (the SVG uses the same
+// numbers in a 100×100 box). Each orbit's first logo starts at a different angle so they never line up.
+const RADII = [21, 34.5, 47.5]
+const START = [-90, -54, -112]
 
-function Orbit({ orbit, index }) {
+// A small solar system: the logomark at the centre, one orbit per capability. Picking a capability
+// in the list (hover or focus) brings its orbit forward and quietens the others.
+export function ToolOrbits() {
   const ref = useRef(null)
   const [inView, setInView] = useState(false)
+  const [active, setActive] = useState(null)
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: .25 })
+    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } }, { threshold: .2 })
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
   let order = 0
-  return <div ref={ref} className={'b-orbit b-orbit--' + (index + 1) + (inView ? ' is-in' : '')}>
-    <div className="b-orbit__stage">
-      <svg className="b-orbit__rings" viewBox="0 0 100 100" aria-hidden="true">
-        <defs><linearGradient id={'orbit-ink-' + index} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#07272F"/><stop offset=".55" stopColor="#0B6764"/><stop offset="1" stopColor="#A8E5E2"/></linearGradient></defs>
-        <circle className="b-orbit__ring b-orbit__ring--outer" cx="50" cy="50" r={RADII[1]} pathLength="1"/>
-        <circle className="b-orbit__ring b-orbit__ring--inner" cx="50" cy="50" r={RADII[0]} pathLength="1" stroke={`url(#orbit-ink-${index})`}/>
-      </svg>
-      <span className="b-orbit__comet" aria-hidden="true"><i/></span>
-      <div className="b-orbit__track" aria-hidden="true">
-        {orbit.tools.map((tool, i) => {
-          const ring = i % 2, angle = (START + i * 360 / orbit.tools.length) * Math.PI / 180
-          const x = 50 + RADII[ring] * Math.cos(angle), y = 50 + RADII[ring] * Math.sin(angle)
-          return <span key={tool.name} className={'b-orbit__chip' + (tool.label ? ' b-orbit__chip--label' : '')} style={{ left: x + '%', top: y + '%', '--delay': 500 + i * 110 + 'ms', '--float': (i * 0.7) % 3 + 's' }}>
-            <span className="b-orbit__logo" data-name={tool.name}><img src={'/images/tools/' + tool.logo + '.svg'} alt="" loading="lazy" decoding="async" width="28" height="28"/>{tool.label && <small>{tool.label}</small>}</span>
-          </span>
-        })}
-      </div>
-      <Link to={'/capabilities/' + orbit.slug} className="b-orbit__core">
-        <span className="b-orbit__index">{String(index + 1).padStart(2, '0')}</span>
-        <strong>{orbit.name}</strong>
-        <span className="b-orbit__line">{orbit.line}</span>
-        <span className="b-orbit__more">Explore <span aria-hidden="true">↗</span></span>
-      </Link>
-    </div>
-    <ul className="b-sr-only" aria-label={'Tools for ' + orbit.name}>{orbit.tools.map(tool => <li key={tool.name}>{tool.name}</li>)}</ul>
-  </div>
-}
-
-export function ToolOrbits() {
   return <section id="tools" className="b-orbits b-panel-light">
-    <div className="b-orbits__head">
-      <Eyebrow>Tools we work in</Eyebrow>
-      <RevealWords text="The stack behind the work." className="b-orbits__title"/>
-      <p>Each discipline runs on the tools that suit it best, so the work moves from idea to launch without starting over.</p>
+    <div className="b-orbits__layout">
+      <div className="b-orbits__copy">
+        <Eyebrow>Tools we work in</Eyebrow>
+        <RevealWords text="The stack behind the work." className="b-orbits__title"/>
+        <p>Each discipline runs on the tools that suit it best, so the work moves from idea to launch without starting over.</p>
+        <ol className="b-orbits__legend">
+          {toolOrbits.map((orbit, i) => <li key={orbit.slug} className={active === i ? 'is-active' : ''} onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(null)} onFocus={() => setActive(i)} onBlur={() => setActive(null)}>
+            <Link to={'/capabilities/' + orbit.slug}>
+              <span className="b-orbits__ring-key" aria-hidden="true"/>
+              <span><strong>{orbit.name}</strong><small>{orbit.tools.map(tool => tool.name).join(', ')}</small></span>
+              <span className="b-orbits__go" aria-hidden="true">↗</span>
+            </Link>
+          </li>)}
+        </ol>
+      </div>
+      <div ref={ref} className={'b-system' + (inView ? ' is-in' : '') + (active !== null ? ' has-active' : '')} data-active={active ?? ''} aria-hidden="true">
+        <div className="b-system__stage">
+          <svg className="b-system__rings" viewBox="0 0 100 100">
+            {RADII.map((r, i) => <circle key={r} className={'b-system__ring b-system__ring--' + (i + 1)} cx="50" cy="50" r={r} pathLength="1"/>)}
+          </svg>
+          <div className="b-system__sun"><img src="/images/logomark.svg" alt="" width="64" height="64"/></div>
+          {toolOrbits.map((orbit, ring) => <div key={orbit.slug} className={'b-system__orbit b-system__orbit--' + (ring + 1)}>
+            <span className="b-system__comet"><i style={{ top: 50 - RADII[ring] + '%' }}/></span>
+            {orbit.tools.map((tool, i) => {
+              const angle = (START[ring] + i * 360 / orbit.tools.length) * Math.PI / 180
+              return <span key={tool.name} className="b-system__chip" style={{ left: 50 + RADII[ring] * Math.cos(angle) + '%', top: 50 + RADII[ring] * Math.sin(angle) + '%', '--delay': 700 + ring * 350 + i * 90 + 'ms', '--float': (order++ * .65) % 3 + 's' }}>
+                <span className="b-system__logo" data-name={tool.name}><img src={'/images/tools/' + tool.logo + '.svg'} alt="" loading="lazy" decoding="async" width="28" height="28"/></span>
+              </span>
+            })}
+          </div>)}
+        </div>
+      </div>
     </div>
-    <div className="b-orbits__grid">{toolOrbits.map((orbit, i) => <Orbit key={orbit.slug} orbit={orbit} index={i}/>)}</div>
   </section>
 }
