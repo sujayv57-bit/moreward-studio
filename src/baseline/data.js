@@ -152,3 +152,41 @@ export const toolOrbits = [
     { name: 'Zapier', logo: 'zapier' }, { name: 'Supabase', logo: 'supabase' }, { name: 'Vercel', logo: 'vercel' }, { name: 'HubSpot', logo: 'hubspot' },
   ] },
 ]
+
+// Creative & Marketing page (/capabilities/creative-marketing). Copy approved by the studio; scope items
+// are examples of what a project can include, not fixed packages.
+export const creativeMarketing = {
+  hero: {
+    eyebrow: 'Creative & Marketing', title: 'Make the idea matter.',
+    body: 'Clear direction gives creative work a purpose. We help businesses decide what they need to say, build a distinctive way to say it, and carry that thinking through campaigns and content.',
+    support: 'For launches, changing brands and businesses that need to communicate more clearly.',
+  },
+  view: {
+    lead: 'First, know what the work needs to do.', follow: 'Then make it impossible to overlook.',
+    body: 'Strategy sets the direction. Identity makes it recognisable. Advertising, campaigns, creators and content carry it into the world. Each part has a distinct job; together, they should express the same idea.',
+  },
+  services: [
+    { id: 'marketing-strategy', name: 'Marketing Strategy', body: 'Before choosing channels or making assets, we establish what the marketing needs to achieve. We look at the audience, the market and the brand’s current position, then define the message and priorities that should guide the work.', scope: ['Audience and market review', 'Positioning', 'Messaging', 'Campaign objectives', 'Channel priorities', 'Marketing plan'] },
+    { id: 'brand-identity', name: 'Brand Identity', body: 'An identity should help people recognise the brand and understand its character. We develop the visual and verbal elements as a system that can be used consistently, from prominent applications to everyday communication.', scope: ['Logo and identity development', 'Colour and typography', 'Visual direction', 'Brand voice', 'Key applications', 'Usage guidelines'] },
+    { id: 'advertising-design', name: 'Advertising Design', body: 'Advertising needs to communicate quickly and clearly in the format where people encounter it. We develop the concept, words and visuals for an advertisement, then adapt the creative for the agreed formats and specifications.', scope: ['Advertising concepts', 'Headlines and copy', 'Key visuals', 'Layout design', 'Format adaptations'] },
+    { id: 'campaign-development', name: 'Campaign Development', body: 'A campaign needs a central idea strong enough to hold together across multiple pieces of communication. We define that idea, develop its message and creative direction, and plan how the work should unfold.', scope: ['Campaign concept', 'Messaging', 'Creative direction', 'Content themes', 'Rollout plan', 'Campaign assets'] },
+    { id: 'influencer-marketing', name: 'Influencer Marketing', body: 'The right creator brings a relevant perspective and an audience that fits the objective. We approach creator collaborations through fit, a clear brief and content that makes sense for both the brand and the creator.', scope: ['Creator research and selection', 'Collaboration briefs', 'Outreach', 'Content coordination', 'Approval stages', 'Review of agreed activity'] },
+    { id: 'content-creation', name: 'Content Creation', body: 'Content should have a job to do. We plan and create material that explains an offer, supports a campaign or helps a brand communicate consistently over time.', scope: ['Content planning', 'Copywriting', 'Design', 'Social content', 'Agreed visual or video formats'], note: 'Format and volume are defined in the project scope.' },
+  ],
+  steps: [
+    ['Understand the objective', 'Learn about the business, audience, existing material and what needs to change.'],
+    ['Set the direction', 'Recommend the relevant services and agree on the approach, deliverables, timing and review points.'],
+    ['Create and review', 'Develop the work against the agreed direction, with reviews at defined stages.'],
+    ['Prepare it for use', 'Deliver the agreed final assets and guidance needed to apply them.'],
+  ],
+  engage: {
+    title: 'A scope that fits the need.',
+    body: 'Come to Moreward for one defined service, a project that combines several, or ongoing creative and marketing support. We establish the scope after understanding the problem. Every engagement has agreed deliverables, timing and review points.',
+    options: [['One service', 'One defined service, scoped on its own.'], ['Combined project', 'A project that combines several services.'], ['Ongoing support', 'Ongoing creative and marketing support.']],
+  },
+  close: {
+    eyebrow: 'Have something in mind?', title: 'Let’s give it direction.',
+    body: 'Tell us what you are trying to achieve, what you have in place today and when you need to move. You do not need a finished brief to start the conversation.',
+    button: 'Start a Creative & Marketing project',
+  },
+}

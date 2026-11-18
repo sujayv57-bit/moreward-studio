@@ -65,7 +65,7 @@ export function Header({ pathname }) {
     const onScroll = () => {
       const current = window.scrollY
       setScrolled(current > 50)
-      const crossing = [...document.querySelectorAll('main>section')].find(section => { const rect = section.getBoundingClientRect(); return rect.top <= 65 && rect.bottom >= 65 })
+      const crossing = [...document.querySelectorAll('main>section,main>div>section')].find(section => { const rect = section.getBoundingClientRect(); return rect.top <= 65 && rect.bottom >= 65 })
       setOverDark(Boolean(crossing?.matches('.b-panel-dark,.m-hero')))
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !open && !headerRef.current?.contains(document.activeElement)) setHidden(current > previous && current > 160 && current - previous > 2)
       else setHidden(false)
@@ -77,7 +77,7 @@ export function Header({ pathname }) {
   useEffect(() => { setOpen(false); setHidden(false) }, [pathname])
   useEffect(() => {
     if (!open) return
-    const main = document.querySelector('main'), footer = document.querySelector('.b-footer')
+    const main = document.querySelector('main'), footer = document.querySelector('footer')
     document.body.classList.add('b-locked')
     if (main) main.inert = true
     if (footer) footer.inert = true
