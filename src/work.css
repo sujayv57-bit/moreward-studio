@@ -27,7 +27,7 @@
 .b-feature--kriya-setu .b-feature__media{background:#000}
 .b-feature--kriya-setu .b-feature__media img{object-fit:contain;transform:scale(.7)}
 @media(hover:hover){
-  .b-feature--kriya-setu:hover .b-feature__media img{transform:scale(.74)}
+  .b-feature--kriya-setu:hover .b-feature__media img{transform:scale(.7245)}
   .b-feature:hover .b-feature__info{background:#e6e5df}
   .b-feature:hover .b-feature__info h3 span{opacity:1;transform:none}
   .b-feature:hover .b-feature__info dl i{background-position:-100% 0}
