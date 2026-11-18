@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { capabilities, navigation } from './data.js'
-import { seo, STUDIO_EMAIL } from '../config/site.js'
+import { seo, SOCIAL, STUDIO_EMAIL } from '../config/site.js'
 import { schemaFor } from '../config/schema.js'
-import { ConversionLink, EmailLink } from './ui.jsx'
+import { ConversionLink, EmailLink, SocialIcon } from './ui.jsx'
 const logoInk = '/images/wordmark-ink.webp'
 const logoWhite = '/images/wordmark-white.webp'
 
@@ -97,21 +97,14 @@ export function Header({ pathname }) {
   const current = path => pathname === path || (path !== '/studio' && pathname.startsWith(path + '/'))
   const close = () => { setOpen(false); toggleRef.current?.focus() }
   return <><header ref={headerRef} className={'b-header' + (dark ? ' b-header--over' : ' b-header--light') + (scrolled ? ' b-header--scrolled' : '') + (dark && scrolled ? ' b-header--dark-surface' : '') + (hidden ? ' b-header--hidden' : '')} onFocusCapture={() => setHidden(false)}><Link className="b-header__logo" to="/" aria-label="Moreward home"><img src={dark ? logoWhite : logoInk} alt="Moreward"/></Link><nav className="b-header__left" aria-label="Primary">{navigation.slice(0, 3).map(item => <Link key={item.to} to={item.to} aria-current={current(item.to) ? 'page' : undefined} className={current(item.to) ? 'is-current' : ''}>{item.label}</Link>)}</nav><div className="b-header__right"><ConversionLink location="header" active={pathname === '/contact'} className="b-header__cta"/><button ref={toggleRef} className="b-menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="b-menu" onClick={() => setOpen(!open)}><span/><span/></button></div></header>
-    <div ref={menuRef} id="b-menu" className={'b-menu' + (open ? ' b-menu--open' : '')} aria-hidden={!open}><div className="b-menu__top"><Link to="/" tabIndex={open ? 0 : -1} onClick={close}><img src={logoWhite} alt="Moreward"/></Link><button aria-label="Close menu" tabIndex={open ? 0 : -1} onClick={close}>×</button></div><nav aria-label="Full navigation">{navigation.map((item, i) => <Link key={item.to} to={item.to} tabIndex={open ? 0 : -1} onClick={close}><span>{two(i + 1)}</span>{item.label}</Link>)}</nav><div className="b-menu__secondary">{capabilities.map(item => <Link key={item.slug} to={'/capabilities/' + item.slug} tabIndex={open ? 0 : -1} onClick={close}>{item.name}</Link>)}</div><div className="b-menu__bottom"><EmailLink>{STUDIO_EMAIL}</EmailLink><span>Independent creative &amp; technology studio</span></div></div></>
+    <div ref={menuRef} id="b-menu" className={'b-menu' + (open ? ' b-menu--open' : '')} aria-hidden={!open}><div className="b-menu__top"><Link to="/" tabIndex={open ? 0 : -1} onClick={close}><img src={logoWhite} alt="Moreward"/></Link><button aria-label="Close menu" tabIndex={open ? 0 : -1} onClick={close}>×</button></div><nav aria-label="Full navigation">{navigation.map((item, i) => <Link key={item.to} to={item.to} tabIndex={open ? 0 : -1} onClick={close}><span>{two(i + 1)}</span>{item.label}</Link>)}</nav><div className="b-menu__secondary">{capabilities.map(item => <Link key={item.slug} to={'/capabilities/' + item.slug} tabIndex={open ? 0 : -1} onClick={close}>{item.name}</Link>)}</div><div className="b-menu__bottom"><EmailLink>{STUDIO_EMAIL}</EmailLink><div className="b-menu__social">{SOCIAL.map(item => <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1}>{item.name}</a>)}</div></div></div></>
 }
 
 const two = number => String(number).padStart(2, '0')
 
 // Footer: a bento of light cards. Left: a project prompt, then the site map. Right: the brand card,
-// then three quick-action tiles (email, contact form, back to top).
-const footIcons = {
-  mail: <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7.5 8 6 8-6"/></svg>,
-  chat: <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5a2.5 2.5 0 0 1-2.5 2.5H9l-4.5 3.5V6.5A2.5 2.5 0 0 1 7 4h10.5A2.5 2.5 0 0 1 20 6.5z"/></svg>,
-  up: <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>,
-}
-
+// then a tile for each social profile (SOCIAL in config/site.js).
 export function Footer() {
-  const toTop = () => window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   return <footer className="b-foot">
     <div className="b-foot__card b-foot__prompt">
       <h2>Have a project in mind?</h2>
@@ -132,9 +125,7 @@ export function Footer() {
       <div className="b-foot__legal"><span>© {new Date().getFullYear()} Moreward Studio. All rights reserved.</span><span>Independent creative &amp; technology studio</span></div>
     </div>
     <div className="b-foot__tiles">
-      <EmailLink className="b-foot__card b-foot__tile"><i>{footIcons.mail}</i><span>Email us</span></EmailLink>
-      <Link to="/contact" className="b-foot__card b-foot__tile"><i>{footIcons.chat}</i><span>Contact form</span></Link>
-      <button type="button" className="b-foot__card b-foot__tile" onClick={toTop}><i>{footIcons.up}</i><span>Back to top</span></button>
+      {SOCIAL.map(item => <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" className="b-foot__card b-foot__tile" aria-label={item.name + ' (opens in a new tab)'}><i><SocialIcon name={item.name}/></i><span>{item.name}</span></a>)}
     </div>
   </footer>
 }

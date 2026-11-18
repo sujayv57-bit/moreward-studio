@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from '@tanstack/react-router'
 import { capabilities, engagementTypes, homeSteps, imagery, projects, studioPrinciples } from './data.js'
-import { STUDIO_EMAIL } from '../config/site.js'
+import { SOCIAL, STUDIO_EMAIL } from '../config/site.js'
 import { HomeHero } from './home-hero.jsx'
 import { ContactForm, NextSteps } from './contact-form.jsx'
 import { WhySection } from './why.jsx'
 import { HomeContact } from './home-contact.jsx'
 import { ToolOrbits } from './tool-orbits.jsx'
 import { StudioProcess } from './studio-process.jsx'
-import { Arrow, Breadcrumb, ConversionLink, CtaBand, EmailLink, Eyebrow, ImageFrame, NextNavigation, ResponsiveImage, RevealWords, StudyCard, TextLink } from './ui.jsx'
+import { Arrow, Breadcrumb, ConversionLink, CtaBand, EmailLink, Eyebrow, SocialIcon, ImageFrame, NextNavigation, ResponsiveImage, RevealWords, StudyCard, TextLink } from './ui.jsx'
 
 const two = number => String(number).padStart(2, '0')
 const studyPath = project => '/work/' + project.slug
@@ -92,7 +92,7 @@ export function StudioPage() {
 }
 
 export function ContactPage() {
-  return <section className="b-contact-page b-panel-light"><div className="b-contact-page__intro"><Eyebrow>Start a project</Eyebrow><RevealWords as="h1" text="Let's make something move."/><p>Tell us what you're working on: a launch, a campaign, a system that isn't working, or an idea that needs shape. We read every enquiry.</p><div className="b-contact-page__details"><div><span>Direct enquiries</span><EmailLink>{STUDIO_EMAIL}</EmailLink></div><NextSteps/></div></div><ContactForm/></section>
+  return <section className="b-contact-page b-panel-light"><div className="b-contact-page__intro"><Eyebrow>Start a project</Eyebrow><RevealWords as="h1" text="Let's make something move."/><p>Tell us what you're working on: a launch, a campaign, a system that isn't working, or an idea that needs shape. We read every enquiry.</p><div className="b-contact-page__details"><div><span>Direct enquiries</span><EmailLink>{STUDIO_EMAIL}</EmailLink></div><div className="b-contact-social"><span>Follow the studio</span><div>{SOCIAL.map(item => <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer"><SocialIcon name={item.name}/>{item.name}</a>)}</div></div><NextSteps/></div></div><ContactForm/></section>
 }
 
 export function LegalPage({ type }) {

@@ -27,11 +27,11 @@ html body .b-foot .b-foot__button{min-height:3.25rem;padding:0 1.5rem;border-rad
 .b-foot__about{margin-top:2rem;font-size:1.125rem;line-height:1.55;color:var(--ink-soft);max-width:34rem}
 .b-foot__legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem;margin-top:auto;padding-top:3rem;font-size:.9375rem;color:var(--ink-soft)}
 
-/* action tiles */
+/* social tiles */
 .b-foot__tiles{grid-column:2;grid-row:3;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
 .b-foot__tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;min-height:9rem;padding:1.5rem 1rem;border:0;font:inherit;color:var(--ink);cursor:pointer;transition:background .3s}
 .b-foot__tile i{display:grid;place-items:center;width:3.25rem;height:3.25rem;border-radius:50%;background:var(--background);transition:background .3s,color .3s,transform .45s cubic-bezier(.2,1.4,.4,1)}
-.b-foot__tile svg{width:1.25rem;height:1.25rem;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.b-foot__tile svg{width:1.2rem;height:1.2rem;fill:currentColor}
 .b-foot__tile span{font-size:.9375rem;font-weight:500;color:var(--ink-soft);transition:color .3s}
 .b-foot__tile:hover{background:#e6e5e0}
 .b-foot__tile:hover i{background:var(--brand-deep);color:var(--on-brand);transform:translateY(-3px)}
@@ -50,3 +50,15 @@ html body .b-foot .b-foot__button{min-height:3.25rem;padding:0 1.5rem;border-rad
   .b-foot__tile{min-height:7rem;padding:1.25rem .5rem}
   .b-foot__tile span{font-size:.8125rem;text-align:center}
 }
+
+/* social links on the Contact page and in the menu */
+.b-contact-social{margin-top:1.75rem}
+.b-contact-social>span{display:block;font-size:.8125rem;font-weight:600;color:var(--ink-soft);margin-bottom:.5rem}
+.b-contact-social>div{display:flex;flex-wrap:wrap;gap:.5rem}
+html body .b-contact-page__details .b-contact-social a{display:inline-flex;align-items:center;gap:.5rem;min-height:2.75rem;padding:0 1rem 0 .85rem;border:0;border-radius:var(--radius-pill);background:var(--surface-card);font-size:.9375rem;text-decoration:none;color:var(--ink);transition:background .25s,color .25s}
+html body .b-contact-page__details .b-contact-social a:hover{background:var(--brand-deep);color:var(--on-brand)}
+.b-contact-social svg{width:1rem;height:1rem;fill:currentColor}
+.b-menu__social{display:flex;gap:1.5rem}
+.b-menu__social a{transition:color .25s}
+.b-menu__social a:hover{color:var(--brand)}
+@media(max-width:640px){.b-menu__social{margin-top:.5rem}}

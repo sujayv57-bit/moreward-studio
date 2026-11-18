@@ -1,10 +1,10 @@
 import { capabilities, projects } from '../baseline/data.js'
-import { SITE_DESCRIPTION, STUDIO_EMAIL } from './site.js'
+import { SITE_DESCRIPTION, SOCIAL, STUDIO_EMAIL } from './site.js'
 
 export function schemaFor(pathname, origin) {
   const absolute = path => origin + path
   const graph = [
-    { '@type': 'Organization', name: 'Moreward Studio', url: origin, email: STUDIO_EMAIL, description: SITE_DESCRIPTION },
+    { '@type': 'Organization', name: 'Moreward Studio', url: origin, email: STUDIO_EMAIL, description: SITE_DESCRIPTION, sameAs: SOCIAL.map(item => item.url) },
     { '@type': 'WebSite', name: 'Moreward Studio', url: origin, description: SITE_DESCRIPTION },
   ]
   const project = projects.find(item => pathname === '/work/' + item.slug)

@@ -1,5 +1,12 @@
 export const STUDIO_EMAIL = 'hq@morewardstudio.com'
 
+// Studio social profiles (footer tiles, contact page, menu, Organization schema).
+export const SOCIAL = [
+  { name: 'Instagram', handle: '@moreward.studio', url: 'https://www.instagram.com/moreward.studio/' },
+  { name: 'LinkedIn', handle: 'Moreward', url: 'https://www.linkedin.com/company/moreward/' },
+  { name: 'Facebook', handle: 'Moreward Studio', url: 'https://www.facebook.com/profile.php?id=61596389983228' },
+]
+
 export const SITE_DESCRIPTION = 'Moreward is an independent creative and technology studio working across brand, advertising, media and digital systems.'
 
 export const PUBLIC_PATHS = [
