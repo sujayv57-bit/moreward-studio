@@ -167,9 +167,9 @@ html body .b-contact-form .b-field-error{font:400 .8125rem/1.4 'DM Sans','Helvet
 
 /* Logo (logomark + Moreward + STUDIO, public/images/logo-ink.svg / logo-white.svg): sized so the
    wordmark reads clearly and STUDIO stays legible at every breakpoint. */
-html body .b-header__logo{width:12.75rem}
+html body .b-header__logo{width:11rem}
 html body .b-header__logo img{display:block;width:100%;height:auto}
-html body .b-menu__top img{width:12.5rem;height:auto}
+html body .b-menu__top img{width:11rem;height:auto}
 html body .b-loader img{width:min(19rem,70vw);height:auto}
-@media(max-width:1023px){html body .b-header__logo{width:11.5rem}}
-@media(max-width:640px){html body .b-header__logo{width:10.25rem}html body .b-menu__top img{width:10.25rem}}
+@media(max-width:1023px){html body .b-header__logo{width:10.25rem}}
+@media(max-width:640px){html body .b-header__logo{width:9.25rem}html body .b-menu__top img{width:9.25rem}}
