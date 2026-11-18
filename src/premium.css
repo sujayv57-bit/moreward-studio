@@ -161,8 +161,9 @@ html body .b-home-contact__title{font-size:clamp(2.25rem,3.6vw,3.75rem);line-hei
 @media (max-width:640px){
   html body .b-home-contact__title{font-size:clamp(2rem,8.5vw,2.4rem)}
   .b-home-contact__intro>p{font-size:1rem}
-  .b-home-contact__hand{width:27.6vw}
-  .b-home-contact__hand--left{width:calc(27.6vw * .919)}
+  .b-home-contact__hands{height:clamp(10.5rem,23vw,21.5rem)}
+  .b-home-contact__hand{width:46vw}
+  .b-home-contact__hand--left{width:calc(46vw * .919)}
 }
 @media (prefers-reduced-motion:reduce){.b-home-contact__hand,.b-home-contact__reach,.b-home-contact__spark{transition:none}}
 /* Field errors in the body font (overhaul.css forces monospace with !important, so this must too). */
