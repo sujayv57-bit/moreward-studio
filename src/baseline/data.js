@@ -17,7 +17,7 @@ const placeholder = (label, width, height) => {
 export const contactHands = { left: '/images/hand-left.webp', right: '/images/hand-right.webp' }
 
 export const imagery = {
-  creative: placeholder('Creative & Marketing', 1300, 731),
+  creative: image('creative-tree', 1254, 1254),
   advertising: placeholder('Advertising & Media', 1040, 1300),
   technology: placeholder('Technology & Automation', 1040, 1300),
   howWeWork: placeholder('Home · How we work', 1040, 1300),
@@ -69,7 +69,7 @@ export const capabilities = [
       ['Put it to work.', 'Campaigns, creator partnerships and content carry the idea to the people it was made for.'],
     ],
     services: ['Marketing strategy', 'Brand identity', 'Advertising design', 'Campaign development', 'Influencer and creator marketing', 'Content production'],
-    visual: imagery.creative, visualAlt: '',
+    visual: imagery.creative, visualAlt: 'A lone figure stands before a wall of glowing teal lines branching like a tree from a single point of light',
     relatedSlug: 'betach',
   },
   {
