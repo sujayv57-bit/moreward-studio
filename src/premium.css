@@ -224,3 +224,9 @@ html body :is(.m-hero__eyebrow,.m-hero__sub,.m-hero__ghost){text-shadow:0 1px 2p
   html body .m-hero__plate::after{background:linear-gradient(to bottom,#050505 0%,rgba(5,5,5,.5) 16%,rgba(5,5,5,0) 38%,rgba(5,5,5,0) 80%,rgba(5,5,5,.7) 93%,#050505 100%)}
   html body .m-hero__disciplines{display:none}
 }
+
+/* Work page hero: the dark wave image laid over the teal panel as a faint pattern. The image is
+   black with grey ridges; "screen" drops the black so only the ridges lighten the teal slightly. */
+html body .b-work-hero{position:relative;isolation:isolate}
+html body .b-work-hero::before{content:'';position:absolute;inset:0;z-index:-1;background:url('/images/waves-2000.webp') right center/cover no-repeat;mix-blend-mode:screen;opacity:.35;pointer-events:none}
+@media(max-width:1000px){html body .b-work-hero::before{background-image:url('/images/waves-1000.webp')}}
