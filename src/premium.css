@@ -119,7 +119,7 @@ html body .b-why__f-cta{font-size:.8125rem;font-weight:500;letter-spacing:0}
 /* Heading scale: one calmer set of sizes for the whole site (was up to 9-15rem; display now tops out near 5rem).
    Display = page titles and the home hero; Section = section titles; Item = row and card titles. */
 html body :is(.b-internal-hero h1,.b-cap-detail-hero h1,.b-project-detail__hero h1,.b-studio-hero h1,.b-contact-page h1,.b-legal h1,.b-not-found h1,.b-engagements-hero h1){font-size:clamp(2.75rem,4.6vw,4.75rem);line-height:1.02}
-html body .m-hero__headline{font-size:clamp(3rem,calc(70 * var(--hero-h)),5.5rem);line-height:1}
+html body .m-hero__headline{font-size:clamp(4.5rem,calc(105 * var(--hero-h)),8.25rem);line-height:1}
 html body :is(.b-section-head h2,.b-intro__title,.b-engagement-preview h2,.b-studio-preview h2,.b-cap-detail-intro h2,.b-project-detail__overview h2,.b-project-detail__direction h2,.b-engagements-types h2,.b-engagements-close h2,.b-studio-connection h2,.b-studio-final h2,.b-overlap h2,.b-studio-process h2,.b-studio-ways h2,.b-why__title,.b-orbits__title,.b-next-project__title){font-size:clamp(2.25rem,3.6vw,3.75rem);line-height:1.06}
 html body .b-cta-band h2{font-size:clamp(2.5rem,4.2vw,4.25rem);line-height:1.04}
 html body :is(.b-capability-row h3,.b-discipline-block h3){font-size:clamp(2rem,3vw,3.25rem);line-height:1.04}
@@ -128,7 +128,7 @@ html body :is(.b-cap-detail-sections h2,.b-cap-detail-sections h3,.b-studio-prin
 html body .b-next-project .b-arrow{font-size:1.5rem}
 @media (max-width:640px){
   html body :is(.b-internal-hero h1,.b-cap-detail-hero h1,.b-project-detail__hero h1,.b-studio-hero h1,.b-contact-page h1,.b-legal h1,.b-not-found h1,.b-engagements-hero h1){font-size:clamp(2.35rem,10vw,2.9rem)}
-  html body .m-hero__headline{font-size:clamp(2.5rem,11vw,3rem)}
+  html body .m-hero__headline{font-size:clamp(3.75rem,16.5vw,4.5rem)}
   html body :is(.b-section-head h2,.b-intro__title,.b-engagement-preview h2,.b-studio-preview h2,.b-cap-detail-intro h2,.b-project-detail__overview h2,.b-project-detail__direction h2,.b-engagements-types h2,.b-engagements-close h2,.b-studio-connection h2,.b-studio-final h2,.b-overlap h2,.b-studio-process h2,.b-studio-ways h2,.b-why__title,.b-orbits__title,.b-next-project__title){font-size:clamp(2rem,8.5vw,2.4rem)}
   html body .b-cta-band h2{font-size:clamp(2.2rem,9.5vw,2.7rem)}
   html body :is(.b-capability-row h3,.b-discipline-block h3){font-size:clamp(1.65rem,7vw,1.95rem)}
@@ -139,12 +139,12 @@ html body .b-next-project .b-arrow{font-size:1.5rem}
 
 /* Home contact: two hands (or the fine-line stand-in) close the gap as the section scrolls in. --reach goes 0 → 1 (home-contact.jsx). */
 .b-home-contact{--reach:0;position:relative;padding:0 clamp(1.25rem,3.5vw,5rem) clamp(4.5rem,8vw,7rem);text-align:center}
-.b-home-contact__hands{position:relative;height:clamp(10.5rem,23vw,21.5rem);margin:0 calc(-1 * clamp(1.25rem,3.5vw,5rem));overflow:hidden;pointer-events:none}
-.b-home-contact__hand{position:absolute;top:50%;width:clamp(12rem,44vw,40rem);height:auto;will-change:transform}
+.b-home-contact__hands{position:relative;height:clamp(6.3rem,13.8vw,12.9rem);margin:0 calc(-1 * clamp(1.25rem,3.5vw,5rem));overflow:hidden;pointer-events:none}
+.b-home-contact__hand{position:absolute;top:50%;width:clamp(7.2rem,26.4vw,24rem);height:auto;will-change:transform}
 .b-home-contact__hand--left{left:0;transform:translate(calc((var(--reach) - 1) * 45%),-50%)}
 .b-home-contact__hand--right{right:0;transform:translate(calc((1 - var(--reach)) * 45%),-50%)}
 /* both halves come from one photo (958px and 1042px wide): keep their relative scale */
-.b-home-contact__hand--left{width:calc(clamp(12rem,44vw,40rem) * .919)}
+.b-home-contact__hand--left{width:calc(clamp(7.2rem,26.4vw,24rem) * .919)}
 .b-home-contact__reach{position:absolute;top:50%;height:1px;width:calc(50% - 1.6rem);will-change:transform}
 .b-home-contact__reach::after{content:'';position:absolute;top:50%;width:.55rem;height:.55rem;border-radius:50%;background:var(--ink);transform:translateY(-50%)}
 .b-home-contact__reach--left{left:0;background:linear-gradient(90deg,transparent,var(--ink) 70%);transform:translateX(calc((var(--reach) - 1) * 75%))}
@@ -161,8 +161,8 @@ html body .b-home-contact__title{font-size:clamp(2.25rem,3.6vw,3.75rem);line-hei
 @media (max-width:640px){
   html body .b-home-contact__title{font-size:clamp(2rem,8.5vw,2.4rem)}
   .b-home-contact__intro>p{font-size:1rem}
-  .b-home-contact__hand{width:46vw}
-  .b-home-contact__hand--left{width:calc(46vw * .919)}
+  .b-home-contact__hand{width:27.6vw}
+  .b-home-contact__hand--left{width:calc(27.6vw * .919)}
 }
 @media (prefers-reduced-motion:reduce){.b-home-contact__hand,.b-home-contact__reach,.b-home-contact__spark{transition:none}}
 /* Field errors in the body font (overhaul.css forces monospace with !important, so this must too). */
@@ -193,3 +193,13 @@ html body .b-cta-band::before{content:'';position:absolute;z-index:-1;right:-15%
 /* Home "How we work" image: fixed 4:5 frame (the original slot size) */
 html body .b-engagement-preview .b-image-frame{aspect-ratio:4/5;height:auto}
 html body .b-engagement-preview .b-image-frame picture,html body .b-engagement-preview .b-image-frame img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* Home hero: headline at 1.5x. Its extra height (one old line, clamp(3rem,70h,5.5rem)) pushes the
+   text and actions below it down; the headline keeps its position under the eyebrow. */
+@media(min-aspect-ratio:11/10){
+  html body .m-hero{--hero-extra:calc(clamp(3rem,calc(70 * var(--hero-h)),5.5rem) + 1.5rem)}
+  html body .m-hero__sub{top:calc(230.5 * var(--hero-u) + 189 * var(--hero-h) + var(--hero-extra))}
+  html body .m-hero__pill{top:calc(230.5 * var(--hero-u) + 264.5 * var(--hero-h) + var(--hero-extra))}
+  html body .m-hero__ghost{top:calc(230.5 * var(--hero-u) + 279.5 * var(--hero-h) + var(--hero-extra))}
+}
+@media(max-aspect-ratio:11/10){html body .m-hero__sub{margin-top:1.5rem}}
