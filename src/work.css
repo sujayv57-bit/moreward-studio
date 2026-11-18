@@ -31,8 +31,8 @@
   .b-feature:hover .b-feature__info h3 span{opacity:1;transform:none}
   .b-feature:hover .b-feature__info dl i{background-position:-100% 0}
   .b-feature:hover .b-feature__media img{transform:scale(1.045)}
-  /* Kriya Setu: grows 43% on hover, from its 0.7 starting size (0.7 × 1.43) */
-  .b-feature.b-feature--kriya-setu:hover .b-feature__media img{transform:scale(1.001)}
+  /* Kriya Setu: grows 49% on hover, from its 0.7 starting size (0.7 × 1.49) */
+  .b-feature.b-feature--kriya-setu:hover .b-feature__media img{transform:scale(1.043)}
   .b-feature:hover .b-feature__media::after{opacity:1}
   .b-feature:hover .b-feature__cta{opacity:1;transform:none}
 }
