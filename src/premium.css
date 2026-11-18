@@ -173,3 +173,11 @@ html body .b-menu__top img{width:11rem;height:auto}
 html body .b-loader img{width:min(19rem,70vw);height:auto}
 @media(max-width:1023px){html body .b-header__logo{width:10.25rem}}
 @media(max-width:640px){html body .b-header__logo{width:9.25rem}html body .b-menu__top img{width:9.25rem}}
+
+/* Home capability rows: the hover image spans the text block (top of the title to the bottom of the
+   services), so it grows with the row instead of making it taller. */
+@media(min-width:768px){
+  html body .b-capability-row{grid-template-columns:minmax(0,1fr) clamp(11rem,16vw,15rem) 1.5rem}
+  html body .b-capability-row picture{position:relative;align-self:stretch;width:100%;height:auto;min-height:0;border-radius:.9rem;overflow:hidden}
+  html body .b-capability-row img{position:absolute;inset:0;width:100%;height:100%;border-radius:0;object-position:50% 0}
+}
