@@ -27,11 +27,12 @@
 .b-feature--kriya-setu .b-feature__media{background:#000}
 .b-feature--kriya-setu .b-feature__media img{object-fit:contain;transform:scale(.7)}
 @media(hover:hover){
-  .b-feature--kriya-setu:hover .b-feature__media img{transform:scale(.7245)}
   .b-feature:hover .b-feature__info{background:#e6e5df}
   .b-feature:hover .b-feature__info h3 span{opacity:1;transform:none}
   .b-feature:hover .b-feature__info dl i{background-position:-100% 0}
   .b-feature:hover .b-feature__media img{transform:scale(1.045)}
+  /* same 3.5% growth as the others (1.01 → 1.045), from Kriya Setu's 0.7 starting size */
+  .b-feature.b-feature--kriya-setu:hover .b-feature__media img{transform:scale(.7243)}
   .b-feature:hover .b-feature__media::after{opacity:1}
   .b-feature:hover .b-feature__cta{opacity:1;transform:none}
 }
