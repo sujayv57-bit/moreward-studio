@@ -20,10 +20,12 @@ html body .b-foot .b-foot__button{min-height:3.25rem;padding:0 1.5rem;border-rad
 
 /* brand card */
 .b-foot__brand{grid-column:2;grid-row:1/3;display:flex;flex-direction:column}
-.b-foot__mark{display:inline-block;align-self:flex-start}
-.b-foot__mark img{width:clamp(11rem,17vw,16rem);height:auto}
-.b-foot__line{display:flex;align-items:center;gap:clamp(.75rem,1.5vw,1.25rem);margin-top:1.25rem;font:500 clamp(1.6rem,2.9vw,3rem)/1 'Archivo','Helvetica Neue',Arial,sans-serif;letter-spacing:-.04em;color:var(--ink)}
-.b-foot__line span{flex:none;width:clamp(3rem,6vw,6rem);height:clamp(.55rem,.9vw,.8rem);background:var(--brand-deep)}
+.b-foot__lockup{align-self:flex-start;width:clamp(11rem,17vw,16rem);container-type:inline-size}
+.b-foot__mark{display:block}
+.b-foot__mark img{display:block;width:100%;height:auto}
+/* tagline spans the logo exactly: bar 18% + gap 4% + text 78% of the logo width (text is 9.54em wide) */
+.b-foot__line{display:flex;align-items:center;gap:4cqi;margin-top:5cqi;font:500 8.15cqi/1 'Archivo','Helvetica Neue',Arial,sans-serif;letter-spacing:-.04em;white-space:nowrap;color:var(--ink)}
+.b-foot__line span{flex:none;width:18cqi;height:2.3cqi;background:var(--brand-deep)}
 .b-foot__about{margin-top:2rem;font-size:1.125rem;line-height:1.55;color:var(--ink-soft);max-width:34rem}
 .b-foot__legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem;margin-top:auto;padding-top:3rem;font-size:.9375rem;color:var(--ink-soft)}
 

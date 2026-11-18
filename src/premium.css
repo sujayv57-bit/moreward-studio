@@ -181,3 +181,8 @@ html body .b-loader img{width:min(19rem,70vw);height:auto}
   html body .b-capability-row picture{position:relative;align-self:stretch;width:100%;height:auto;min-height:0;border-radius:.9rem;overflow:hidden}
   html body .b-capability-row img{position:absolute;inset:0;width:100%;height:100%;border-radius:0;object-position:50% 0}
 }
+
+/* Closing call-to-action bands on every page match the category pages' closing section: near-black
+   surface with a soft teal glow rising from the bottom-right corner. Text styles are unchanged. */
+html body .b-cta-band,html body .b-cta-band--studio{position:relative;isolation:isolate;overflow:hidden;background:#0b0e0f}
+html body .b-cta-band::before{content:'';position:absolute;z-index:-1;right:-15%;bottom:-60%;width:min(60vw,50rem);aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(90,201,199,.28),transparent);pointer-events:none}

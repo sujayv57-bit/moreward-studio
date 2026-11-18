@@ -123,8 +123,10 @@ export function Footer() {
       </div>
     </nav>
     <div className="b-foot__card b-foot__brand">
-      <Link to="/" className="b-foot__mark" aria-label="Moreward home"><img src={logoInk} alt="Moreward Studio"/></Link>
-      <p className="b-foot__line"><span aria-hidden="true"/>Direction, made visible.</p>
+      <div className="b-foot__lockup">
+        <Link to="/" className="b-foot__mark" aria-label="Moreward home"><img src={logoInk} alt="Moreward Studio"/></Link>
+        <p className="b-foot__line"><span aria-hidden="true"/>Direction, made visible.</p>
+      </div>
       <p className="b-foot__about">Moreward is an independent studio for creative, advertising and technology work: brand, campaigns, media and the systems behind them.</p>
       <div className="b-foot__legal"><span>© {new Date().getFullYear()} Moreward Studio. All rights reserved.</span><span>Independent creative &amp; technology studio</span></div>
     </div>
