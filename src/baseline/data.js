@@ -240,3 +240,46 @@ export const advertisingMedia = {
     button: 'Start an Advertising & Media project',
   },
 }
+
+// Technology & Automation page (/capabilities/technology-automation). Same layout as the other two.
+// Third-party platforms (hosting, CRM, AI and automation tools) run on the client's own accounts and terms.
+export const technologyAutomation = {
+  slug: 'technology-automation', name: 'Technology & Automation',
+  chain: ['Website', 'Enquiry', 'CRM', 'Workflow', 'Automation', 'Reporting'],
+  servicesTitle: 'Five services, one connected system.',
+  servicesIntro: 'Each can be built on its own or connected to the others. The scope lists show what a project can include, not fixed packages; every project is scoped around how the business actually works.',
+  hero: {
+    eyebrow: 'Technology & Automation', title: 'Build what the business runs on.',
+    body: 'Good marketing creates interest. The systems behind it decide what happens next. We design and build websites, CRMs and automations that help a business respond faster, stay organised and spend less time on repetitive work.',
+    support: 'For businesses that have outgrown spreadsheets, scattered tools and manual follow-ups.',
+  },
+  view: {
+    lead: 'Start with how the work actually happens.', follow: 'Then build the system around it.',
+    body: 'Technology should fit the way a team works, not force the team to work around it. We map the process first, then choose what to build, what to connect and what to automate, so every part has a reason to exist.',
+  },
+  services: [
+    { id: 'ai-automations', name: 'AI Automations', body: 'AI is useful when it takes on a defined task reliably. We identify where it can help, such as sorting enquiries, drafting replies or summarising information, and build it into the process with clear limits and a person in the loop where it matters.', scope: ['Use-case review', 'AI-assisted workflows', 'Enquiry sorting and drafting', 'Document and data summaries', 'Prompt and output testing', 'Human review steps'] },
+    { id: 'custom-crm-solutions', name: 'Custom CRM Solutions', body: 'A CRM should show a team what is happening and what needs doing next. We design and build CRMs around the way the business handles enquiries, customers and follow-ups, rather than bending the business to fit a generic tool.', scope: ['Process mapping', 'Data structure', 'Pipeline and stages', 'Dashboards and views', 'Integrations with existing tools', 'Data migration', 'Team onboarding'] },
+    { id: 'workflow-automation', name: 'Workflow Automation', body: 'Repetitive work slows a team down and invites mistakes. We connect the tools a business already uses so information moves between them on its own, and people only step in where a decision is needed.', scope: ['Workflow review', 'Tool connections', 'Notifications and handoffs', 'Form and data automations', 'Error handling', 'Documentation'] },
+    { id: 'website-design-development', name: 'Website Design & Development', body: 'A website is often the first place people act on their interest. We design and build sites that are clear, fast and easy to use, and connect them to the systems that handle what happens after someone gets in touch.', scope: ['Site structure', 'Interface design', 'Development', 'Content management', 'Forms and integrations', 'Performance and accessibility checks', 'Launch support'] },
+    { id: 'technology-led-business-solutions', name: 'Technology-led Business Solutions', body: 'Some problems need a tool that does not exist off the shelf. We work through the problem, define what a practical solution should do, and design and build it at the scale the business needs.', scope: ['Problem definition', 'Solution design', 'Prototypes', 'Custom tools and portals', 'Integrations', 'Ongoing improvements where agreed'] },
+  ],
+  stepsTitle: 'From process to working system.',
+  steps: [
+    ['Understand the process', 'Learn how the work happens today, which tools are in use and where time or information is lost.'],
+    ['Define the solution', 'Recommend what to build, connect or automate, and agree on scope, platforms, timing and review points.'],
+    ['Build and test', 'Develop the system in stages, test it against real scenarios and review it together before launch.'],
+    ['Launch and support', 'Put the system into use, hand over documentation and support the team as it settles in.'],
+  ],
+  engage: {
+    title: 'A build that fits the business.',
+    body: 'Come to Moreward for one defined build, a connected system that brings several together, or ongoing support as the business grows. We establish the scope after understanding the process. Every engagement has agreed deliverables, timing and review points.',
+    options: [['One build', 'One defined website, CRM or automation.'], ['Connected system', 'Several tools built and connected together.'], ['Ongoing support', 'Improvements and support as the business grows.']],
+    note: 'Most systems rely on third-party platforms such as hosting, CRM, AI and automation tools. Their subscriptions, usage costs and terms sit with the business. We recommend and set them up during the project.',
+  },
+  close: {
+    eyebrow: 'Have something in mind?', title: 'Let’s give it direction.',
+    body: 'Tell us how the work happens today, where it slows down and what you would like it to do. You do not need a technical brief to start the conversation.',
+    button: 'Start a Technology & Automation project',
+  },
+}

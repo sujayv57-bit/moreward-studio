@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from '@tanstack/react-router'
-import { advertisingMedia, capabilities, creativeMarketing, engagementTypes, homeSteps, imagery, projects, studioPrinciples } from './data.js'
+import { advertisingMedia, capabilities, creativeMarketing, engagementTypes, technologyAutomation, homeSteps, imagery, projects, studioPrinciples } from './data.js'
 import { SOCIAL, STUDIO_EMAIL } from '../config/site.js'
 import { HomeHero } from './home-hero.jsx'
 import { ContactForm, NextSteps } from './contact-form.jsx'
@@ -95,7 +95,7 @@ export function CapabilitiesPage() {
     <CtaBand variant="studio"/></>
 }
 
-const categoryPages = { 'creative-marketing': creativeMarketing, 'advertising-media': advertisingMedia }
+const categoryPages = { 'creative-marketing': creativeMarketing, 'advertising-media': advertisingMedia, 'technology-automation': technologyAutomation }
 
 export function CapabilityPage() {
   const { slug } = useParams({ from: '/capabilities/$slug' })

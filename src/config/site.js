@@ -24,7 +24,7 @@ export const seo = {
   '/capabilities': { title: 'Capabilities | Moreward', description: 'Creative & Marketing, Advertising & Media, and Technology & Automation under one roof, working from the same brief. How the studio works, from first conversation to launch.' },
   '/capabilities/creative-marketing': { title: 'Creative & Marketing | Moreward', description: 'Marketing strategy, brand identity, advertising design, campaign development, influencer marketing and content creation. What each can involve and how a project is scoped.' },
   '/capabilities/advertising-media': { title: 'Advertising & Media | Moreward', description: 'Outdoor, billboard and banner, metro, television, radio and print advertising, with media planning that gives every placement a clear purpose.' },
-  '/capabilities/technology-automation': { title: 'Technology & Automation | Moreward', description: 'Websites, custom CRMs, workflow and AI automation that turn attention into enquiries and business.' },
+  '/capabilities/technology-automation': { title: 'Technology & Automation | Moreward', description: 'AI automations, custom CRMs, workflow automation, website design and development, and technology-led business solutions, built around how the business works.' },
   '/contact': { title: 'Contact | Moreward', description: 'Start a project with Moreward. Tell us about a launch, a campaign or a system that needs work.' },
   '/privacy': { title: 'Privacy Policy | Moreward', description: 'How the Moreward website handles your information.' },
   '/terms': { title: 'Terms | Moreward', description: 'Terms of use for the Moreward website.' },
