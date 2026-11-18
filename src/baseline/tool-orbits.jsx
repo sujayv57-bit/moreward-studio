@@ -29,7 +29,7 @@ export function ToolOrbits() {
         <ol className="b-orbits__legend">
           {toolOrbits.map((orbit, i) => <li key={orbit.slug} className={active === i ? 'is-active' : ''} onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(null)} onFocus={() => setActive(i)} onBlur={() => setActive(null)}>
             <Link to={'/capabilities/' + orbit.slug}>
-              <span className="b-orbits__ring-key" aria-hidden="true"/>
+              <svg className="b-orbits__ring-key" viewBox="0 0 36 36" aria-hidden="true">{[6, 11, 16.5].map((r, ring) => <circle key={r} cx="18" cy="18" r={r} className={ring === i ? 'is-this' : ''}/>)}<circle cx="18" cy="18" r="2.4" className="b-orbits__ring-sun"/></svg>
               <span><strong>{orbit.name}</strong><small>{orbit.tools.map(tool => tool.name).join(', ')}</small></span>
               <span className="b-orbits__go" aria-hidden="true">↗</span>
             </Link>
@@ -41,6 +41,7 @@ export function ToolOrbits() {
           <svg className="b-system__rings" viewBox="0 0 100 100">
             {RADII.map((r, i) => <circle key={r} className={'b-system__ring b-system__ring--' + (i + 1)} cx="50" cy="50" r={r} pathLength="1"/>)}
           </svg>
+          {[0, 1, 2].map(n => <span key={n} className="b-system__ripple" style={{ animationDelay: n * 1.6 + 's' }}/>)}
           <div className="b-system__sun"><img src="/images/logomark.svg" alt="" width="64" height="64"/></div>
           {toolOrbits.map((orbit, ring) => <div key={orbit.slug} className={'b-system__orbit b-system__orbit--' + (ring + 1)}>
             <span className="b-system__comet"><i style={{ top: 50 - RADII[ring] + '%' }}/></span>

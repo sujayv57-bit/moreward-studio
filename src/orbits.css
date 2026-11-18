@@ -12,16 +12,14 @@
 .b-orbits__legend strong{display:block;font:500 1.25rem/1.2 'Archivo','Helvetica Neue',Arial,sans-serif;letter-spacing:-.025em;color:var(--ink)}
 .b-orbits__legend small{display:block;margin-top:.3rem;font-size:.875rem;line-height:1.45;color:var(--ink-soft)}
 .b-orbits__go{font-size:1rem;color:var(--ink-soft);transition:transform .35s cubic-bezier(.18,.85,.27,1),color .3s}
-.b-orbits__legend li.is-active a{padding-left:.4rem}
 .b-orbits__legend li.is-active .b-orbits__go{color:var(--ink);transform:translate(3px,-3px)}
 .b-orbits__legend a:focus-visible{outline:2px solid var(--brand-deep);outline-offset:4px}
-/* key: concentric rings that grow with the orbit, filled ring = this one */
-.b-orbits__ring-key{position:relative;width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid #cfd6d3}
-.b-orbits__ring-key::before{content:'';position:absolute;left:50%;top:50%;width:.45rem;height:.45rem;margin:-.225rem;border-radius:50%;background:var(--brand-deep)}
-.b-orbits__ring-key::after{content:'';position:absolute;left:50%;top:50%;border-radius:50%;border:1.5px solid var(--ring);width:var(--key);height:var(--key);margin:calc(var(--key) / -2)}
-.b-orbits__legend li:nth-child(1) .b-orbits__ring-key{--key:1rem;--ring:#07272F}
-.b-orbits__legend li:nth-child(2) .b-orbits__ring-key{--key:1.55rem;--ring:#0B6764}
-.b-orbits__legend li:nth-child(3) .b-orbits__ring-key{--key:2.25rem;--ring:#5AC9C7}
+/* key: the three orbits, with this row's orbit drawn darker and heavier */
+.b-orbits__ring-key{width:2.25rem;height:2.25rem;overflow:visible}
+.b-orbits__ring-key circle{fill:none;stroke:#cdd5d2;stroke-width:1.2;transition:stroke .3s}
+.b-orbits__ring-key circle.is-this{stroke:var(--brand-deep);stroke-width:2}
+.b-orbits__ring-key .b-orbits__ring-sun{fill:var(--brand-deep);stroke:none}
+.b-orbits__legend li.is-active .b-orbits__ring-key circle.is-this{stroke:#0B6764}
 
 /* the system */
 .b-system{position:relative;padding:clamp(1rem,2.5vw,2rem)}
@@ -34,10 +32,14 @@
 .b-system.is-in .b-system__ring{stroke-dashoffset:0}
 
 /* the sun: logomark with a slow, soft halo */
-.b-system__sun{position:absolute;left:50%;top:50%;width:23%;aspect-ratio:1;translate:-50% -50%;display:grid;place-items:center;border-radius:50%;background:#fff;box-shadow:0 1px 0 rgba(17,17,17,.04),0 24px 50px -24px rgba(7,39,47,.45);opacity:0;scale:.6;transition:opacity .6s .2s,scale 1s cubic-bezier(.2,1.4,.4,1) .2s}
+.b-system__sun{position:absolute;left:50%;top:50%;width:17%;aspect-ratio:1;translate:-50% -50%;z-index:1;display:grid;place-items:center;border-radius:50%;background:#fff;box-shadow:0 1px 0 rgba(17,17,17,.04),0 24px 50px -24px rgba(7,39,47,.45);opacity:0;scale:.6;transition:opacity .6s .2s,scale 1s cubic-bezier(.2,1.4,.4,1) .2s}
 .b-system.is-in .b-system__sun{opacity:1;scale:1}
-.b-system__stage::before{content:'';position:absolute;left:50%;top:50%;width:38%;aspect-ratio:1;margin:-19% 0 0 -19%;border-radius:50%;background:radial-gradient(closest-side,rgba(90,201,199,.34),rgba(90,201,199,0));animation:b-system-breathe 5s ease-in-out infinite alternate}
-.b-system__sun img{width:52%;height:52%}
+.b-system__stage::before{content:'';position:absolute;left:50%;top:50%;width:30%;aspect-ratio:1;margin:-15% 0 0 -15%;border-radius:50%;background:radial-gradient(closest-side,rgba(90,201,199,.34),rgba(90,201,199,0));animation:b-system-breathe 5s ease-in-out infinite alternate}
+.b-system__sun img{width:50%;height:50%}
+/* ripples: rings that spread out from the logomark and fade, like a stone dropped in water */
+.b-system__ripple{position:absolute;left:50%;top:50%;width:17%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:1px solid rgba(11,103,100,.45);opacity:0;pointer-events:none}
+.b-system.is-in .b-system__ripple{animation:b-system-ripple 4.8s cubic-bezier(.2,.6,.35,1) infinite}
+@keyframes b-system-ripple{0%{opacity:0;scale:1}8%{opacity:.9}100%{opacity:0;scale:2.6;border-color:rgba(90,201,199,.2)}}
 @keyframes b-system-breathe{from{transform:scale(.85);opacity:.6}to{transform:scale(1.08);opacity:1}}
 
 /* orbits turn at their own pace, like planets; logos turn back so they stay upright */
@@ -82,7 +84,7 @@
 }
 @media(prefers-reduced-motion:reduce){
   .b-system__orbit,.b-system__logo,.b-system.is-in .b-system__chip,.b-system__stage::before{animation:none}
-  .b-system__comet{display:none}
+  .b-system__comet,.b-system__ripple{display:none}
   .b-system__ring{stroke-dashoffset:0;transition:none}
   .b-system__chip,.b-system__sun{opacity:1;transform:none;scale:1;transition:none}
 }
