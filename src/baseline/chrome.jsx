@@ -57,7 +57,9 @@ export function Loader() {
 export function Header({ pathname }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [overDark, setOverDark] = useState(pathname === '/' || pathname === '/work' || pathname.startsWith('/work/') || pathname.startsWith('/capabilities/'))
+  // Pages that open on a dark hero. Used before the page is measured and whenever nothing is behind the header.
+  const startsDark = path => path === '/' || path === '/work' || path.startsWith('/work/') || path.startsWith('/capabilities/')
+  const [overDark, setOverDark] = useState(startsDark(pathname))
   const [hidden, setHidden] = useState(false)
   const toggleRef = useRef(null), menuRef = useRef(null), headerRef = useRef(null)
   useEffect(() => {
@@ -66,13 +68,15 @@ export function Header({ pathname }) {
       const current = window.scrollY
       setScrolled(current > 50)
       const crossing = [...document.querySelectorAll('main>section,main>div>section')].find(section => { const rect = section.getBoundingClientRect(); return rect.top <= 65 && rect.bottom >= 65 })
-      setOverDark(Boolean(crossing?.matches('.b-panel-dark,.m-hero')))
+      setOverDark(crossing ? crossing.matches('.b-panel-dark,.m-hero') : (current < 80 && startsDark(pathname)))
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !open && !headerRef.current?.contains(document.activeElement)) setHidden(current > previous && current > 160 && current - previous > 2)
       else setHidden(false)
       previous = current
     }
-    onScroll(); window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    // Measure again once layout settles (fonts, images, the loader), not only on the first frame.
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); window.addEventListener('load', onScroll)
+    const timers = [requestAnimationFrame(onScroll), setTimeout(onScroll, 400), setTimeout(onScroll, 1600)]
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); window.removeEventListener('load', onScroll); cancelAnimationFrame(timers[0]); clearTimeout(timers[1]); clearTimeout(timers[2]) }
   }, [open, pathname])
   useEffect(() => { setOpen(false); setHidden(false) }, [pathname])
   useEffect(() => {
