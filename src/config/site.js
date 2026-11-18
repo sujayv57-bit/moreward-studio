@@ -1,4 +1,4 @@
-export const STUDIO_EMAIL = 'sujay@nidhivriddhi.com'
+export const STUDIO_EMAIL = 'hq@morewardstudio.com'
 
 export const SITE_DESCRIPTION = 'Moreward is an independent creative and technology studio working across brand, advertising, media and digital systems.'
 
