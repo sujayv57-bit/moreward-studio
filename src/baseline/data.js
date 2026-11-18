@@ -18,8 +18,8 @@ export const contactHands = { left: '/images/hand-left.webp', right: '/images/ha
 
 export const imagery = {
   creative: image('creative-tree', 1254, 1254),
-  advertising: placeholder('Advertising & Media', 1040, 1300),
-  technology: placeholder('Technology & Automation', 1040, 1300),
+  advertising: image('advertising-screen', 1254, 1254),
+  technology: image('technology-robot', 1254, 1254),
   howWeWork: placeholder('Home · How we work', 1040, 1300),
 }
 
@@ -87,7 +87,7 @@ export const capabilities = [
       ['Planned with purpose.', 'Channel, audience, timing and budget, so every placement has a clear job to do.'],
     ],
     services: ['Outdoor advertising', 'Billboard and banner campaigns', 'Metro and transit advertising', 'Television advertising', 'Radio advertising', 'Print advertising', 'Media planning'],
-    visual: imagery.advertising, visualAlt: '',
+    visual: imagery.advertising, visualAlt: 'A lone figure stands before a large glowing screen in a dark, misty space',
     relatedSlug: null,
   },
   {
@@ -105,7 +105,7 @@ export const capabilities = [
       ['Make AI practical.', 'Automation takes on the repetitive work, so people can focus on the decisions that need them.'],
     ],
     services: ['AI automations', 'Custom CRM development', 'Workflow automation', 'Website design and development', 'Custom business tools'],
-    visual: imagery.technology, visualAlt: '',
+    visual: imagery.technology, visualAlt: 'A lone figure watches two robotic arms arrange glowing blocks on a wall',
     relatedSlug: null,
   },
 ]
