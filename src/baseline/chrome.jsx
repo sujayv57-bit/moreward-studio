@@ -102,6 +102,39 @@ export function Header({ pathname }) {
 
 const two = number => String(number).padStart(2, '0')
 
+// Footer: a bento of light cards. Left: a project prompt, then the site map. Right: the brand card,
+// then three quick-action tiles (email, contact form, back to top).
+const footIcons = {
+  mail: <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7.5 8 6 8-6"/></svg>,
+  chat: <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5a2.5 2.5 0 0 1-2.5 2.5H9l-4.5 3.5V6.5A2.5 2.5 0 0 1 7 4h10.5A2.5 2.5 0 0 1 20 6.5z"/></svg>,
+  up: <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>,
+}
+
 export function Footer() {
-  return <footer className="b-footer b-panel-dark"><div className="b-footer__main"><div className="b-footer__brand"><Link to="/" aria-label="Moreward home"><img src={logoWhite} alt="Moreward"/></Link><p>Moreward is an independent studio for creative, advertising and technology work.</p><EmailLink>{STUDIO_EMAIL}</EmailLink></div><div><span>Capabilities</span>{capabilities.map(item => <Link to={'/capabilities/' + item.slug} key={item.slug}>{item.name}</Link>)}</div><div><span>Studio</span><Link to="/work">Work</Link><Link to="/studio">Studio</Link><Link to="/studio#how-we-work">How we work</Link><Link to="/contact">Contact</Link></div></div><div className="b-footer__bottom"><span>© {new Date().getFullYear()} Moreward Studio</span><span>Direction, made visible.</span><div><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></div></div></footer>
+  const toTop = () => window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+  return <footer className="b-foot">
+    <div className="b-foot__card b-foot__prompt">
+      <h2>Have a project in mind?</h2>
+      <div className="b-foot__prompt-row"><EmailLink className="b-foot__field">{STUDIO_EMAIL}</EmailLink><ConversionLink location="footer" className="b-foot__button">Start a project</ConversionLink></div>
+    </div>
+    <nav className="b-foot__card b-foot__map" aria-label="Footer">
+      <h2>Everything across our studio, work and services.</h2>
+      <div className="b-foot__cols">
+        <div><h3>Menu</h3><Link to="/">Home</Link><Link to="/work">Work</Link><Link to="/studio">Studio</Link><Link to="/contact">Contact</Link></div>
+        <div><h3>Capabilities</h3>{capabilities.map(item => <Link key={item.slug} to={'/capabilities/' + item.slug}>{item.name}</Link>)}</div>
+        <div><h3>Information</h3><Link to="/studio" hash="how-we-work">How we work</Link><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></div>
+      </div>
+    </nav>
+    <div className="b-foot__card b-foot__brand">
+      <Link to="/" className="b-foot__mark" aria-label="Moreward home"><img src={logoInk} alt="Moreward"/></Link>
+      <p className="b-foot__line"><span aria-hidden="true"/>Direction, made visible.</p>
+      <p className="b-foot__about">Moreward is an independent studio for creative, advertising and technology work: brand, campaigns, media and the systems behind them.</p>
+      <div className="b-foot__legal"><span>© {new Date().getFullYear()} Moreward Studio. All rights reserved.</span><span>Independent creative &amp; technology studio</span></div>
+    </div>
+    <div className="b-foot__tiles">
+      <EmailLink className="b-foot__card b-foot__tile"><i>{footIcons.mail}</i><span>Email us</span></EmailLink>
+      <Link to="/contact" className="b-foot__card b-foot__tile"><i>{footIcons.chat}</i><span>Contact form</span></Link>
+      <button type="button" className="b-foot__card b-foot__tile" onClick={toTop}><i>{footIcons.up}</i><span>Back to top</span></button>
+    </div>
+  </footer>
 }
