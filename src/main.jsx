@@ -7,6 +7,7 @@ import './hero.css'
 import './overhaul.css'
 import './why.css'
 import './orbits.css'
+import './process.css'
 import './premium.css'
 
 const root = document.getElementById('root')
