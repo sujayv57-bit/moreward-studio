@@ -204,3 +204,23 @@ html body .b-engagement-preview .b-image-frame picture,html body .b-engagement-p
   html body .m-hero__ghost{top:calc(230.5 * var(--hero-u) + 279.5 * var(--hero-h) + var(--hero-extra))}
 }
 @media(max-aspect-ratio:11/10){html body .m-hero__sub{margin-top:1.5rem}}
+
+/* Home hero text stays legible where it crosses the bright doorway in the video. */
+html body .m-hero__headline{text-shadow:0 1px 2px rgba(0,0,0,.45),0 6px 24px rgba(0,0,0,.55),0 12px 60px rgba(0,0,0,.45)}
+html body :is(.m-hero__eyebrow,.m-hero__sub,.m-hero__ghost){text-shadow:0 1px 2px rgba(0,0,0,.55),0 4px 20px rgba(0,0,0,.55)}
+
+/* Phones: text at the top under the logo, the door video as a band below it, no pause button.
+   (overhaul.css positions the phone hero absolutely; this puts it back into normal flow.) */
+@media(max-width:640px) and (max-aspect-ratio:11/10){
+  html body .m-hero__video-control{display:none}
+  html body .m-hero{display:flex;flex-direction:column;height:auto;min-height:100svh;padding:0}
+  html body .m-hero__content{order:1;position:relative;inset:auto;z-index:1;display:flex;flex-direction:column;align-items:flex-start;flex:0 0 auto;min-height:0;padding:calc(140 * var(--hero-m)) 20px calc(8 * var(--hero-m))}
+  html body .m-hero__content>*{position:static;inset:auto;margin:0;max-width:100%}
+  html body .m-hero__headline{margin-top:1.1rem}
+  html body .m-hero__sub{margin-top:1.25rem}
+  html body .m-hero__ghost{margin-top:1.6rem}
+  html body .m-hero__plate{order:2;position:relative;inset:auto;z-index:0;flex:1 0 auto;min-height:clamp(15rem,58vw,22rem)}
+  html body .m-hero__video{inset:0;width:100%;height:100%;transform:none;object-position:56% 72%}
+  html body .m-hero__plate::after{background:linear-gradient(to bottom,#050505 0%,rgba(5,5,5,.5) 16%,rgba(5,5,5,0) 38%,rgba(5,5,5,0) 80%,rgba(5,5,5,.7) 93%,#050505 100%)}
+  html body .m-hero__disciplines{display:none}
+}
