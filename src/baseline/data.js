@@ -26,7 +26,6 @@ export const imagery = {
 export const navigation = [
   { label: 'Work', to: '/work' },
   { label: 'Capabilities', to: '/capabilities' },
-  { label: 'Studio', to: '/studio' },
   { label: 'Contact', to: '/contact' },
 ]
 

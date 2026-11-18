@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { createMemoryHistory, createRootRoute, createRoute, createRouter, Outlet, RouterProvider, useRouterState } from '@tanstack/react-router'
 import { Analytics } from '@vercel/analytics/react'
 import { Footer, Header, Loader, Seo } from './baseline/chrome.jsx'
-import { HomePage, WorkPage, ProjectPage, CapabilitiesPage, CapabilityPage, StudioPage, ContactPage, LegalPage, NotFoundPage } from './baseline/pages.jsx'
+import { HomePage, WorkPage, ProjectPage, CapabilitiesPage, CapabilityPage, ContactPage, LegalPage, NotFoundPage } from './baseline/pages.jsx'
 
 function SiteLayout() {
   const pathname = useRouterState({ select: state => state.location.pathname })
@@ -40,7 +40,6 @@ const routes = [
   createRoute({ getParentRoute: () => rootRoute, path: '/work/$slug', component: ProjectPage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/capabilities', component: CapabilitiesPage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/capabilities/$slug', component: CapabilityPage }),
-  createRoute({ getParentRoute: () => rootRoute, path: '/studio', component: StudioPage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/contact', component: ContactPage }),
   createRoute({ getParentRoute: () => rootRoute, path: '/privacy', component: () => <LegalPage type="privacy"/> }),
   createRoute({ getParentRoute: () => rootRoute, path: '/terms', component: () => <LegalPage type="terms"/> }),

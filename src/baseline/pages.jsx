@@ -37,11 +37,11 @@ function CapabilityRow({ item }) {
 
 export function HomePage() {
   return <><HomeHero/>
-    <section id="introduction" className="b-intro b-intro--text b-panel-light"><Eyebrow index="01 / 05">Point of view</Eyebrow><div className="b-intro__grid"><div><RevealWords text="An idea is only as good as where it ends up." className="b-intro__title"/></div><div className="b-intro__aside"><p>Most work loses its shape somewhere between the brief, the media plan and the systems behind them. We keep strategy, creative, media and technology in one room, so the idea arrives the way it was meant to.</p><TextLink to="/studio">Meet the studio</TextLink></div></div></section>
+    <section id="introduction" className="b-intro b-intro--text b-panel-light"><Eyebrow index="01 / 05">Point of view</Eyebrow><div className="b-intro__grid"><div><RevealWords text="An idea is only as good as where it ends up." className="b-intro__title"/></div><div className="b-intro__aside"><p>Most work loses its shape somewhere between the brief, the media plan and the systems behind them. We keep strategy, creative, media and technology in one room, so the idea arrives the way it was meant to.</p><TextLink to="/capabilities" hash="studio">Meet the studio</TextLink></div></div></section>
     <section id="capabilities" className="b-capabilities b-panel-dark"><div className="b-section-head"><Eyebrow light index="02 / 05">What we do</Eyebrow><div><RevealWords text="Three disciplines, one team."/><p>Most businesses hire separate people for the brand, the media and the technology, then spend months getting them to agree. We do all three, so the thinking carries through.</p></div></div><div className="b-capabilities__list">{capabilities.map(item => <CapabilityRow key={item.slug} item={item}/>)}</div><TextLink to="/capabilities" className="b-section-tail">All capabilities</TextLink></section>
     <ToolOrbits/>
     <WhySection index="03 / 05"/>
-    <section className="b-engagement-preview b-panel-light"><div><Eyebrow index="05 / 05">How we work</Eyebrow><RevealWords text="A good start saves the rest of the project."/><p>We begin with the problem, not the deliverable.</p><ol className="b-steps-compact">{homeSteps.map((step, i) => <li key={step}><span>{two(i + 1)}</span>{step}</li>)}</ol><TextLink to="/studio#how-we-work">How we work</TextLink></div><ImageFrame image={imagery.howWeWork} alt="" sizes="(max-width: 767px) 100vw, 50vw"/></section>
+    <section className="b-engagement-preview b-panel-light"><div><Eyebrow index="05 / 05">How we work</Eyebrow><RevealWords text="A good start saves the rest of the project."/><p>We begin with the problem, not the deliverable.</p><ol className="b-steps-compact">{homeSteps.map((step, i) => <li key={step}><span>{two(i + 1)}</span>{step}</li>)}</ol><TextLink to="/capabilities" hash="how-we-work">How we work</TextLink></div><ImageFrame image={imagery.howWeWork} alt="" sizes="(max-width: 767px) 100vw, 50vw"/></section>
     <HomeContact/></>
 }
 
@@ -67,7 +67,10 @@ function ProjectFeature({ project, eager }) {
 export function WorkPage() {
   return <><section className="b-internal-hero b-work-hero b-panel-dark"><Eyebrow light>Work</Eyebrow><RevealWords as="h1" text="Selected work."/><p>Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa.</p></section>
     <section className="b-work b-work--page b-panel-light"><h2 className="b-sr-only">Projects</h2><div className="b-showcase-list">{projects.map((project, i) => <ProjectFeature key={project.slug} project={project} eager={i === 0}/>)}</div></section>
-    <section className="b-work-note b-panel-light"><p>More client projects will appear here as they launch.</p></section><CtaBand/></>
+    <section className="b-work-note b-panel-light"><p>More client projects will appear here as they launch.</p></section>
+    <section className="b-studio-principles b-studio-principles--text b-panel-dark"><Eyebrow light>What we hold to</Eyebrow><h2 className="b-sr-only">What we hold to</h2><div className="b-studio-principles__layout"><div>{studioPrinciples.map(([title, body], i) => <article key={title} data-reveal><span>{two(i + 1)}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>
+    <section className="b-studio-ways b-panel-light"><Eyebrow>Ways of working</Eyebrow><RevealWords text="The shape of the engagement follows the problem."/><div>{engagementTypes.map(([title, body], i) => <article key={title}><span>{two(i + 1)}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p>We don't publish fixed packages. Every engagement is scoped after the first conversation.</p></section>
+    <CtaBand/></>
 }
 
 export function ProjectPage() {
@@ -86,7 +89,9 @@ export function ProjectPage() {
 export function CapabilitiesPage() {
   return <><section className="b-internal-hero b-capabilities-hero b-panel-light"><Eyebrow>Capabilities</Eyebrow><RevealWords as="h1" text="Different strengths. One direction."/><p>Creative, media and technology under one roof, working from the same brief.</p><div className="b-capabilities-hero__graphic" aria-hidden="true"><span>01</span><i/><span>02</span><i/><span>03</span></div></section>
     <Disciplines/>
-    <section className="b-overlap b-overlap--text b-panel-light"><div><Eyebrow>Where they meet</Eyebrow><RevealWords text="The best work happens in the overlap."/><p>A metro campaign that sends people to a landing page, which feeds a CRM that shows which channels are bringing in enquiries. Elsewhere that is three vendors. Here it is one project.</p></div></section><CtaBand/></>
+    <section id="studio" className="b-studio-hero b-studio-hero--text b-studio-hero--inline b-panel-light"><div><Eyebrow>The studio</Eyebrow><RevealWords text="Independent by nature. Intentional by design."/><p>Moreward is an independent studio for creative, advertising and technology work. We keep strategy, design, media and systems in the same conversation, because that is where good work comes from.</p></div></section>
+    <StudioProcess/>
+    <CtaBand variant="studio"/></>
 }
 
 export function CapabilityPage() {
@@ -102,12 +107,6 @@ export function CapabilityPage() {
     <NextNavigation type="Next discipline" title={next.name} to={capPath(next)} allLabel="All capabilities" allTo="/capabilities"/><CtaBand capability={item}/></>
 }
 
-export function StudioPage() {
-  return <><section className="b-studio-hero b-studio-hero--text b-panel-light"><div><Eyebrow>The studio</Eyebrow><RevealWords as="h1" text="Independent by nature. Intentional by design."/><p>Moreward is an independent studio for creative, advertising and technology work. We keep strategy, design, media and systems in the same conversation, because that is where good work comes from.</p></div></section>
-    <StudioProcess/>
-    <section className="b-studio-principles b-studio-principles--text b-panel-dark"><Eyebrow light index="01 / 03">What we hold to</Eyebrow><h2 className="b-sr-only">What we hold to</h2><div className="b-studio-principles__layout"><div>{studioPrinciples.map(([title, body], i) => <article key={title} data-reveal><span>{two(i + 1)}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>
-    <section className="b-studio-ways b-panel-light"><Eyebrow index="03 / 03">Ways of working</Eyebrow><RevealWords text="The shape of the engagement follows the problem."/><div>{engagementTypes.map(([title, body], i) => <article key={title}><span>{two(i + 1)}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p>We don't publish fixed packages. Every engagement is scoped after the first conversation.</p></section><CtaBand variant="studio"/></>
-}
 
 export function ContactPage() {
   return <section className="b-contact-page b-panel-light"><div className="b-contact-page__intro"><Eyebrow>Start a project</Eyebrow><RevealWords as="h1" text="Let's make something move."/><p>Tell us what you're working on: a launch, a campaign, a system that isn't working, or an idea that needs shape. We read every enquiry.</p><div className="b-contact-page__details"><div><span>Direct enquiries</span><EmailLink>{STUDIO_EMAIL}</EmailLink></div><div className="b-contact-social"><span>Follow the studio</span><div>{SOCIAL.map(item => <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer"><SocialIcon name={item.name}/>{item.name}</a>)}</div></div><NextSteps/></div></div><ContactForm/></section>
@@ -119,5 +118,5 @@ export function LegalPage({ type }) {
 }
 
 export function NotFoundPage() {
-  return <section className="b-not-found b-panel-dark"><Eyebrow light>404 / Wrong turn</Eyebrow><RevealWords as="h1" text="This path goes nowhere."/><p>The page may have moved, or it never existed.</p><nav aria-label="Explore Moreward"><Link to="/work">Work</Link><Link to="/capabilities">Capabilities</Link><Link to="/studio">Studio</Link><Link to="/contact">Contact</Link></nav><ConversionLink to="/" location="404" light>Back home</ConversionLink></section>
+  return <section className="b-not-found b-panel-dark"><Eyebrow light>404 / Wrong turn</Eyebrow><RevealWords as="h1" text="This path goes nowhere."/><p>The page may have moved, or it never existed.</p><nav aria-label="Explore Moreward"><Link to="/work">Work</Link><Link to="/capabilities">Capabilities</Link><Link to="/contact">Contact</Link></nav><ConversionLink to="/" location="404" light>Back home</ConversionLink></section>
 }

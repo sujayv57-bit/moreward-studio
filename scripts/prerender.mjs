@@ -58,9 +58,8 @@ It works across three disciplines, often in one project:
 - Advertising & Media: outdoor, billboard, metro, television, radio and print advertising; media planning.
 - Technology & Automation: websites, custom CRMs, workflow and AI automation.
 Pages
-- Home: overview, disciplines, studies and approach.
-- Work: brand identities for BETACH Consulting Services, Kriya Setu and Rucaa.
-- Capabilities: the three disciplines and where they overlap.
-- Studio: principles, how we work and ways of working; no fixed packages.
+- Home: overview, disciplines, tools and approach.
+- Work: brand identities for BETACH Consulting Services, Kriya Setu and Rucaa; the studio's principles and ways of working (no fixed packages).
+- Capabilities: the three disciplines, the studio and how we work.
 - Contact: enquiry form, or email ${STUDIO_EMAIL}.
 `)

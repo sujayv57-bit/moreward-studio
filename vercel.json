@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/studio",
+      "destination": "/capabilities#studio",
+      "statusCode": 301
+    },
+    {
       "source": "/work/moreward-identity",
       "destination": "/work/betach",
       "statusCode": 301
@@ -17,12 +22,12 @@
     },
     {
       "source": "/engagements",
-      "destination": "/studio#how-we-work",
+      "destination": "/capabilities#how-we-work",
       "statusCode": 301
     },
     {
       "source": "/about",
-      "destination": "/studio",
+      "destination": "/capabilities#studio",
       "statusCode": 301
     },
     {
@@ -83,10 +88,6 @@
     {
       "source": "/capabilities/technology-automation",
       "destination": "/capabilities/technology-automation/index.html"
-    },
-    {
-      "source": "/studio",
-      "destination": "/studio/index.html"
     },
     {
       "source": "/contact",

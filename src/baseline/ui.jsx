@@ -19,9 +19,9 @@ export function Eyebrow({ children, light = false }) {
   return <p className={'b-eyebrow' + (light ? ' b-eyebrow--light' : '')}><span className="b-eyebrow__dot" aria-hidden="true"/><span>{children}</span></p>
 }
 
-export function TextLink({ to, href, children, className = '' }) {
+export function TextLink({ to, hash, href, children, className = '' }) {
   const classes = 'b-text-link ' + className
-  return href ? <a className={classes} href={href}>{children}</a> : <Link className={classes} to={to}>{children}</Link>
+  return href ? <a className={classes} href={href}>{children}</a> : <Link className={classes} to={to} hash={hash}>{children}</Link>
 }
 
 export function ConversionLink({ to = '/contact', children = 'Start a project', location = 'band', service, light = false, active = false, className = '' }) {
