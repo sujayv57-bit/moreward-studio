@@ -139,10 +139,12 @@ html body .b-next-project .b-arrow{font-size:1.5rem}
 
 /* Home contact: two hands (or the fine-line stand-in) close the gap as the section scrolls in. --reach goes 0 → 1 (home-contact.jsx). */
 .b-home-contact{--reach:0;position:relative;padding:0 clamp(1.25rem,3.5vw,5rem) clamp(4.5rem,8vw,7rem);text-align:center}
-.b-home-contact__hands{position:relative;height:clamp(12rem,25vw,23rem);margin:0 calc(-1 * clamp(1.25rem,3.5vw,5rem));overflow:hidden;pointer-events:none}
+.b-home-contact__hands{position:relative;height:clamp(10.5rem,23vw,21.5rem);margin:0 calc(-1 * clamp(1.25rem,3.5vw,5rem));overflow:hidden;pointer-events:none}
 .b-home-contact__hand{position:absolute;top:50%;width:clamp(12rem,44vw,40rem);height:auto;will-change:transform}
 .b-home-contact__hand--left{left:0;transform:translate(calc((var(--reach) - 1) * 45%),-50%)}
 .b-home-contact__hand--right{right:0;transform:translate(calc((1 - var(--reach)) * 45%),-50%)}
+/* both halves come from one photo (958px and 1042px wide): keep their relative scale */
+.b-home-contact__hand--left{width:calc(clamp(12rem,44vw,40rem) * .919)}
 .b-home-contact__reach{position:absolute;top:50%;height:1px;width:calc(50% - 1.6rem);will-change:transform}
 .b-home-contact__reach::after{content:'';position:absolute;top:50%;width:.55rem;height:.55rem;border-radius:50%;background:var(--ink);transform:translateY(-50%)}
 .b-home-contact__reach--left{left:0;background:linear-gradient(90deg,transparent,var(--ink) 70%);transform:translateX(calc((var(--reach) - 1) * 75%))}
@@ -160,6 +162,7 @@ html body .b-home-contact__title{font-size:clamp(2.25rem,3.6vw,3.75rem);line-hei
   html body .b-home-contact__title{font-size:clamp(2rem,8.5vw,2.4rem)}
   .b-home-contact__intro>p{font-size:1rem}
   .b-home-contact__hand{width:46vw}
+  .b-home-contact__hand--left{width:calc(46vw * .919)}
 }
 @media (prefers-reduced-motion:reduce){.b-home-contact__hand,.b-home-contact__reach,.b-home-contact__spark{transition:none}}
 /* Field errors in the body font (overhaul.css forces monospace with !important, so this must too). */
