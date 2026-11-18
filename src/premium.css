@@ -35,7 +35,7 @@ html body :is(
   .b-project-detail__direction h3,.b-project-detail__direction li,.b-project-detail__direction small,
   .b-contact-form label,.b-contact-form small,.b-contact-next li span,.b-contact-next__label,
   .b-contact-page__details>div:first-child>span,.b-contact-page__intro>div:last-child span,.b-field-error,
-  .b-why__f-cta,.b-why__node em,.b-why__ticker span,.b-why__tile--image figcaption,.b-why__toast
+  .b-why__f-cta,.b-why__node em,.b-why__ticker span,.b-why__tile--image .b-why__tag,.b-why__toast
 ){font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;text-transform:none;letter-spacing:-.005em;font-variant-numeric:tabular-nums}
 
 /* Eyebrows: a short teal label above each section title. */

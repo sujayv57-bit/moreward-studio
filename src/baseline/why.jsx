@@ -93,10 +93,10 @@ export function WhySection({ index }) {
     <Eyebrow index={index}>Why Moreward</Eyebrow>
     <h2 className="b-why__title">Why Moreward, and not <span>another studio?</span></h2>
     <div className="b-why__grid">
-      <figure className="b-why__tile b-why__tile--image b-why__a" data-reveal>
+      <Link to="/work" className="b-why__tile b-why__tile--image b-why__a" data-reveal aria-label="BETACH brand identity, see the work">
         <ResponsiveImage image={betach.image} alt={betach.imageAlt} sizes="(max-width: 767px) 100vw, 30vw"/>
-        <figcaption>BETACH · Brand identity</figcaption>
-      </figure>
+        <span className="b-why__tag">BETACH · Brand identity</span>
+      </Link>
 
       <div className="b-why__tile b-why__b" data-reveal>
         <div className="b-why__ticker" aria-hidden="true"><div>{[...services, ...services].map((service, i) => <span key={i}><i/>{service}</span>)}</div></div>
@@ -115,10 +115,10 @@ export function WhySection({ index }) {
         <p className="b-why__caption"><strong>One line from brief to result.</strong> Strategy, creative, media and technology carry the same idea all the way through.</p>
       </div>
 
-      <figure className="b-why__tile b-why__tile--image b-why__e" data-reveal>
+      <Link to="/work" className="b-why__tile b-why__tile--image b-why__e" data-reveal aria-label="Rucaa brand identity, see the work">
         <ResponsiveImage image={rucaa.image} alt={rucaa.imageAlt} sizes="(max-width: 767px) 100vw, 40vw"/>
-        <figcaption>Rucaa · Brand identity</figcaption>
-      </figure>
+        <span className="b-why__tag">Rucaa · Brand identity</span>
+      </Link>
 
       <Link to="/work" className="b-why__tile b-why__f" data-reveal>
         <span className="b-why__faces" aria-hidden="true">{[betach, kriya, rucaa].map(project => <ResponsiveImage key={project.slug} image={project.image} alt="" sizes="48px"/>)}</span>

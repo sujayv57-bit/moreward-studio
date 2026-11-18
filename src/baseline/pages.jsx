@@ -14,7 +14,6 @@ const two = number => String(number).padStart(2, '0')
 const studyPath = project => '/work/' + project.slug
 const capPath = capability => '/capabilities/' + capability.slug
 // The Home grid is laid out for three cards: it features client work; the Work page lists everything.
-const homeProjects = projects.filter(project => project.client).slice(0, 3)
 
 // Home capability row. On hover (or keyboard focus) the services in the discipline drop down.
 // Touch screens have no hover, so each row opens once it scrolls into the middle of the screen
@@ -41,7 +40,6 @@ export function HomePage() {
     <section id="capabilities" className="b-capabilities b-panel-dark"><div className="b-section-head"><Eyebrow light index="02 / 05">What we do</Eyebrow><div><RevealWords text="Three disciplines, one team."/><p>Most businesses hire separate people for the brand, the media and the technology, then spend months getting them to agree. We do all three, so the thinking carries through.</p></div></div><div className="b-capabilities__list">{capabilities.map(item => <CapabilityRow key={item.slug} item={item}/>)}</div><TextLink to="/capabilities" className="b-section-tail">All capabilities</TextLink></section>
     <ToolOrbits/>
     <WhySection index="03 / 05"/>
-    <section id="work" className="b-work b-panel-light"><div className="b-section-head"><Eyebrow index="04 / 05">Selected work</Eyebrow><div><RevealWords text="Selected work."/><p>Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa.</p></div></div><div className="b-work__grid">{homeProjects.map((project, i) => <StudyCard key={project.slug} project={project} className={'b-project--' + (i + 1)}/>)}</div><div className="b-work__tail"><TextLink to="/work">See all work</TextLink></div></section>
     <section className="b-engagement-preview b-panel-light"><div><Eyebrow index="05 / 05">How we work</Eyebrow><RevealWords text="A good start saves the rest of the project."/><p>We begin with the problem, not the deliverable.</p><ol className="b-steps-compact">{homeSteps.map((step, i) => <li key={step}><span>{two(i + 1)}</span>{step}</li>)}</ol><TextLink to="/studio#how-we-work">How we work</TextLink></div><ImageFrame image={imagery.howWeWork} alt="" sizes="(max-width: 767px) 100vw, 50vw"/></section>
     <HomeContact/></>
 }
