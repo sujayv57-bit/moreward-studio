@@ -127,7 +127,7 @@ export function Footer() {
         <p className="b-foot__line"><span aria-hidden="true"/>Direction, made visible.</p>
       </div>
       <p className="b-foot__about">Moreward is an independent studio for creative, advertising and technology work: brand, campaigns, media and the systems behind them.</p>
-      <div className="b-foot__legal"><span>© {new Date().getFullYear()} Moreward Studio. All rights reserved.</span><span>Independent creative &amp; technology studio</span></div>
+      <div className="b-foot__legal"><span>© {new Date().getFullYear()} Moreward Studio. All rights reserved.</span></div>
     </div>
     <div className="b-foot__tiles">
       {SOCIAL.map(item => <a key={item.name} href={item.url} target="_blank" rel="noopener noreferrer" className="b-foot__card b-foot__tile" aria-label={item.name + ' (opens in a new tab)'}><i><SocialIcon name={item.name}/></i><span>{item.name}</span></a>)}
