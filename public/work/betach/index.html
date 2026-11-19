@@ -254,6 +254,12 @@ nav .mw-home img{display:block;height:30px;width:auto}
 /* legend keys for the cleaned construction drawing */
 .legend .sw .br{width:30px;height:9px;border:1px solid rgba(245,250,255,.8);border-top:0;border-bottom:0;background:linear-gradient(rgba(245,250,255,.8),rgba(245,250,255,.8)) center/100% 1px no-repeat}
 .legend .sw .pt{width:9px;height:9px;border-radius:50%;border:1px solid #F5FAFF;background:var(--navy)}
+/* Offshore divider: full screen */
+.divider{height:100svh;min-height:100vh}
+@supports (height:100svh){.divider{min-height:100svh}}
+/* portrait phones: show the whole photo (wordmark included) rather than cropping it to the screen */
+@media(max-aspect-ratio:1/1){.divider{height:auto;min-height:0!important;aspect-ratio:1920/1080}.divider img{top:0;height:100%;transform:none!important}}
+@media(max-width:560px){nav .mw-links{gap:14px}nav a.skip{white-space:nowrap;font-size:10.5px;letter-spacing:.06em}nav .mw-home img{height:22px}}
 </style>
 </head>
 <body class="anim">
