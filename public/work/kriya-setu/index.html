@@ -336,26 +336,24 @@ body{margin:0}
 }
 /* The gesture: a student raising a hand, with the mark over the same pose */
 .ks #gesture{background:#fff}
-.ks .g-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
-.ks .g-map{list-style:none;margin:32px 0 0;padding:0;border-top:1px solid rgba(0,50,160,.14)}
-.ks .g-map li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(0,50,160,.14);font-size:16px}
-.ks .g-map b{font-family:var(--display);font-weight:700;color:var(--blue)}
-.ks .g-map span{color:var(--ink2);text-align:right}
+.ks .g-grid{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(40px,6vw,96px);align-items:center}
 .ks .g-toggle{display:inline-flex;margin-top:32px;padding:4px;border-radius:999px;background:var(--grey)}
 .ks .g-toggle button{min-height:44px;padding:0 20px;border:0;border-radius:999px;background:transparent;font:700 15px/1 var(--display);color:var(--ink2);cursor:pointer;transition:background .3s,color .3s}
 .ks .g-toggle button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .ks .g-toggle button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.ks .g-stage{border-radius:24px;background:var(--grey);overflow:hidden;aspect-ratio:350/470;max-height:78svh;justify-self:center;width:100%;max-width:520px}
+.ks .g-stage{border-radius:24px;background:var(--grey);overflow:hidden;aspect-ratio:3/2;width:100%}
 .ks .g-stage svg{display:block;width:100%;height:100%}
-.ks .g-stage .kid,.ks .g-stage .mk-over{transition:opacity .9s ease}
-.ks .g-stage .mk-fig{fill:var(--blue)}
+.ks .g-stage .g-photo,.ks .g-stage .g-dim,.ks .g-stage .mk-over,.ks .g-stage .mk-fig{transition:opacity .9s ease,fill .9s ease}
+.ks .g-stage .g-dim{fill:#0b1430;opacity:0}
+.ks .g-stage .mk-fig{fill:#fff}
 .ks .g-stage .mk-spark{fill:var(--orange);transform-box:fill-box;transform-origin:50% 50%;transition:transform .9s cubic-bezier(.2,1.3,.3,1) .2s}
 .ks .g-stage[data-v="kid"] .mk-over{opacity:0}
 .ks .g-stage[data-v="kid"] .mk-spark{transform:scale(.2) rotate(-90deg)}
-.ks .g-stage[data-v="both"] .mk-over{opacity:.7}
-.ks .g-stage[data-v="mark"] .kid{opacity:0}
-@media(max-width:860px){.ks .g-grid{grid-template-columns:1fr}.ks .g-stage{max-width:420px}}
-@media (prefers-reduced-motion: reduce){.ks .g-stage .kid,.ks .g-stage .mk-over,.ks .g-stage .mk-spark{transition:none}}
+.ks .g-stage[data-v="both"] .g-dim{opacity:.45}
+.ks .g-stage[data-v="mark"] .g-photo{opacity:0}
+.ks .g-stage[data-v="mark"] .mk-fig{fill:var(--blue)}
+@media(max-width:860px){.ks .g-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){.ks .g-stage *{transition:none!important}}
 </style>
 </head>
 <body>
@@ -481,43 +479,12 @@ body{margin:0}
       <span class="kicker rv"><svg viewBox="252 58 101 101" aria-hidden="true"><path d="M302.422 59L306.324 86.552C306.952 90.9891 311.875 93.376 315.748 91.1211L325.3 85.5592L319.738 95.1113C317.483 98.984 319.87 103.907 324.307 104.536L351.859 108.437L324.307 112.338C319.87 112.966 317.483 117.89 319.738 121.763L325.3 131.315L315.748 125.753C311.875 123.498 306.952 125.885 306.324 130.322L302.422 157.874L298.521 130.322C297.893 125.885 292.969 123.498 289.097 125.753L279.545 131.315L285.106 121.763C287.361 117.89 284.974 112.966 280.537 112.338L252.985 108.437L280.537 104.536C284.974 103.907 287.361 98.984 285.106 95.1113L279.545 85.5592L289.097 91.1211C292.969 93.376 297.893 90.9891 298.521 86.552L302.422 59Z" fill="#F05A28"/></svg>The gesture</span>
       <h2 class="rv" id="ksGestureTitle">A raised hand.</h2>
       <p class="lede rv d1">The mark is a student raising a hand: the moment a child is confident enough to ask, answer or try. That is what real teacher empowerment looks like, so the mark is drawn from that gesture.</p>
-      <ul class="g-map rv d1">
-        <li><b>Raised arm</b><span>the rising stroke</span></li>
-        <li><b>Head</b><span>the circle</span></li>
-        <li><b>Desk and seat</b><span>the base, the yantra</span></li>
-        <li><b>Above the hand</b><span>the spark of understanding</span></li>
-      </ul>
       <div class="g-toggle rv d2" role="group" aria-label="Show the student, the mark or both">
         <button type="button" data-v="kid" aria-pressed="false">Student</button><button type="button" data-v="both" aria-pressed="true">Both</button><button type="button" data-v="mark" aria-pressed="false">Mark</button>
       </div>
     </div>
     <div class="g-stage rv d1" id="ksGesture" data-v="both">
-      <svg viewBox="140 40 350 470" role="img" aria-label="A student at a desk raising a hand, with the Kriya Setu mark drawn over the same pose"><g class="kid">
-  <!-- desk -->
-  <rect x="150" y="452" width="330" height="14" rx="3" fill="#d8c3a3"/>
-  <rect x="160" y="466" width="310" height="40" fill="#c4ab88" opacity=".55"/>
-  <!-- books -->
-  <rect x="356" y="444" width="70" height="8" rx="2" fill="#f2b7c0"/><rect x="362" y="438" width="58" height="6" rx="2" fill="#a9d3df"/>
-  <!-- torso -->
-  <path d="M276 380C284 358 306 348 330 348C356 348 376 360 384 382L398 452H262Z" fill="#fbfbfb" stroke="#c9ccd3" stroke-width="1.5"/>
-  <path d="M312 352L330 376L348 352" fill="none" stroke="#c9ccd3" stroke-width="1.5"/>
-  <path d="M322 372L330 380L338 372L344 392L330 384L316 392Z" fill="#22305e"/>
-  <!-- neck -->
-  <path d="M320 330H340V352Q330 358 320 352Z" fill="#d9ab8c"/>
-  <!-- raised arm: shoulder, elbow, hand -->
-  <path d="M290 372C272 334 260 304 262 272C264 236 282 206 296 172" fill="none" stroke="#e9c4a8" stroke-width="17" stroke-linecap="round"/>
-  <path d="M296 372C284 360 276 350 272 338L288 330C292 342 298 352 306 360Z" fill="#fbfbfb" stroke="#c9ccd3" stroke-width="1.2"/>
-  <ellipse cx="299" cy="158" rx="13" ry="17" fill="#e9c4a8"/>
-  <g stroke="#e9c4a8" stroke-width="6" stroke-linecap="round"><path d="M290 150L286 128"/><path d="M296 146L295 120"/><path d="M302 146L304 121"/><path d="M308 150L312 128"/><path d="M288 164L278 156"/></g>
-  <!-- resting arm on the desk -->
-  <path d="M380 384C392 404 398 424 396 440L360 448" fill="none" stroke="#e9c4a8" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M376 380C384 388 392 398 396 410L382 414C378 404 372 396 366 390Z" fill="#fbfbfb" stroke="#c9ccd3" stroke-width="1.2"/>
-  <!-- head, hair, ponytail -->
-  <path d="M352 290C368 296 372 318 362 336C358 344 352 346 348 344" fill="#2a2a31"/>
-  <ellipse cx="327" cy="304" rx="27" ry="31" fill="#e9c4a8"/>
-  <path d="M299 302C296 276 312 264 330 264C350 264 360 280 356 300C350 290 340 284 326 284C314 286 304 292 299 302Z" fill="#2a2a31"/>
-  <path d="M316 318Q326 326 336 318" fill="none" stroke="#b5735f" stroke-width="2" stroke-linecap="round"/>
-</g><g class="mk-over"><path class="mk-fig" d="M302.449 138.507C305.593 144.867 309.17 154.876 309.772 166.538C310.562 181.82 306.249 199.942 289.171 216.415C259.06 245.46 258.867 273.137 263.634 295.006C267.447 312.501 292.798 345.805 306.418 361.979L320.161 377.03H320.179L320.607 377.52L320.771 377.697H320.765L411.01 480.495C412.207 481.86 411.238 483.999 409.423 484H203.116C201.3 484 200.331 481.86 201.529 480.495L287.985 382.039L302.23 398.644L302.344 398.52L255.788 452.583C255.199 453.268 255.685 454.328 256.588 454.328H355.951C356.854 454.328 357.34 453.267 356.751 452.583L306.389 394.1L306.397 394.091L292.146 377.3L292.175 377.269C218.363 298.57 222.01 245.192 226.521 227.69C231.628 207.872 249.673 192.154 271.124 176.094C292.575 160.034 298.704 148.644 302.449 138.507ZM295.373 298.025C301.331 275.792 319.794 261.421 336.611 265.927C353.429 270.433 362.233 292.11 356.275 314.344C350.318 336.578 331.855 350.949 315.037 346.443C298.219 341.937 289.415 320.259 295.373 298.025Z" fill="#0032A0"/><path class="mk-spark" d="M302.422 59L306.324 86.552C306.952 90.9891 311.875 93.376 315.748 91.1211L325.3 85.5592L319.738 95.1113C317.483 98.984 319.87 103.907 324.307 104.536L351.859 108.437L324.307 112.338C319.87 112.966 317.483 117.89 319.738 121.763L325.3 131.315L315.748 125.753C311.875 123.498 306.952 125.885 306.324 130.322L302.422 157.874L298.521 130.322C297.893 125.885 292.969 123.498 289.097 125.753L279.545 131.315L285.106 121.763C287.361 117.89 284.974 112.966 280.537 112.338L252.985 108.437L280.537 104.536C284.974 103.907 287.361 98.984 285.106 95.1113L279.545 85.5592L289.097 91.1211C292.969 93.376 297.893 90.9891 298.521 86.552L302.422 59Z" fill="#F05A28"/></g></svg>
+      <svg viewBox="0 0 1500 1000" role="img" aria-label="A student raising a hand, with the Kriya Setu mark over the same pose"><image class="g-photo" href="/work/kriya-setu/assets/raised-hand-1500.webp" width="1500" height="1000" preserveAspectRatio="xMidYMid slice"/><rect class="g-dim" width="1500" height="1000"/><g transform="translate(200 -80) scale(1.75)"><g class="mk-over"><path class="mk-fig" d="M302.449 138.507C305.593 144.867 309.17 154.876 309.772 166.538C310.562 181.82 306.249 199.942 289.171 216.415C259.06 245.46 258.867 273.137 263.634 295.006C267.447 312.501 292.798 345.805 306.418 361.979L320.161 377.03H320.179L320.607 377.52L320.771 377.697H320.765L411.01 480.495C412.207 481.86 411.238 483.999 409.423 484H203.116C201.3 484 200.331 481.86 201.529 480.495L287.985 382.039L302.23 398.644L302.344 398.52L255.788 452.583C255.199 453.268 255.685 454.328 256.588 454.328H355.951C356.854 454.328 357.34 453.267 356.751 452.583L306.389 394.1L306.397 394.091L292.146 377.3L292.175 377.269C218.363 298.57 222.01 245.192 226.521 227.69C231.628 207.872 249.673 192.154 271.124 176.094C292.575 160.034 298.704 148.644 302.449 138.507ZM295.373 298.025C301.331 275.792 319.794 261.421 336.611 265.927C353.429 270.433 362.233 292.11 356.275 314.344C350.318 336.578 331.855 350.949 315.037 346.443C298.219 341.937 289.415 320.259 295.373 298.025Z" fill="#0032A0"/><path class="mk-spark" d="M302.422 59L306.324 86.552C306.952 90.9891 311.875 93.376 315.748 91.1211L325.3 85.5592L319.738 95.1113C317.483 98.984 319.87 103.907 324.307 104.536L351.859 108.437L324.307 112.338C319.87 112.966 317.483 117.89 319.738 121.763L325.3 131.315L315.748 125.753C311.875 123.498 306.952 125.885 306.324 130.322L302.422 157.874L298.521 130.322C297.893 125.885 292.969 123.498 289.097 125.753L279.545 131.315L285.106 121.763C287.361 117.89 284.974 112.966 280.537 112.338L252.985 108.437L280.537 104.536C284.974 103.907 287.361 98.984 285.106 95.1113L279.545 85.5592L289.097 91.1211C292.969 93.376 297.893 90.9891 298.521 86.552L302.422 59Z" fill="#F05A28"/></g></g></svg>
     </div>
   </div>
 </section>
