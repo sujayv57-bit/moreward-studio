@@ -76,8 +76,9 @@ export function ContactForm() {
     const found = validate(values)
     setErrors(found)
     if (Object.keys(found).length) {
-      if (Object.keys(found).length >= 2) requestAnimationFrame(() => summaryRef.current?.focus())
-      else requestAnimationFrame(() => document.getElementById('enquiry-' + Object.keys(found)[0])?.focus())
+      // Move focus to the first field with an error, in form order; the summary above is announced as an alert.
+      const first = ['name', 'email', 'phone', 'company', 'service', 'message'].find(key => found[key])
+      requestAnimationFrame(() => document.getElementById('enquiry-' + first)?.focus())
       return
     }
 
