@@ -21,7 +21,9 @@
 
 /* scrolling services */
 .b-why__ticker{position:absolute;inset:1.2rem 1.5rem 5.5rem;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent)}
-.b-why__ticker>div{display:flex;flex-direction:column;gap:.55rem;animation:b-why-scroll 16s linear infinite}
+.b-why__ticker>div{display:flex;flex-direction:column;gap:.55rem}
+/* scrolls through the services once when the tile comes into view, then rests */
+.b-why__b.is-visible .b-why__ticker>div{animation:b-why-scroll 16s cubic-bezier(.4,0,.2,1) .4s 1 both}
 .b-why__ticker span{display:flex;align-items:center;gap:.6rem;font:400 .78rem 'Geist Mono',monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
 .b-why__ticker i{width:.45rem;height:.45rem;border-radius:50%;background:var(--brand-deep);flex:none}
 .b-why__ticker span:nth-child(3n+2) i{background:#0B5961}

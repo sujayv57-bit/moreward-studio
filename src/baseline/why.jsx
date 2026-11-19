@@ -21,10 +21,17 @@ function ProcessToast() {
   const ref = useRef(null)
   const inView = useInView(ref)
   const [step, setStep] = useState(states.length - 1)
+  const played = useRef(false)
+  // Plays through the four states once, the first time the tile is on screen, then rests on "Launched".
   useEffect(() => {
-    if (!inView || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!inView || played.current || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    played.current = true
     setStep(0)
-    const timer = setInterval(() => setStep(value => (value + 1) % states.length), 1700)
+    const timer = setInterval(() => setStep(value => {
+      const next = Math.min(value + 1, states.length - 1)
+      if (next === states.length - 1) clearInterval(timer)
+      return next
+    }), 1700)
     return () => clearInterval(timer)
   }, [inView])
   const done = step === states.length - 1
@@ -55,29 +62,32 @@ function DirectionLine() {
   const ref = useRef(null)
   const pathRef = useRef(null)
   const pulseRef = useRef(null)
+  const done = useRef(false)
   const inView = useInView(ref)
   useEffect(() => {
     const root = ref.current, path = pathRef.current, pulse = pulseRef.current
-    if (!inView || !root || !path || !pulse || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!inView || done.current || !root || !path || !pulse || matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const nodes = [...root.querySelectorAll('.b-why__node')]
     const length = path.getTotalLength()
-    const RUN = 4200, HOLD = 1400, START = 1800
+    const RUN = 4200, FADE = 600, START = 1800
     let frame = 0, start = 0
+    // One pass along the line the first time it is on screen; afterwards the line stays filled and lit.
     const tick = now => {
       if (!start) start = now
       const elapsed = now - start - START
-      const t = Math.min(1, Math.max(0, elapsed % (RUN + HOLD) / RUN))
+      const t = Math.min(1, Math.max(0, elapsed / RUN))
       const eased = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
       const point = path.getPointAtLength(eased * length)
       pulse.style.left = point.x / W * 100 + '%'
       pulse.style.top = point.y / H * 100 + '%'
-      pulse.style.opacity = elapsed < 0 ? 0 : t >= 1 ? Math.max(0, 1 - (elapsed % (RUN + HOLD) - RUN) / 600) : 1
+      pulse.style.opacity = elapsed < 0 ? 0 : t >= 1 ? Math.max(0, 1 - (elapsed - RUN) / FADE) : 1
       root.style.setProperty('--done', (elapsed < 0 ? 0 : point.x / W * 100) + '%')
       nodes.forEach((node, i) => node.classList.toggle('is-lit', elapsed >= 0 && point.x >= linePoints[i][0] - 1))
-      frame = requestAnimationFrame(tick)
+      if (elapsed < RUN + FADE) frame = requestAnimationFrame(tick)
+      else done.current = true
     }
     frame = requestAnimationFrame(tick)
-    return () => { cancelAnimationFrame(frame); root.style.removeProperty('--done'); nodes.forEach(node => node.classList.remove('is-lit')) }
+    return () => { cancelAnimationFrame(frame); if (!done.current) { root.style.removeProperty('--done'); nodes.forEach(node => node.classList.remove('is-lit')) } }
   }, [inView])
   return <div ref={ref} className="b-why__line" aria-hidden="true">
     <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none"><path ref={pathRef} className="b-why__line-track" d={linePath}/></svg>

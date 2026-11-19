@@ -34,11 +34,11 @@
 /* the sun: logomark with a slow, soft halo */
 .b-system__sun{position:absolute;left:50%;top:50%;width:17%;aspect-ratio:1;translate:-50% -50%;z-index:1;display:grid;place-items:center;border-radius:50%;background:#fff;box-shadow:0 1px 0 rgba(17,17,17,.04),0 24px 50px -24px rgba(7,39,47,.45);opacity:0;scale:.6;transition:opacity .6s .2s,scale 1s cubic-bezier(.2,1.4,.4,1) .2s}
 .b-system.is-in .b-system__sun{opacity:1;scale:1}
-.b-system__stage::before{content:'';position:absolute;left:50%;top:50%;width:30%;aspect-ratio:1;margin:-15% 0 0 -15%;border-radius:50%;background:radial-gradient(closest-side,rgba(90,201,199,.34),rgba(90,201,199,0));animation:b-system-breathe 5s ease-in-out infinite alternate}
+.b-system__stage::before{content:'';position:absolute;left:50%;top:50%;width:30%;aspect-ratio:1;margin:-15% 0 0 -15%;border-radius:50%;background:radial-gradient(closest-side,rgba(90,201,199,.34),rgba(90,201,199,0));animation:b-system-breathe 5s ease-in-out 2 alternate both}
 .b-system__sun img{width:50%;height:50%}
 /* ripples: rings that spread out from the logomark and fade, like a stone dropped in water */
 .b-system__ripple{position:absolute;left:50%;top:50%;width:17%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:1px solid rgba(11,103,100,.45);opacity:0;pointer-events:none}
-.b-system.is-in .b-system__ripple{animation:b-system-ripple 4.8s cubic-bezier(.2,.6,.35,1) infinite}
+.b-system.is-in .b-system__ripple{animation:b-system-ripple 4.8s cubic-bezier(.2,.6,.35,1) 2 both}
 @keyframes b-system-ripple{0%{opacity:0;scale:1}8%{opacity:.9}100%{opacity:0;scale:2.6;border-color:rgba(90,201,199,.2)}}
 @keyframes b-system-breathe{from{transform:scale(.85);opacity:.6}to{transform:scale(1.08);opacity:1}}
 
@@ -53,7 +53,10 @@
 .b-system__comet i{position:absolute;left:50%;width:.4rem;height:.4rem;margin:-.2rem 0 0 -.2rem;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px rgba(90,201,199,.22),0 0 14px 4px rgba(90,201,199,.55)}
 .b-system__logo{animation:b-system-turn var(--turn) linear infinite reverse}
 .b-system.is-in .b-system__chip{animation:b-system-float 3s ease-in-out var(--float) infinite alternate}
-.b-system__stage:hover :is(.b-system__orbit,.b-system__comet,.b-system__logo,.b-system__chip){animation-play-state:paused}
+/* The system rests until someone points at it (or picks a capability in the legend), then turns. */
+.b-system.is-in :is(.b-system__orbit,.b-system__comet,.b-system__logo,.b-system__chip){animation-play-state:paused}
+.b-system.is-in .b-system__stage:hover :is(.b-system__orbit,.b-system__comet,.b-system__logo,.b-system__chip),
+.b-system.is-in.has-active :is(.b-system__orbit,.b-system__comet,.b-system__logo,.b-system__chip){animation-play-state:running}
 @keyframes b-system-turn{to{transform:rotate(360deg)}}
 @keyframes b-system-float{from{translate:0 -2px}to{translate:0 2px}}
 
