@@ -4,20 +4,54 @@ import { Analytics } from '@vercel/analytics/react'
 import { Footer, Header, Loader, Seo } from './baseline/chrome.jsx'
 import { HomePage, WorkPage, ProjectPage, CapabilitiesPage, CapabilityPage, ContactPage, LegalPage, NotFoundPage } from './baseline/pages.jsx'
 
+// Scroll memory: each history entry remembers where it was scrolled to, so Back (and Forward) return
+// to the same spot, including after a full page load such as a case study page. Entries are keyed by
+// the router's own location key (the router renders a new page before it updates window.history).
+const SCROLL_KEY = 'moreward-scroll'
+const readScroll = () => { try { return JSON.parse(sessionStorage.getItem(SCROLL_KEY) || '{}') } catch { return {} } }
+const writeScroll = (key, top) => { try { const all = readScroll(); all[key] = top; sessionStorage.setItem(SCROLL_KEY, JSON.stringify(all)) } catch { /* storage unavailable */ } }
+// Re-apply the saved position for a short while: images and reveals can still change the page height.
+function restoreScroll(top) {
+  const until = performance.now() + 1500
+  const step = () => {
+    window.scrollTo({ top, behavior: 'instant' })
+    if (Math.abs(window.scrollY - top) > 2 && performance.now() < until) requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
+}
+
 function SiteLayout() {
   const pathname = useRouterState({ select: state => state.location.pathname })
+  const locationKey = useRouterState({ select: state => (state.location.state?.__TSR_key || state.location.state?.key || 'initial') + '|' + state.location.pathname })
   const previous = useRef(null)
+  const currentKey = useRef(null)
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual'
+    let frame = 0
+    const save = () => { if (currentKey.current) writeScroll(currentKey.current, window.scrollY) }
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(() => { frame = 0; save() }) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('pagehide', save)
+    document.addEventListener('click', save, true)
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('pagehide', save); document.removeEventListener('click', save, true) }
+  }, [])
   useEffect(() => {
     const first = previous.current === null
-    previous.current = pathname
+    previous.current = locationKey
+    currentKey.current = locationKey
+    // A new navigation always gets a fresh history key with nothing saved, so a saved position means
+    // this entry was visited before: Back, Forward or a reload.
+    const saved = readScroll()[locationKey]
+    const backForward = typeof saved === 'number'
     const frame = requestAnimationFrame(() => {
       const hash = window.location.hash.slice(1)
-      if (hash) document.getElementById(decodeURIComponent(hash))?.scrollIntoView({ behavior: first ? 'instant' : 'smooth' })
+      if (backForward) restoreScroll(saved)
+      else if (hash) document.getElementById(decodeURIComponent(hash))?.scrollIntoView({ behavior: first ? 'instant' : 'smooth' })
       else if (!first) window.scrollTo({ top: 0, behavior: 'instant' })
-      if (!first) document.querySelector('main h1')?.focus({ preventScroll: true })
+      if (!first && !backForward) document.querySelector('main h1')?.focus({ preventScroll: true })
     })
     return () => cancelAnimationFrame(frame)
-  }, [pathname])
+  }, [locationKey])
   useEffect(() => {
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) { document.documentElement.classList.add('site-ready'); return }
