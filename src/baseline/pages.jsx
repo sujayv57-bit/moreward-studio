@@ -51,7 +51,6 @@ export function HomePage() {
 function ProjectFeature({ project, eager }) {
   const inner = <>
     <div className="b-feature__info">
-      <span className="b-feature__number">{project.number}</span>
       <h3>{project.title}<span aria-hidden="true">↗</span></h3>
       <p>{project.intro || project.summary}</p>
       <dl>{(project.facts || []).map(([label, value]) => <div key={label}><dt>{label}</dt><i aria-hidden="true"/><dd>{value}</dd></div>)}</dl>
@@ -69,8 +68,8 @@ export function WorkPage() {
   return <><section className="b-internal-hero b-work-hero b-panel-dark"><Eyebrow light>Work</Eyebrow><RevealWords as="h1" text="Selected work."/><p>Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa.</p></section>
     <section className="b-work b-work--page b-panel-light"><h2 className="b-sr-only">Projects</h2><div className="b-showcase-list">{projects.map((project, i) => <ProjectFeature key={project.slug} project={project} eager={i === 0}/>)}</div></section>
     <section className="b-work-note b-panel-light"><p>More client projects will appear here as they launch.</p></section>
-    <section className="b-studio-principles b-studio-principles--text b-panel-dark"><Eyebrow light>What we hold to</Eyebrow><h2 className="b-sr-only">What we hold to</h2><div className="b-studio-principles__layout"><div>{studioPrinciples.map(([title, body], i) => <article key={title} data-reveal><span>{two(i + 1)}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>
-    <section className="b-studio-ways b-panel-light"><Eyebrow>Ways of working</Eyebrow><RevealWords text="The shape of the engagement follows the problem."/><div>{engagementTypes.map(([title, body], i) => <article key={title}><span>{two(i + 1)}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p>We don't publish fixed packages. Every engagement is scoped after the first conversation.</p></section>
+    <section className="b-studio-principles b-studio-principles--text b-panel-dark"><Eyebrow light>What we hold to</Eyebrow><h2 className="b-sr-only">What we hold to</h2><div className="b-studio-principles__layout"><div>{studioPrinciples.map(([title, body]) => <article key={title} data-reveal><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>
+    <section className="b-studio-ways b-panel-light"><Eyebrow>Ways of working</Eyebrow><RevealWords text="The shape of the engagement follows the problem."/><div>{engagementTypes.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div><p>We don't publish fixed packages. Every engagement is scoped after the first conversation.</p></section>
     <CtaBand/></>
 }
 

@@ -16,7 +16,6 @@ export function Disciplines() {
     </div>
     <div className="b-disc__body">
       <div className="b-disc__aside" aria-hidden="true">
-        <p className="b-disc__count"><span key={open}>({current.number})</span></p>
         <div className="b-disc__visual">
           <p key={'l' + open}>{current.name}</p>
           <div className="b-disc__frames">{capabilities.map((item, i) => <div key={item.slug} className={'b-disc__frame' + (i === open ? ' is-active' : '')}><ResponsiveImage image={item.visual} alt="" sizes="(max-width: 900px) 0px, 34vw"/></div>)}</div>

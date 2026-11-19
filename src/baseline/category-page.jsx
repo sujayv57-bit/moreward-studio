@@ -108,7 +108,7 @@ export function CategoryPage({ copy }) {
         <h2 id="cm-engage-title">{engage.title}</h2>
         <p>{engage.body}</p>
       </div>
-      <ul className="b-cm-engage__options" data-cm>{engage.options.map(([title, body], i) => <li key={title}><span>{two(i + 1)}</span><h3>{title}</h3><p>{body}</p></li>)}</ul>
+      <ul className="b-cm-engage__options" data-cm>{engage.options.map(([title, body]) => <li key={title}><h3>{title}</h3><p>{body}</p></li>)}</ul>
       {engage.note && <p className="b-cm-engage__note" data-cm><span aria-hidden="true">i</span>{engage.note}</p>}
     </section>
 

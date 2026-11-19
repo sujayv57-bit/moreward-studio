@@ -39,8 +39,8 @@ html body :is(
 ){font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;text-transform:none;letter-spacing:-.005em;font-variant-numeric:tabular-nums}
 
 /* Eyebrows: a short teal label above each section title. */
-html body .b-eyebrow{font-size:var(--label-size);font-weight:600;letter-spacing:0;color:var(--accent-ink);gap:.6rem}
-html body .b-eyebrow--light,html body .b-panel-dark .b-eyebrow{color:var(--accent-light)}
+html body .b-eyebrow{font-size:var(--label-size);font-weight:600;letter-spacing:0;color:var(--ink-soft);gap:.6rem}
+html body .b-eyebrow--light,html body .b-panel-dark .b-eyebrow{color:#b9c5c0}
 html body .b-eyebrow__dot{width:.4rem;height:.4rem;background:currentColor}
 html body .m-hero__eyebrow{font-size:.9375rem;font-weight:500;letter-spacing:0;color:#d8e0dd}
 
@@ -253,3 +253,11 @@ html body .b-disc__item.is-open :focus-visible{outline-color:#0B6764}
   html body :is(.m-hero__ghost,.b-disc__text a,.b-disc__head-link,.b-legal a){position:relative}
   html body :is(.m-hero__ghost,.b-disc__text a,.b-disc__head-link,.b-legal a)::before{content:'';position:absolute;left:0;right:0;top:50%;height:44px;transform:translateY(-50%)}
 }
+
+/* Numbers removed from non-sequential lists: collapse the columns they used */
+html body .b-studio-principles__layout>div:first-child article,html body .b-studio-principles__layout article{grid-template-columns:1fr!important}
+html body .b-studio-ways article{grid-template-columns:1fr}
+html body .b-studio-ways article p{grid-column:1}
+html body .b-menu nav a{grid-template-columns:1fr auto}
+html body .b-contact-page__intro>div:last-child span{font-size:.8125rem}
+@media(max-width:1023px){html body .b-foot__mark{min-height:44px;display:flex;align-items:center}}
