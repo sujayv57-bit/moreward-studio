@@ -319,6 +319,9 @@ body{margin:0}
 .rc .beat h3{font-size:clamp(26px,2.7vw,40px)}
 .rc .trow .spec{font-size:clamp(28px,3.4vw,52px)}
 .rc .closing blockquote{font-size:clamp(28px,3.6vw,54px)}
+/* Arch divider: show the whole 16:9 image, no crop or parallax */
+.rc .divider{height:auto!important;min-height:0!important;aspect-ratio:1920/1080}
+.rc .divider img{top:0!important;height:100%!important;object-fit:cover;transform:none!important}
 </style>
 </head>
 <body>
@@ -489,7 +492,6 @@ body{margin:0}
 <!-- DIVIDER -->
 <section class="divider" aria-label="Rucaa wordmark under an arch">
   <img id="rcPlx" src="/work/rucaa/assets/arch.jpg" alt="The Rucaa wordmark framed by an arch, with the dome of the Taj Mahal beyond">
-  <span class="cap">Presentation mockup</span>
 </section>
 
 <!-- 08 FINAL MARK -->
