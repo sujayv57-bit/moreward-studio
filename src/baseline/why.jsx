@@ -103,9 +103,9 @@ export function WhySection({ index }) {
     <Eyebrow index={index}>Why Moreward</Eyebrow>
     <h2 className="b-why__title">Why Moreward, and not <span>another studio?</span></h2>
     <div className="b-why__grid">
-      <Link to="/work" className="b-why__tile b-why__tile--image b-why__a" data-reveal aria-label="BETACH brand identity, see the work">
+      <Link to="/work" className="b-why__tile b-why__tile--image b-why__a" data-reveal aria-label="BETACH brand identity and website, see the work">
         <ResponsiveImage image={betach.image} alt={betach.imageAlt} sizes="(max-width: 767px) 100vw, 30vw"/>
-        <span className="b-why__tag">BETACH · Brand identity</span>
+        <span className="b-why__tag">BETACH · Identity & website</span>
       </Link>
 
       <div className="b-why__tile b-why__b" data-reveal>

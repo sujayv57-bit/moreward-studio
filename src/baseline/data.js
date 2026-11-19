@@ -33,8 +33,8 @@ export const projects = [
   {
     number: '01', slug: 'betach', title: 'BETACH', client: true, href: '/work/betach',
     summary: 'Protection, built on trust.',
-    intro: 'An identity for a Gulf consultancy in safety leadership and specialist talent, where trust and protection share one form.',
-    facts: [['Client', 'BETACH Consulting Services'], ['Sector', 'Safety leadership & talent'], ['Region', 'Gulf (GCC)'], ['Discipline', 'Brand identity']],
+    intro: 'The identity and the website for a Gulf consultancy in safety leadership and specialist talent, where trust and protection share one form.',
+    facts: [['Client', 'BETACH Consulting Services'], ['Sector', 'Safety leadership & talent'], ['Region', 'Gulf (GCC)'], ['Discipline', 'Brand identity, website'], ['Website', 'betach.in (live)']],
     image: image('betach-plate', 1254, 1254), imageAlt: 'A hand holding a clear acrylic plate etched with the BETACH symbol, against a teal gradient',
   },
   {

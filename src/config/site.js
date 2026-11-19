@@ -20,7 +20,7 @@ export const STATIC_PATHS = ['/work/betach', '/work/kriya-setu', '/work/rucaa']
 
 export const seo = {
   '/': { title: 'Moreward | Direction, made visible.', description: 'Independent creative and technology studio. Brand, campaigns, outdoor and broadcast media, and the websites, CRMs and automations behind them.', image: '/social-card.png' },
-  '/work': { title: 'Work | Moreward', description: 'Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa, by Moreward.', image: '/images/betach-plate-1254.webp' },
+  '/work': { title: 'Work | Moreward', description: 'Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa, and the live BETACH website, by Moreward.', image: '/images/betach-plate-1254.webp' },
   '/capabilities': { title: 'Capabilities | Moreward', description: 'Creative & Marketing, Advertising & Media, and Technology & Automation under one roof, working from the same brief. How the studio works, from first conversation to launch.' },
   '/capabilities/creative-marketing': { title: 'Creative & Marketing | Moreward', description: 'Marketing strategy, brand identity, advertising design, campaign development, influencer marketing and content creation. What each can involve and how a project is scoped.' },
   '/capabilities/advertising-media': { title: 'Advertising & Media | Moreward', description: 'Outdoor, billboard and banner, metro, television, radio and print advertising, with media planning that gives every placement a clear purpose.' },

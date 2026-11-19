@@ -65,7 +65,7 @@ function ProjectFeature({ project, eager }) {
 }
 
 export function WorkPage() {
-  return <><section className="b-internal-hero b-work-hero b-panel-dark"><Eyebrow light>Work</Eyebrow><RevealWords as="h1" text="Selected work."/><p>Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa.</p></section>
+  return <><section className="b-internal-hero b-work-hero b-panel-dark"><Eyebrow light>Work</Eyebrow><RevealWords as="h1" text="Selected work."/><p>Brand identities for BETACH Consulting Services, Kriya Setu and Rucaa, and the live BETACH website.</p></section>
     <section className="b-work b-work--page b-panel-light"><h2 className="b-sr-only">Projects</h2><div className="b-showcase-list">{projects.map((project, i) => <ProjectFeature key={project.slug} project={project} eager={i === 0}/>)}</div></section>
     <section className="b-work-note b-panel-light"><p>More client projects will appear here as they launch.</p></section>
     <section className="b-studio-principles b-studio-principles--text b-panel-dark"><Eyebrow light>What we hold to</Eyebrow><h2 className="b-sr-only">What we hold to</h2><div className="b-studio-principles__layout"><div>{studioPrinciples.map(([title, body]) => <article key={title} data-reveal><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>

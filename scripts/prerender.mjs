@@ -59,7 +59,7 @@ It works across three disciplines, often in one project:
 - Technology & Automation: websites, custom CRMs, workflow and AI automation.
 Pages
 - Home: overview, disciplines, tools and approach.
-- Work: brand identities for BETACH Consulting Services, Kriya Setu and Rucaa; the studio's principles and ways of working (no fixed packages).
+- Work: brand identities for BETACH Consulting Services, Kriya Setu and Rucaa, plus the BETACH website (live at betach.in); the studio's principles and ways of working (no fixed packages).
 - Capabilities: the three disciplines, the studio and how we work.
 - Contact: enquiry form, or email ${STUDIO_EMAIL}.
 `)
