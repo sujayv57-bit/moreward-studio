@@ -7,3 +7,4 @@ uploads/*
 .env
 test-results/
 playwright-report/
+data/e2e-uploads/

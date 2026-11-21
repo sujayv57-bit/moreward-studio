@@ -17,7 +17,8 @@ const ctx: Ctx = {
   db, now: () => new Date().toISOString(),
   uploadsDir: path.resolve(root, env.UPLOADS_DIR ?? 'uploads'),
   maxUploadBytes: Number(env.MAX_UPLOAD_MB ?? 10) * 1024 * 1024,
-  production, providers: providerFlags(loadProviders(env)),
+  production, secureCookies: env.COOKIE_SECURE ? env.COOKIE_SECURE !== 'false' : production,
+  providers: providerFlags(loadProviders(env)),
 };
 const app = createApp(ctx, { staticDir: production ? path.resolve(root, 'dist') : undefined });
 const port = Number(env.PORT ?? 3001);

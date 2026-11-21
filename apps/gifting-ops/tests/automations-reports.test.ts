@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { runAutomations } from '../server/rules/automations.ts';
-import { approvedVendor, buyEverything, confirmedOrder, readyForProcurement, relogin, useEnv } from './flows.ts';
+import { approvedVendor, buyEverything, confirmedOrder, readyForProcurement, relogin, setupEnv } from './flows.ts';
 
-const box = useEnv();
+const box = setupEnv();
 
 describe('Scenario 11 — overdue work and delivery risk notify the right person once', () => {
   it('creates follow-up and arrival notifications without duplicates', async () => {

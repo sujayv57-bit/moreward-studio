@@ -3,6 +3,9 @@ import { addDays, daysBetween, today } from '../context.ts';
 import { many, one } from '../db.ts';
 import type { Missing } from '../http.ts';
 import { getSetting } from '../settings.ts';
+const M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+/** Human date for messages: "8 Nov 2026". */
+export const fmtDate = (d: string | null | undefined) => { if (!d) return '—'; const [y, m, day] = d.slice(0, 10).split('-').map(Number); return `${day} ${M[m - 1]} ${y}`; };
 import { marginBp, mulBp } from '../money.ts';
 
 export const STAGES = ['confirmed', 'procurement', 'goods_received', 'quality_check', 'packing', 'dispatch', 'delivered', 'closed'] as const;
@@ -71,9 +74,9 @@ export function deliveryRisk(ctx: Ctx, order: Record<string, any>, comps?: Compo
       }
       if (c.incoming > 0 && c.latest_arrival) {
         if (c.latest_arrival > readyBy) readyBy = c.latest_arrival;
-        if (c.latest_arrival < t) raise('late', `${c.component_name}: vendor promised ${c.latest_arrival}, ${c.incoming} still not received`);
-        else if (due && c.latest_arrival > due) raise('late', `${c.component_name} arrives ${c.latest_arrival}, after the customer due date`);
-        else if (due && addDays(c.latest_arrival, buffer) > due) raise('at_risk', `${c.component_name} arrives ${c.latest_arrival}, leaving under ${buffer} days to check, pack and ship`);
+        if (c.latest_arrival < t) raise('late', `${c.component_name}: vendor promised ${fmtDate(c.latest_arrival)}, ${c.incoming} still not received`);
+        else if (due && c.latest_arrival > due) raise('late', `${c.component_name} arrives ${fmtDate(c.latest_arrival)}, after the customer due date`);
+        else if (due && addDays(c.latest_arrival, buffer) > due) raise('at_risk', `${c.component_name} arrives ${fmtDate(c.latest_arrival)}, leaving under ${buffer} days to check, pack and ship`);
       }
       if (c.incoming > 0 && !c.latest_arrival) raise('at_risk', `${c.component_name}: no promised date from vendor`);
     }
@@ -81,8 +84,8 @@ export function deliveryRisk(ctx: Ctx, order: Record<string, any>, comps?: Compo
   const openShipDelays = many(ctx.db, "SELECT id, expected_on FROM shipments WHERE order_id=? AND status IN ('delayed','failed')", order.id);
   if (openShipDelays.length) raise('at_risk', `${openShipDelays.length} shipment(s) delayed or failed`);
   const projected = order.stage === 'dispatch' ? (one<{ d: string | null }>(ctx.db, "SELECT MAX(expected_on) d FROM shipments WHERE order_id=? AND status<>'delivered'", order.id)?.d ?? t) : addDays(readyBy, buffer);
-  if (due && due < t) raise('late', `Customer due date ${due} has passed`);
-  else if (due && projected > due && !reasons.some((r) => r.includes('after the customer due date') || r.includes('cannot arrive'))) raise('late', `Projected delivery ${projected} is after the due date ${due}`);
+  if (due && due < t) raise('late', `Customer due date ${fmtDate(due)} has passed`);
+  else if (due && projected > due && !reasons.some((r) => r.includes('after the customer due date') || r.includes('cannot arrive'))) raise('late', `Projected delivery ${fmtDate(projected)} is after the due date ${fmtDate(due)}`);
   return { level, reasons, projected_delivery: projected, days_late: due ? Math.max(0, daysBetween(due, projected)) : 0 };
 }
 
@@ -197,7 +200,17 @@ export function orderStatus(ctx: Ctx, order: Record<string, any>, risk?: Risk) {
   const defaultOwner = STAGE_OWNER[order.stage] === 'procurement' ? order.procurement_owner_id ?? order.sales_owner_id : order.sales_owner_id;
   if (order.blocker_reason) return { blocked: true, source: 'manual' as const, reason: order.blocker_reason as string, owner_id: (order.blocker_owner_id ?? defaultOwner) as number, next_action: (order.next_action ?? STAGE_DEFAULT_ACTION[order.stage]) as string };
   const issue = one(ctx.db, "SELECT * FROM issues WHERE order_id=? AND status<>'resolved' AND priority IN ('high','urgent') ORDER BY CASE priority WHEN 'urgent' THEN 0 ELSE 1 END, id LIMIT 1", order.id);
-  if (issue) return { blocked: true, source: 'issue' as const, reason: `Open ${issue.priority} issue: ${issue.title}`, owner_id: issue.owner_id as number, next_action: `Resolve issue #${issue.id}${issue.due_date ? ` by ${issue.due_date}` : ''}` };
-  if (rk.level === 'late') return { blocked: true, source: 'risk' as const, reason: rk.reasons[0] ?? 'Late', owner_id: defaultOwner as number, next_action: STAGE_OWNER[order.stage] === 'procurement' ? 'Chase vendors or find a backup source, and agree a revised date with the customer' : 'Agree a revised date with the customer' };
+  if (issue) return { blocked: true, source: 'issue' as const, reason: `Open ${issue.priority} issue: ${issue.title}`, owner_id: issue.owner_id as number, next_action: `Resolve issue #${issue.id}${issue.due_date ? ` by ${fmtDate(issue.due_date)}` : ''}` };
+  if (rk.level === 'late') {
+    const lateAction: Record<string, string> = {
+      confirmed: 'Complete the bill of materials and raise purchase orders today; sales to agree a revised date with the customer',
+      procurement: 'Chase vendors or switch to a backup source; sales to agree a revised date with the customer',
+      goods_received: 'Finish quality checks and start packing; sales to agree a revised date with the customer',
+      quality_check: 'Finish quality checks and start packing; sales to agree a revised date with the customer',
+      packing: 'Finish packing and dispatch what is ready; sales to agree a revised date with the customer',
+      dispatch: 'Chase the courier and agree a revised date with the customer',
+    };
+    return { blocked: true, source: 'risk' as const, reason: rk.reasons[0] ?? 'Late', owner_id: defaultOwner as number, next_action: lateAction[order.stage] ?? 'Agree a revised date with the customer' };
+  }
   return { blocked: false, source: null, reason: null, owner_id: defaultOwner as number, next_action: (order.next_action ?? STAGE_DEFAULT_ACTION[order.stage]) as string };
 }

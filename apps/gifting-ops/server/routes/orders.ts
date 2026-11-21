@@ -347,6 +347,12 @@ r.post('/orders/:id/archive', requirePerm('*'), (req, res) => {
   audit(ctx.db, ctx.now(), req.user.id, 'archive', 'order', id, `Order ${o.number} archived: ${reason}`, { orderId: id });
   res.json({ ok: true });
 });
+r.get('/orders/:id/approvals', (req, res) => {
+  const ctx = req.ctx; const id = intParam(req.params.id); const o = loadOrder(ctx, req.user, id);
+  res.json({ rows: many(ctx.db, `SELECT a.*, u.name requested_name, d.name decided_name FROM approvals a JOIN users u ON u.id=a.requested_by LEFT JOIN users d ON d.id=a.decided_by
+    WHERE a.order_id=? OR (a.entity_type='quotation' AND a.entity_id=?) OR (a.entity_type='purchase_order' AND a.entity_id IN (SELECT id FROM purchase_orders WHERE order_id=?)) ORDER BY a.id DESC`, id, o.quotation_id ?? 0, id)
+    .map((a) => ({ ...a, can_decide: a.status === 'pending' && can(req.user, a.required_permission) && (a.requested_by !== req.user.id || can(req.user, '*')) })) });
+});
 r.post('/orders/:id/partial-packing', (req, res) => {
   const ctx = req.ctx; const id = intParam(req.params.id); const o = loadOrder(ctx, req.user, id);
   if (!canAny(req.user, 'packing.write', 'procurement.write')) throw forbidden();

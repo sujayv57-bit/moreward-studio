@@ -8,6 +8,8 @@ export interface Ctx {
   uploadsDir: string;
   maxUploadBytes: number;
   production: boolean;
+  /** Send the session cookie only over HTTPS. Defaults to `production`; set COOKIE_SECURE=false only for local HTTP testing. */
+  secureCookies?: boolean;
   /** Which outbound providers have real credentials. None configured → manual workflows only. */
   providers: { email: boolean; whatsapp: boolean; courier: boolean; payments: boolean; accounting: boolean };
 }

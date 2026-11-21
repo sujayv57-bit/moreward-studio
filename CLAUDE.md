@@ -32,3 +32,7 @@ Vite + React site, deployed on Vercel (project `moreward-studio`, team `sujay-s-
 - Client case studies can be standalone HTML pages in `public/work/<slug>/` (e.g. `public/work/betach/`). Their card in `src/baseline/data.js` has `client: true` and `href`, so it opens with a full page load. Add the path to `STATIC_PATHS` in `src/config/site.js` (sitemap) and a rewrite in `vercel.json`. Self-host any fonts they use.
 - Tests: `node scripts/test-enquiry.mjs` (API). `npm run preview` serves `dist/` with the vercel.json redirects.
 - Contact form handler: `api/enquiry.js` (needs `RESEND_API_KEY` and `ENQUIRY_FROM` set in Vercel environment variables).
+
+## Separate app: `apps/gifting-ops/`
+
+An internal corporate-gifting operations platform (Node 22 + Express 5 + SQLite + React/Vite, TypeScript) lives in `apps/gifting-ops/` with its own `package.json`, README and tests. It is not part of the website build and is not deployed by the site's Vercel project. Work on it from that folder: `npm run verify` runs lint, typecheck, Vitest, build and Playwright.

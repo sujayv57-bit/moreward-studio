@@ -12,7 +12,7 @@ import { mulBp } from '../money.ts';
 import { notify, notifyRoles } from '../notify.ts';
 import { can, canAny, type AuthUser } from '../permissions.ts';
 import { onDecision, requestApproval } from '../rules/approvals.ts';
-import { pageParams, qstr, userName } from '../rules/common.ts';
+import { pageParams, qstr } from '../rules/common.ts';
 import { LINE_MATH, componentStatus, deliveryRisk, poTotals } from '../rules/orders.ts';
 import { PURCHASABLE, type VendorState } from '../rules/vendors.ts';
 import { getSetting } from '../settings.ts';
@@ -111,11 +111,13 @@ export function compareQuotes(ctx: Ctx, rfq: Record<string, any>) {
     if (q.status !== 'received') return { ...q, flags: [] as string[] };
     const goods = rfq.qty * q.unit_price_paise; const tax = mulBp(goods, q.tax_bp ?? 0);
     const landed = goods + tax + q.shipping_paise;
-    const arrival = addDays(t, q.lead_time_days);
+    // Open RFQs: arrival if ordered today. Awarded/cancelled: as it looked when the quote came in.
+    const base = rfq.status === 'open' ? t : (q.received_at ?? q.requested_at).slice(0, 10);
+    const arrival = addDays(base, q.lead_time_days);
     const flags: string[] = [];
     if (!PURCHASABLE.includes(q.vendor_status as VendorState)) flags.push(`Vendor is ${q.vendor_status.replace('_', ' ')} — not approved for purchase orders`);
     if (q.moq && q.moq > rfq.qty) flags.push(`MOQ ${q.moq} is above the ${rfq.qty} needed`);
-    if (q.valid_until && q.valid_until < t) flags.push(`Quote expired ${q.valid_until}`);
+    if (rfq.status === 'open' && q.valid_until && q.valid_until < t) flags.push(`Quote expired ${q.valid_until}`);
     let risk: 'ok' | 'tight' | 'late' | 'unknown' = 'unknown';
     if (rfq.needed_by) { const slack = daysBetween(arrival, rfq.needed_by); risk = slack < 0 ? 'late' : slack < buffer ? 'tight' : 'ok'; }
     return { ...q, goods_paise: goods, tax_paise: tax, landed_paise: landed, landed_per_unit_paise: Math.round(landed / rfq.qty), expected_arrival: arrival, delivery_risk: risk, flags };

@@ -28,7 +28,7 @@ r.post('/login', (req, res) => {
   run(ctx.db, 'UPDATE users SET failed_logins=0, locked_until=NULL WHERE id=?', u.id);
   const s = createSession(ctx, u.id);
   audit(ctx.db, ctx.now(), u.id, 'login', 'user', u.id, 'Signed in');
-  res.cookie(COOKIE, s.token, { httpOnly: true, sameSite: 'lax', secure: ctx.production, expires: s.expires, path: '/' });
+  res.cookie(COOKIE, s.token, { httpOnly: true, sameSite: 'lax', secure: ctx.secureCookies ?? ctx.production, expires: s.expires, path: '/' });
   res.json({ ok: true });
 });
 

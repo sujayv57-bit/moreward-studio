@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { ApiError, tinyPdf } from '../server/testkit.ts';
-import { approvedVendor, buyEverything, confirmedOrder, readyForProcurement, useEnv } from './flows.ts';
+import { approvedVendor, buyEverything, confirmedOrder, readyForProcurement, setupEnv } from './flows.ts';
 
-const box = useEnv();
+const box = setupEnv();
 const expectApi = async (p: Promise<unknown>, status: number, code?: string) => {
   try { await p; } catch (e) { expect(e).toBeInstanceOf(ApiError); expect((e as ApiError).status).toBe(status); if (code) expect((e as ApiError).body.error.code).toBe(code); return (e as ApiError).body; }
   throw new Error(`expected ${status}`);

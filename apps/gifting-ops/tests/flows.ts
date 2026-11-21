@@ -12,7 +12,7 @@ export async function setup(start = '2026-11-02T05:00:00.000Z') {
   for (const u of DEMO_USERS) { as[u.key] = client(srv.base); await as[u.key].login(u.email); }
   return { ...srv, ids, as, today: () => clock.now.slice(0, 10), addDays: (n: number) => { const d = new Date(clock.now); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); } };
 }
-export function useEnv() {
+export function setupEnv() {
   const box = {} as { env: Env };
   beforeAll(async () => { box.env = await setup(); });
   afterAll(async () => { await box.env?.close(); });

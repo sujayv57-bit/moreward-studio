@@ -36,9 +36,7 @@ export function nextNumber(db: DB, name: string, prefix: string, year: number): 
 }
 
 // Small typed query helpers.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const one = <T = any>(db: DB, sql: string, ...p: unknown[]): T | undefined => db.prepare(sql).get(...p) as T | undefined;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const many = <T = any>(db: DB, sql: string, ...p: unknown[]): T[] => db.prepare(sql).all(...p) as T[];
 export const run = (db: DB, sql: string, ...p: unknown[]) => db.prepare(sql).run(...p);
 export const insert = (db: DB, table: string, row: Record<string, unknown>): number => {
