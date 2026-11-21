@@ -59,7 +59,7 @@ r.get('/orders/:id/payments', requirePerm('finance.view'), (req, res) => {
   const o = one(ctx.db, 'SELECT * FROM orders WHERE id=?', id)!;
   res.json({
     finance: orderFinance(ctx, id), due_on: receivableDue(ctx, o),
-    payments: many(ctx.db, 'SELECT p.*, u.name recorded_name, a.filename FROM customer_payments p LEFT JOIN users u ON u.id=p.recorded_by LEFT JOIN attachments a ON a.id=p.attachment_id WHERE order_id=? ORDER BY received_on', id),
+    payments: many(ctx.db, 'SELECT p.*, u.name recorded_name, a.filename FROM customer_payments p LEFT JOIN users u ON u.id=p.recorded_by LEFT JOIN attachments a ON a.id=p.attachment_id WHERE p.order_id=? ORDER BY received_on', id),
     invoices: many(ctx.db, 'SELECT i.*, u.name recorded_name FROM invoices i LEFT JOIN users u ON u.id=i.recorded_by WHERE order_id=? ORDER BY issued_on', id),
     vendor: many(ctx.db, "SELECT po.id, po.number, po.status, v.display_name vendor FROM purchase_orders po JOIN vendors v ON v.id=po.vendor_id WHERE po.order_id=? AND po.status NOT IN ('draft','pending_approval','cancelled')", id).map((po) => ({ ...po, ...poTotals(ctx, po.id) })),
     payments_integration: ctx.providers.payments, accounting_integration: ctx.providers.accounting,

@@ -321,7 +321,8 @@ r.post('/purchase-orders/:id/reschedule', requirePerm('procurement.write'), (req
   const po = one(ctx.db, 'SELECT * FROM purchase_orders WHERE id=?', id)!;
   if (!['issued', 'confirmed', 'partially_received'].includes(po.status)) throw badRequest('Only open POs can be rescheduled.');
   const v = parse(z.object({ new_date: z.string().regex(dateRe, 'Enter the new date'), reason: z.string().trim().min(5, 'Record the vendor’s reason') }), req.body);
-  tx(ctx.db, () => { recordDelay(ctx, req.user, po, v.new_date, v.reason); update(ctx.db, 'purchase_orders', id, { promised_date: v.new_date, updated_at: ctx.now(), version: po.version + 1 }); });
+  // Save the new date first so the impact on the customer date is computed from it.
+  tx(ctx.db, () => { update(ctx.db, 'purchase_orders', id, { promised_date: v.new_date, updated_at: ctx.now(), version: po.version + 1 }); recordDelay(ctx, req.user, po, v.new_date, v.reason); });
   res.json({ ok: true });
 });
 r.post('/purchase-orders/:id/cancel', requirePerm('procurement.write'), (req, res) => {

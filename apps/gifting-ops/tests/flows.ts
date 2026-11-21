@@ -33,7 +33,7 @@ export async function confirmedOrder(env: Env, opts: { lines?: { description: st
   const { opportunity_id: oppId } = await as.sales1.post(`/api/leads/${lead.id}/convert`);
   await as.sales1.post(`/api/opportunities/${oppId}/feasibility`, { assigned_to: ids.proc1 });
   const f = (await as.proc1.get('/api/feasibility')).rows.find((x: any) => x.opportunity_id === oppId);
-  await as.proc1.post(`/api/feasibility/${f.id}/complete`, { result: 'feasible', earliest_delivery: env.addDays(10), notes: 'Stock available with two vendors' });
+  await as.proc1.post(`/api/feasibility/${f.id}/complete`, { result: 'feasible', earliest_delivery: env.addDays(5), notes: 'Stock available with two vendors' });
   const q = await as.sales1.post(`/api/opportunities/${oppId}/quotations`, { lines, shipping_paise: 0, tax_bp: 1800, validity_date: env.addDays(15), delivery_date: due });
   const qd = await as.sales1.get(`/api/quotations/${q.id}`);
   await as.proc1.put(`/api/quotations/${q.id}/costs`, { lines: qd.versions[0].lines.map((l: any) => ({ id: l.id, unit_cost_paise: opts.cost_paise ?? Math.round(l.unit_price_paise * 0.6) })) });
@@ -81,4 +81,8 @@ export async function buyEverything(env: Env, orderId: number, vendorId: number,
   const po = await as.procManager.post('/api/purchase-orders', { order_id: orderId, vendor_id: vendorId, promised_date: promised, shipping_paise: 0, lines: comps.map((c: any) => ({ bom_item_id: c.id, description: c.component_name, qty_ordered: c.required, unit_price_paise: 50000, tax_bp: 1200 })) });
   await as.procManager.post(`/api/purchase-orders/${po.id}/issue`);
   return po.id as number;
+}
+/** Sessions last 12 hours of (test) clock time; sign everyone in again after moving the clock. */
+export async function relogin(env: Env) {
+  for (const u of DEMO_USERS) await env.as[u.key].login(u.email);
 }
